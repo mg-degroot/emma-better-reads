@@ -6,25 +6,12 @@ import { UserService } from './user/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
 
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule, RouterLink} from '@angular/router';
 
-const routes: Routes = [
-  {
-      path: 'user',
-      pathMatch: 'full',
-      component: UserListComponent
-  },
-  // Read bestaande user op basis van ID
-  {
-      path: ':id',
-      pathMatch: 'full',
-      component: UserDetailComponent
-  }
-]
 
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), CommonModule, HttpClientModule],
+  imports: [RouterModule, CommonModule, HttpClientModule, RouterLink],
   declarations: [UserListComponent, UserDetailComponent, AboutComponent],
   providers: [UserService],
   exports: [UserListComponent, UserDetailComponent, AboutComponent],

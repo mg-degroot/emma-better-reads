@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { RouterModule, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FeaturesModule } from '@nx-emma-indiv/better-books/frontend';
+import { UiModule } from '@nx-emma-indiv/ui';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule, FeaturesModule],
+  imports: [RouterModule, RouterOutlet, RouterLink, RouterLinkActive, FeaturesModule, UiModule],
   selector: 'nx-emma-indiv-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
