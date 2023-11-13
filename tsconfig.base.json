@@ -14,7 +14,21 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@avans-nx-workshop/backend/features": [
+        "libs/backend/features/src/index.ts"
+      ],
+      "@nx-emma-indiv/backend/dto": ["libs/backend/dto/src/index.ts"],
+      "@nx-emma-indiv/backend/features": ["libs/backend/features/src/index.ts"],
+      "@nx-emma-indiv/better-books/common": [
+        "libs/better-books/common/src/index.ts"
+      ],
+      "@nx-emma-indiv/better-books/frontend": [
+        "libs/better-books/frontend/src/index.ts"
+      ],
+      "@nx-emma-indiv/shared/api": ["libs/shared/api/src/index.ts"],
+      "@nx-emma-indiv/ui": ["libs/better-books/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

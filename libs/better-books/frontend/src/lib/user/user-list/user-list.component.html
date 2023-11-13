@@ -1,0 +1,8 @@
+<div *ngFor="let user of users">
+    <h2>{{ user.title }}</h2>
+    <p>Beschrijving: {{ user.description }}</p>
+    <p>Geserveerd: {{ user.dateServed | date : 'long' }}</p>
+    <p>Vegetarisch: {{user.isVega }}</p>
+    <p>Soort eten: {{user.sort}}</p>
+    <p>Kok: {{user.cook}}</p>
+</div>
