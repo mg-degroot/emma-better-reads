@@ -1,8 +1,20 @@
-<div *ngFor="let user of users">
-    <h2>{{ user.title }}</h2>
-    <p>Beschrijving: {{ user.description }}</p>
-    <p>Geserveerd: {{ user.dateServed | date : 'long' }}</p>
-    <p>Vegetarisch: {{user.isVega }}</p>
-    <p>Soort eten: {{user.sort}}</p>
-    <p>Kok: {{user.cook}}</p>
-</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Naam</th>
+        <th scope="col">Email</th>
+        <th scope="col">Geboortedatum</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <th scope="row"> {{user.id}}</th>
+        <a routerLink="{{ user.id }}">
+            {{ user.naam }}</a
+        >
+        <td>{{user.email}}</td>
+        <td>{{ user.geboortedatum | date : 'dd-MM-yyyy' }}</td>
+      </tr>
+    </tbody>
+  </table>

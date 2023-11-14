@@ -18,6 +18,7 @@ export const httpOptions = {
  */
 @Injectable()
 export class UserService {
+
     endpoint = 'http://localhost:3000/api/user';
 
     constructor(private readonly http: HttpClient) {}
