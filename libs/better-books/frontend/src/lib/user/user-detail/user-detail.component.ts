@@ -10,10 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class UserDetailComponent {
-    users: IUser[] | null = null;
+    users: IUser | null = null;
     userId: string | null = null;
 
-    constructor(private route: ActivatedRoute, private userService: UserService ) {}
+    constructor( private route: ActivatedRoute, private userService: UserService ) {}
 
     ngOnInit(): void {
   
@@ -21,7 +21,9 @@ export class UserDetailComponent {
       // We komen hier bij services en HTTP op terug.
       this.route.paramMap.subscribe((params) => {
         this.userId = params.get('id');
-        //this.users = this.userService.getUserById(Number(this.userId)); // Waarom 'Number'?
+
+        this.userService.read(this.userId).subscribe((observable) => 
+          this.users = observable);
       });
     }
 }

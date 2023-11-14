@@ -11,8 +11,7 @@
       <tr *ngFor="let user of users">
         <th scope="row"> {{user.id}}</th>
         <a routerLink="{{ user.id }}">
-            {{ user.naam }}</a
-        >
+            {{ user.naam }}</a>
         <td>{{user.email}}</td>
         <td>{{ user.geboortedatum | date : 'dd-MM-yyyy' }}</td>
       </tr>

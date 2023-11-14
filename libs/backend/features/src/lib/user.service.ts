@@ -42,10 +42,6 @@ export class UserService {
         }
         return user;
     }
-    // getUserById(id: number): User {
-    //     console.log('getUserById aangeroepen');
-    //     return this.users.filter((user) => user.id === id)[0];
-    //   }
 
     /**
      * Update the arg signature to match the DTO, but keep the

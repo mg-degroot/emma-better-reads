@@ -1,1 +1,9 @@
-<p>So this works somehow but can't get users, yet.</p>
+<div class="d-flex">
+  <ul class="list-group list-group-flush mx-auto">
+    <li class="list-group-item"><span>Naam: </span> {{users?.naam}}</li>
+    <li class="list-group-item"><span>Email: </span> {{users?.email}}</li>
+    <li class="list-group-item"><span>Geboortedatum: </span> {{users?.geboortedatum | date: 'dd-MM-yyyy'}}</li>
+    <li class="list-group-item"><span>Straat: </span> {{users?.straatnaam}} {{users?.huisnummer}}</li>
+    <li class="list-group-item"><span>Stad: </span> {{users?.stad}}</li>
+  </ul>
+</div>
