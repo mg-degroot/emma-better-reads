@@ -3,6 +3,7 @@ import { Route, RouterModule } from '@angular/router';
 import { AboutComponent} from '@nx-emma-indiv/better-books/frontend';
 import { UserListComponent } from '@nx-emma-indiv/better-books/frontend';
 import { UserDetailComponent } from '@nx-emma-indiv/better-books/frontend';
+import { UserEditComponent } from '@nx-emma-indiv/better-books/frontend';
 
 export const appRoutes: Route[] = [
     {
@@ -18,6 +19,11 @@ export const appRoutes: Route[] = [
         path: "users/:id", 
         pathMatch: "full", 
         component: UserDetailComponent },
+    { 
+        path: "users/:id/edit", 
+        pathMatch: "full", 
+        component: UserEditComponent },
+   
 
 ];
 

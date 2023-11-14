@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { IUser } from '@nx-emma-indiv/shared/api';
 import { ActivatedRoute } from '@angular/router';
@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-detail.component.css'],
 })
 
-export class UserDetailComponent {
+export class UserDetailComponent implements OnInit {
     users: IUser | null = null;
     userId: string | null = null;
 

@@ -1,4 +1,4 @@
-<div class="d-flex">
+<!-- <div class="d-flex">
   <ul class="list-group list-group-flush mx-auto">
     <li class="list-group-item"><span>Naam: </span> {{users?.naam}}</li>
     <li class="list-group-item"><span>Email: </span> {{users?.email}}</li>
@@ -6,4 +6,49 @@
     <li class="list-group-item"><span>Straat: </span> {{users?.straatnaam}} {{users?.huisnummer}}</li>
     <li class="list-group-item"><span>Stad: </span> {{users?.stad}}</li>
   </ul>
+</div> -->
+
+
+<div class="container-fluid">
+  <div class="card m-5 text-center">
+    <div class="card-body">
+
+      <h2 class="user-name mb-3">{{users?.naam}}</h2>
+
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item">
+          <span class="fw-bold">Emailadres:</span>
+          <p>{{users?.email}}</p>
+        </li>
+        <li class="list-group-item">
+          <span class="fw-bold">Geboortedatum:</span>
+          <p>{{users?.geboortedatum | date: 'dd-MM-yyyy'}}</p>
+        </li>
+        <li class="list-group-item">
+          <span class="fw-bold">Adres:</span>
+          <p>{{users?.straatnaam}} {{users?.huisnummer}}</p>
+        </li>
+        <li class="list-group-item">
+          <span class="fw-bold">Stad:</span>
+          <p>{{users?.stad}}</p>
+        </li>
+      </ul>
+
+      <div class="d-flex justify-content-start">
+        <button type="button" class="btn btn-dark m-3">
+          <a routerLink="/users" class="text-light text-decoration-none">Annuleren</a>
+        </button>
+
+        <button type="button" class="btn btn-info m-3">
+          <a routerLink="edit" class="text-light text-decoration-none">Wijzig Gebruiker</a>
+        </button>
+
+        <button type="button" class="btn btn-danger m-3">
+          <a routerLink="/" class="text-light text-decoration-none">Verwijder Gebruiker</a>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+
 </div>

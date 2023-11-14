@@ -1,19 +1,29 @@
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Naam</th>
-        <th scope="col">Email</th>
-        <th scope="col">Geboortedatum</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <th scope="row"> {{user.id}}</th>
-        <a routerLink="{{ user.id }}">
-            {{ user.naam }}</a>
-        <td>{{user.email}}</td>
-        <td>{{ user.geboortedatum | date : 'dd-MM-yyyy' }}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container-fluid">
+
+  <div class="new user d-flex justify-content-end mt-4 me-5">
+    <button type="button" class="btn btn-info">
+      <a routerLink="/about" class="text-dark text-decoration-none">Nieuwe Gebruiker</a>
+    </button>
+  </div>
+
+  <div class="table d-flex justify-content-center">
+    <table class="table m-4">
+      <thead>
+        <tr>
+          <th scope="col" class="table-info">ID</th>
+          <th scope="col">Naam</th>
+          <th scope="col">Email</th>
+          <th scope="col">Geboortedatum</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <th class="table-info"> {{user.id}}</th>
+          <td><a routerLink="{{ user.id }}" class="text-primary text-decoration-none">{{ user.naam }}</a></td>
+          <td>{{user.email}}</td>
+          <td>{{ user.geboortedatum | date : 'dd-MM-yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>  
