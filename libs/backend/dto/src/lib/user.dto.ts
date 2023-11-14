@@ -8,8 +8,7 @@ import {
 import {
     ICreateUser,
     IUpdateUser,
-    IUpsertUser,
-    UserSort
+    IUpsertUser
 } from '@nx-emma-indiv/shared/api';
 
 /**
@@ -19,59 +18,67 @@ import {
 export class CreateUserDto implements ICreateUser {
     @IsString()
     @IsNotEmpty()
-    title!: string;
+    naam!: string;
 
     @IsString()
     @IsNotEmpty()
-    description!: string;
+    email!: string;
 
-    @IsString()
+    @IsDate()
     @IsNotEmpty()
-    sort!: UserSort;
+    geboortedatum!: Date;
 
-    @IsString()
+    @IsDate()
     @IsNotEmpty()
-    cook!: string;
+    straatnaam!: string;
+
+    @IsDate()
+    @IsNotEmpty()
+    huisnummer!: number;
+
+    @IsDate()
+    @IsNotEmpty()
+    stad!: string;
 }
 
 export class UpsertUserDto implements IUpsertUser {
     @IsString()
     @IsNotEmpty()
-    title!: string;
+    naam!: string;
 
     @IsString()
     @IsNotEmpty()
-    description!: string;
+    email!: string;
 
     @IsString()
     @IsNotEmpty()
     id!: string;
 
-    @IsBoolean()
+    @IsDate()
     @IsNotEmpty()
-    isVega!: boolean;
+    geboortedatum!: Date;
 
     @IsDate()
     @IsNotEmpty()
-    dateServed!: Date;
+    straatnaam!: string;
 
-    @IsString()
+    @IsDate()
     @IsNotEmpty()
-    sort!: UserSort;
+    huisnummer!: number;
 
-    @IsString()
+    @IsDate()
     @IsNotEmpty()
-    cook!: string;
+    stad!: string;
 }
 
 export class UpdateUserDto implements IUpdateUser {
     @IsString()
     @IsOptional()
-    title!: string;
+    naam!: string;
 
     @IsString()
     @IsOptional()
-    description!: string;
+    email!: string;
 
     @IsBoolean()
     @IsOptional()
