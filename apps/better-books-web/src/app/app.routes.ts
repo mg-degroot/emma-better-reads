@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
-import { AboutComponent} from '@nx-emma-indiv/better-books/frontend';
+import { AboutComponent, UserNewComponent} from '@nx-emma-indiv/better-books/frontend';
 import { UserListComponent } from '@nx-emma-indiv/better-books/frontend';
 import { UserDetailComponent } from '@nx-emma-indiv/better-books/frontend';
 import { UserEditComponent } from '@nx-emma-indiv/better-books/frontend';
@@ -15,6 +15,10 @@ export const appRoutes: Route[] = [
         path: "users", 
         pathMatch: "full", 
         component: UserListComponent },
+    { 
+        path: "new", 
+        pathMatch: "full", 
+        component: UserNewComponent },
     { 
         path: "users/:id", 
         pathMatch: "full", 
