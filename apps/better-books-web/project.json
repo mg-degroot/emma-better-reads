@@ -20,7 +20,8 @@
           "apps/better-books-web/src/assets"
         ],
         "styles": ["apps/better-books-web/src/styles.css"],
-        "scripts": []
+        "scripts": [],
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {
