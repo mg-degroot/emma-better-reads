@@ -27,6 +27,7 @@
         "libs/better-books/frontend/src/index.ts"
       ],
       "@nx-emma-indiv/shared/api": ["libs/shared/api/src/index.ts"],
+      "@nx-emma-indiv/shared/util-env": ["libs/shared/util-env/src/index.ts"],
       "@nx-emma-indiv/ui": ["libs/better-books/ui/src/index.ts"]
     }
   },
