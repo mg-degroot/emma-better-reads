@@ -20,7 +20,7 @@ export class UserService {
 
     //endpoint = 'http://localhost:3000/api/user';
     //endpoint = environment.dataApiUrl + '/api/user';
-    endpoint = `${environment.dataApiUrl}/api`;
+    endpoint = `${environment.dataApiUrl}/api/user`;
 
     constructor(private readonly http: HttpClient) {}
 
