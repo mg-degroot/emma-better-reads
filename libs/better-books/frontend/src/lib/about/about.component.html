@@ -193,7 +193,9 @@
           </div>
       
           <div class="col-md-6 d-flex justify-content-center align-items-center">
-            <img src="/assets/Boekencasus.png"/>
+            <!-- <img [src]="imagePath" class="mx-auto" style="max-width: 100%; height: auto;" /> -->
+            <!-- <img src="/assets/Boekencasus.png"/> -->
+            <img *ngIf="imagePath" [src]="imagePath" alt="Boekencasus" style="max-width: 100%; height: auto;">
           </div>
         </div>
       </div>

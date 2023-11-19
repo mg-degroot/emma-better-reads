@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 
 export class AboutComponent {
   title = 'better-books-web';
+
+  imagePath?: string;
+  constructor() {
+    this.imagePath = 'assets/Boekencasus.png';
+  }
 }
