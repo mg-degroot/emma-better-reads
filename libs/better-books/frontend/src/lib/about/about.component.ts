@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'nx-emma-indiv-about',
@@ -6,13 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styles: [],
 })
 
-export class AboutComponent implements OnInit {
+export class AboutComponent {
   title = 'better-books-web';
-
-  imagePath?: string;
-
-  ngOnInit(): void {
-      this.imagePath = '/assets/Boekencasus.png';
-  }
- 
 }
