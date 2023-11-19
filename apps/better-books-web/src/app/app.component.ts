@@ -12,9 +12,4 @@ import { UiModule } from '@nx-emma-indiv/ui';
 })
 export class AppComponent {
   title = 'better-books-web';
-
-  imagePath?: string;
-  constructor() {
-    this.imagePath = '../assets/Boekencasus.jpg';
-  }
 }

@@ -1,3 +1,11 @@
-.nav-item a:hover {
+.navbar a {
+   font-size: 2em;
+}
+
+.items a:hover {
    background-color: cadetblue;
+}
+
+.items a {
+   font-size: 1.25em;
 }

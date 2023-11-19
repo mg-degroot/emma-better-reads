@@ -1,6 +1,3 @@
-<!-- <p>about works!</p> -->
-<!-- basic styling nog toevoegen -->
-<!-- binnen applicatie navigeren mag geen a href -->
 <div class="container-fluid p-5">
 
     <div class="intro mb-4">
@@ -24,7 +21,8 @@
             De applicatie biedt de onderstaande functionaliteiten:
         </p>
 
-        <table class="table">
+        <div class="table-responsive">
+            <table class="table">
             <thead>
               <tr class="table-info">
                 <th scope="col">ID</th>
@@ -119,7 +117,8 @@
                 <td>Should</td>
               </tr>
             </tbody>
-          </table>
+        </table>
+    </div>
     </div>
 
     <div class="non-req mt-5 mb-5">
@@ -128,7 +127,8 @@
             De applicatie biedt de onderstaande non-function requirements:
         </p>
 
-        <table class="table">
+        <div class="table-responsive">
+            <table class="table">
             <thead>
               <tr class="table-secondary">
                 <th scope="col">ID</th>
@@ -169,12 +169,34 @@
               </tr>
             </tbody>
           </table>
+          </div>
     </div>
 
 
-    <h2>Datamodel / ERD</h2>
-    <p>toelichting</p>
-    <img [src]="imagePath" alt="" />
+    <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Datamodel / ERD</h2>
+            <p class="mb-3">Te zien is mijn ERD van mijn casus Betterreads. De verplichte entiteit, user/gebruiker, is aanwezig. Ook zijn er drie andere entiteiten aanwezig: 
+              Boeken, Beoordeling, Schrijver. Een gebruiker kan een boek inzien, aanmaken, beoordeling van een boek geven en een schrijver volgen.
+            </p>
+      
+            <p>
+              Gebruikers kunnen schrijvers volgen, als ze een schrijver volgen zien ze ook een aanbeveling voor een andere schrijver. Deze aanbeveling
+              wordt gemaakt gebaseerd op de gebruikers. Er wordt gekeken van alle gebruikers die de schrijver volgen, wie ze nog meer volgen.
+            </p>
+      
+            <p>
+              Een boek kan aangemaakt worden door één gebruiker, er wordt gecheckt dat een boek niet dubbel ingezet wordt. Daarnaast kan een boek beoordeeld worden.
+              Boeken kunnen beoordeeld zijn door meerdere gebruikers maar een beoordeling zit vast aan één boek en één user.
+            </p>
+          </div>
+      
+          <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <img [src]="imagePath" class="mx-auto" style="max-width: 100%; height: auto;" />
+          </div>
+        </div>
+      </div>
 
 
 </div>
