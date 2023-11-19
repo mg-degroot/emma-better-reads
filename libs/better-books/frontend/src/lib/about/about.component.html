@@ -2,64 +2,179 @@
 <!-- basic styling nog toevoegen -->
 <!-- binnen applicatie navigeren mag geen a href -->
 <div class="container-fluid p-5">
-    <div class="intro ps-5 pe-5">
+
+    <div class="intro mb-4">
         <h1 class="title">Projectcasus Betterreads</h1>
 
-        <p class="mt-3">
+        <p class="">
             Deze webapplicatie is gemaakt in het kader van het vak Client-side web programming individual
         </p>
         <p>
             Voor deze casus heb ik gekozen voor 'Betterreads'. In deze applicatie kan de gebruiker bijhouden welke boeken ze gelezen hebben,
             welke ze nog willen lezen etc. De gebruikers kunnen nieuwe boeken ook zelf toevoegen, de boeken die ze gelezen hebben kunnen ze
-            ook beoordelen. Daarnaast zijn er ook nog schijfers, deze zijn te volgen.
+             beoordelen. Daarnaast zijn er ook nog schrijvers, deze zijn te volgen. Gebaseerd op andere gebruikers die deze schrijver volgen komt er
+             een aanbeveling uit voor een nieuwe schrijfer.
         </p>
     
     </div>
-        <div class="f-req">
-        <h2>Functional requireements</h2>
+
+    <div class="f-req mt-5">
+        <h2>Functional requirements</h2>
         <p>
             De applicatie biedt de onderstaande functionaliteiten:
         </p>
-        <table>
+
+        <table class="table">
             <thead>
-                <tr>
-                    <td>Id.</td>
-                    <td>Requirement</td>
-                    <td>Toelichting</td>
-                    <td>Moscow prio</td>
-                </tr>
+              <tr class="table-info">
+                <th scope="col">ID</th>
+                <th scope="col">Requirements</th>
+                <th scope="col">Toelichting</th>
+                <th scope="col">Moscow Prioriteit</th>
+              </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Lijst van boeken weergeven.</td>
-                    <td>De gebruiker begint met een lijst van zijn eigen gelezen, nog te lezen, DNF boeken.</td>
-                    <td>Must</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Lijst van boeken weergeven.</td>
-                    <td>De gebruiker kan naar 'Boeken' navigeren waar alle boeken staan en waar ze in kunnen zoeken en filteren.</td>
-                    <td>Must</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Boek toevoegen.</td>
-                    <td>Nieuw boek toevoegen.</td>
-                    <td>Must</td>
-                </tr>
+               <tr>
+                <th scope="row">1</th>
+                <td>Inloggen</td>
+                <td>De gebruiker moet inloggen/registeren om de inhoud van de website te bekijken.</td>
+                <td>Must</td>
+              </tr>
+              <tr class="table-info">
+                <th scope="row">2</th>
+                <td>Registreren</td>
+                <td>De gebruiker moet kunnen registreren om een account aan te maken zodat de inhoud van de website te zien is.</td>
+                <td>Must</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Lijst van eigen boeken weergeven</td>
+                <td>De gebruiker begint met een lijst van zijn eigen gelezen, nog te lezen, DNF boeken.</td>
+                <td>Must</td>
+              </tr>
+              <tr class="table-info">
+                <th scope="row">4</th>
+                <td>Lijst van boeken weergeven</td>
+                <td>De gebruiker kan naar 'Boeken' navigeren waar alle boeken staan, waar de gebruiker in kan zoeken en filteren.</td>
+                <td>Must</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>Nieuw boek toevoegen</td>
+                <td>De gebruiker kan bij 'Boeken' een nieuw boek toevoegen.</td>
+                <td>Must</td>
+              </tr>
+              <tr class="table-info">
+                <th scope="row">6</th>
+                <td>Detailpagina boek inzien</td>
+                <td>Via de lijst van boeken kan de gebruiker op een boek klikken en naar de detailpagina van een boek gaan voor meer informatie.</td>
+                <td>Must</td>
+              </tr>
+              <tr>
+                <th scope="row">7</th>
+                <td>Tags geven</td>
+                <td>De gebruiker kan via de detailpagina van een boek een tag geven: gelezen, nog te lezen, DNF.</td>
+                <td>Must</td>
+              </tr>
+              <tr class="table-info">
+                <th scope="row">8</th>
+                <td>Beoordelen</td>
+                <td>Als de gebruiker de tag 'gelezen' heeft gebruikt, krijgt de gebruiker een pagina/pop-up om het boek te beoordelen.</td>
+                <td>Must</td>
+              </tr>
+              <tr>
+                <th scope="row">9</th>
+                <td>Beoordelen lijst</td>
+                <td>De gebruiker kan naar 'Beoordelingen' navigeren waar alle beoordelingen staan, waar de gebruiker in kan zoeken en filteren.</td>
+                <td>Could</td>
+              </tr>
+              <tr class="table-info">
+                <th scope="row">10</th>
+                <td>Lijst van schrijver</td>
+                <td>Er is een lijst met 'Schrijvers' waar alle schrijvers in staan, waar de gebruiker in kan zoeken en filteren.</td>
+                <td>Must</td>
+              </tr>
+              <tr>
+                <th scope="row">11</th>
+                <td>Detailpagina schrijver</td>
+                <td>Detailpagina opent als er op een schrijver in de lijst wordt geklikt door de gebruiker.</td>
+                <td>Should</td>
+              </tr>
+              <tr class="table-info">
+                <th scope="row">12</th>
+                <td>Schrijver volgen</td>
+                <td>De schrijver kan gevolgd worden door de gebruiker.</td>
+                <td>Must</td>
+              </tr>
+              <tr>
+                <th scope="row">13</th>
+                <td>Aanbeveling nieuwe schrijver</td>
+                <td>Als er een schrijver gevolgd wordt, komt er een aanbeveling gebaseerd op de andere gebruikers die de schrijver volgen.</td>
+                <td>Must</td>
+              </tr>
+              <tr class="table-info">
+                <th scope="row">14</th>
+                <td>Gebruiker wijzigen gegevens</td>
+                <td>Gebruiker kan in hun account hun eigen gegevens wijzigen.</td>
+                <td>Should</td>
+              </tr>
             </tbody>
-        </table>
+          </table>
     </div>
 
+    <div class="non-req mt-5 mb-5">
+        <h2>Non-fuction requirements</h2>
+        <p>
+            De applicatie biedt de onderstaande non-function requirements:
+        </p>
 
-    <h2>Non-function requirements</h2>
-    <p>korte toelichting</p>
+        <table class="table">
+            <thead>
+              <tr class="table-secondary">
+                <th scope="col">ID</th>
+                <th scope="col">Requirements</th>
+                <th scope="col">Toelichting</th>
+              </tr>
+            </thead>
+            <tbody>
+               <tr>
+                <th scope="row">1</th>
+                <td>CI/CD pipeline</td>
+                <td>Uitgebreid versiebeheer met feature branching toegepast.</td>
+              </tr>
+              <tr class="table-secondary">
+                <th scope="row">2</th>
+                <td>Security en authenticatie</td>
+                <td>Afhankelijk van de rol heeft een user toegang tot functionaliteit.</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Useability</td>
+                <td>Opvallend gebruiksvriendelijk systeem en eigen vormgeving passend bij casus.</td>
+              </tr>
+              <tr class="table-secondary">
+                <th scope="row">4</th>
+                <td>Tests</td>
+                <td>Naast unittesten ook end-to-end tests voor 2 scenario's (anders dan authenticatie)</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>Documentatie</td>
+                <td>Requirements en/of userstories zijn helder en volledig gedocumenteerd.</td>
+              </tr>
+              <tr class="table-secondary">
+                <th scope="row">6</th>
+                <td>Data integrity (validatie van data in UI)</td>
+                <td>Uitgebreide validatie van alle inputvelden via Reactive Form Validation.</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
 
 
     <h2>Datamodel / ERD</h2>
     <p>toelichting</p>
-    <!-- <img [scr]= imagePath alt="" /> -->
+    <img [src]="imagePath" alt="" />
 
 
 </div>
