@@ -1,0 +1,31 @@
+<div class="container-fluid p-5">
+
+  <div class="new user d-flex justify-content-end mt-4 mb-5">
+    <button type="button" class="btn btn-info">
+      <a routerLink="/newbook" class="text-dark text-decoration-none">Nieuw Boek</a>
+    </button>
+  </div>
+
+  <div class="table table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="table-info">ID</th>
+          <th scope="col">Titel</th>
+          <th scope="col">isbn</th>
+          <th scope="col">publiceerdatum</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <th class="table-info"> {{book.id}}</th>
+          <td><a routerLink="{{ book.id }}" class="text-primary text-decoration-none">{{ book.titel }}</a></td>
+          <td>{{book.isbn}}</td>
+          <td>{{ book.publiceerdatum | date : 'dd-MM-yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+</div>  

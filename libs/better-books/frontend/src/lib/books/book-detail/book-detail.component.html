@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="card m-5 text-center">
+    <div class="card-body">
+
+      <h2 class="user-name mb-3">{{books?.titel}}</h2>
+
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item">
+          <span class="fw-bold">isbn:</span>
+          <p>{{books?.isbn}}</p>
+        </li>
+        <li class="list-group-item">
+          <span class="fw-bold">publiceerdatum:</span>
+          <p>{{books?.publiceerdatum}}</p>
+        </li>
+        <li class="list-group-item">
+          <span class="fw-bold">paginas:</span>
+          <p>{{books?.schrijver}} {{books?.paginas}}</p>
+        </li>
+        <li class="list-group-item">
+          <span class="fw-bold">beschrijving:</span>
+          <p>{{books?.beschrijving}}</p>
+        </li>
+      </ul>
+
+      <div class="d-flex justify-content-start">
+        <button type="button" class="btn btn-dark m-3">
+          <a routerLink="/books" class="text-light text-decoration-none">Annuleren</a>
+        </button>
+
+        <button type="button" class="btn btn-info m-3">
+          <a routerLink="editbook" class="text-dark text-decoration-none">Wijzig Boek</a>
+        </button>
+
+        <button type="button" class="btn btn-danger m-3">
+          <a routerLink="/books" class="text-light text-decoration-none">Verwijder Boek</a>
+        </button>
+
+      </div>
+      
+    </div>
+  </div>
+
+</div>
