@@ -10,3 +10,8 @@ export * from './lib/books/book-list/book-list.component';
 export * from './lib/books/book-detail/book-detail.component';
 export * from './lib/books/book-edit/book-edit.component';
 export * from './lib/books/book-new/book-new.component';
+
+export * from './lib/writer/writer-list/writer-list.component';
+export * from './lib/writer/writer-detail/writer-detail.component';
+export * from './lib/writer/writer-edit/writer-edit.component';
+export * from './lib/writer/writer-new/writer-new.component';

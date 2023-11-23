@@ -10,8 +10,7 @@ export interface IUser {
     stad: string;
 }
 
-export type ICreateUser = Pick<
-IUser,
+export type ICreateUser = Pick<IUser,
     'naam' | 'email'
 >;
 

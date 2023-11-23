@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { AboutComponent } from './about/about.component';
 import {RouterModule, RouterLink} from '@angular/router';
+
+//about-page
+import { AboutComponent } from './about/about.component';
 
 //import user
 import { UserService } from './user/user.service';
@@ -18,14 +20,22 @@ import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { BookNewComponent } from './books/book-new/book-new.component';
 import { BookListComponent } from './books/book-list/book-list.component';
 
+//import writer
+import { WriterService } from './writer/writer.service';
+import { WriterListComponent } from './writer/writer-list/writer-list.component';
+import { WriterDetailComponent } from './writer/writer-detail/writer-detail.component';
+import { WriterEditComponent } from './writer/writer-edit/writer-edit.component';
+import { WriterNewComponent } from './writer/writer-new/writer-new.component';
 
 
 @NgModule({
   imports: [RouterModule, CommonModule, HttpClientModule, RouterLink],
   declarations: [UserListComponent, UserDetailComponent, UserEditComponent, UserNewComponent, AboutComponent, 
-                BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent],
-  providers: [UserService, BookService],
+                BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent,
+              WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent],
+  providers: [UserService, BookService, WriterService],
   exports: [UserListComponent, UserDetailComponent, UserEditComponent, UserNewComponent, AboutComponent, 
-            BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent],
+            BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent,
+            WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent],
 })
 export class FeaturesModule {}

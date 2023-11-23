@@ -1,0 +1,55 @@
+<!-- <div class="d-flex">
+  <ul class="list-group list-group-flush mx-auto">
+    <li class="list-group-item"><span>Naam: </span> {{writers?.naam}}</li>
+    <li class="list-group-item"><span>Email: </span> {{writers?.email}}</li>
+    <li class="list-group-item"><span>Geboortedatum: </span> {{writers?.geboortedatum | date: 'dd-MM-yyyy'}}</li>
+    <li class="list-group-item"><span>Straat: </span> {{writers?.straatnaam}} {{writers?.huisnummer}}</li>
+    <li class="list-group-item"><span>Stad: </span> {{writers?.stad}}</li>
+  </ul>
+</div> -->
+
+
+<div class="container-fluid">
+  <div class="card m-5 text-center">
+    <div class="card-body">
+
+      <h2 class="writer-name mb-3">{{writers?.schrijvernaam}}</h2>
+
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item">
+          <span class="fw-bold">Emailadres:</span>
+          <p>{{writers?.geboorteplaats}}</p>
+        </li>
+        <li class="list-group-item">
+          <span class="fw-bold">Geboortedatum:</span>
+          <p>{{writers?.geboortedatum | date: 'dd-MM-yyyy'}}</p>
+        </li>
+        <li class="list-group-item">
+          <span class="fw-bold">Adres:</span>
+          <p>{{writers?.bio}}</p>
+        </li>
+        <li class="list-group-item">
+          <span class="fw-bold">Stad:</span>
+          <p>{{writers?.moedertaal}}</p>
+        </li>
+      </ul>
+
+      <div class="d-flex justify-content-start">
+        <button type="button" class="btn btn-dark m-3">
+          <a routerLink="/writers" class="text-light text-decoration-none">Annuleren</a>
+        </button>
+
+        <button type="button" class="btn btn-info m-3">
+          <a routerLink="edit" class="text-dark text-decoration-none">Wijzig Gebruiker</a>
+        </button>
+
+        <button type="button" class="btn btn-danger m-3">
+          <a routerLink="/writers" class="text-light text-decoration-none">Verwijder Gebruiker</a>
+        </button>
+
+      </div>
+      
+    </div>
+  </div>
+
+</div>

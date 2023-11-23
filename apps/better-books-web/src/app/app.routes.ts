@@ -3,6 +3,7 @@ import { Route, RouterModule } from '@angular/router';
 import { AboutComponent} from '@nx-emma-indiv/better-books/frontend';
 import { UserListComponent, UserDetailComponent, UserEditComponent, UserNewComponent} from '@nx-emma-indiv/better-books/frontend';
 import { BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent} from '@nx-emma-indiv/better-books/frontend';
+import { WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent} from '@nx-emma-indiv/better-books/frontend';
 
 export const appRoutes: Route[] = [
     {
@@ -10,6 +11,27 @@ export const appRoutes: Route[] = [
         pathMatch: 'full',
         component: AboutComponent
     },
+
+    //Writer routes
+    { 
+        path: "writers", 
+        pathMatch: "full", 
+        component: WriterListComponent },
+    { 
+        path: "newwriter", 
+        pathMatch: "full", 
+        component: WriterNewComponent },
+    { 
+        path: "writers/:id", 
+        pathMatch: "full", 
+        component: WriterDetailComponent },
+    { 
+        path: "writers/:id/edit", 
+        pathMatch: "full", 
+        component: WriterEditComponent },
+
+
+    //User routes
     { 
         path: "users", 
         pathMatch: "full", 
@@ -26,24 +48,24 @@ export const appRoutes: Route[] = [
         path: "users/:id/edit", 
         pathMatch: "full", 
         component: UserEditComponent },
-
         
-        { 
-            path: "books", 
-            pathMatch: "full", 
-            component: BookListComponent },
-        { 
-            path: "newbook", 
-            pathMatch: "full", 
-            component: BookNewComponent },
-        { 
-            path: "books/:id", 
-            pathMatch: "full", 
-            component: BookDetailComponent },
-        { 
-            path: "books/:id/editbook", 
-            pathMatch: "full", 
-            component: BookEditComponent },
+    //Book routes
+    { 
+        path: "books", 
+        pathMatch: "full", 
+        component: BookListComponent },
+    { 
+        path: "newbook", 
+        pathMatch: "full", 
+        component: BookNewComponent },
+    { 
+        path: "books/:id", 
+        pathMatch: "full", 
+        component: BookDetailComponent },
+    { 
+        path: "books/:id/editbook", 
+        pathMatch: "full", 
+        component: BookEditComponent }
    
 
 ];
