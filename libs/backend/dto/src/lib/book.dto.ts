@@ -23,7 +23,7 @@ export class CreateBookDto implements ICreateBook {
 
     @IsString()
     @IsNotEmpty()
-    isbn!: string;
+    schrijver!: string;
 
     @IsDate()
     @IsNotEmpty()
@@ -38,10 +38,6 @@ export class UpsertBookDto implements IUpsertBook {
     @IsString()
     @IsNotEmpty()
     cover!: string;
-
-    @IsString()
-    @IsNotEmpty()
-    isbn!: string;
 
     @IsString()
     @IsNotEmpty()
@@ -76,10 +72,6 @@ export class UpdateBookDto implements IUpdateBook {
     @IsString()
     @IsNotEmpty()
     titel!: string;
-
-    @IsString()
-    @IsNotEmpty()
-    isbn!: string;
 
     @IsDate()
     @IsNotEmpty()

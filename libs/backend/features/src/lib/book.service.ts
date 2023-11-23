@@ -12,7 +12,6 @@ export class BookService {
                 id: '1',
                 cover: 'https://m.media-amazon.com/images/I/81HA6TJ5K-L._AC_UF1000,1000_QL80_.jpg',
                 titel: 'Where the Crawdads Sing',
-                isbn: '978-0735219090',
                 beschrijving: `Where the Crawdads Sing is a captivating novel that weaves together the mysteries of nature
                 and the human heart. Delia Owens, the author, takes readers on a mesmerizing journey to the marshes of
                 North Carolina, introducing us to the enigmatic Kya Clark, known as the "Marsh Girl." Abandoned by her
@@ -36,7 +35,6 @@ export class BookService {
                 id: '2',
                 cover: 'https://m.media-amazon.com/images/I/81NwOj14S6L._AC_UF1000,1000_QL80_.jpg',
                 titel: 'Educated',
-                isbn: '978-0399590504',
                 beschrijving: `Educated is a powerful memoir by Tara Westover that recounts her journey from growing up in
                 a strict and abusive household in rural Idaho to earning a PhD from the University of Cambridge. Tara's
                 quest for knowledge and self-discovery takes her through a challenging path where she faces the
@@ -59,7 +57,6 @@ export class BookService {
                 id: '3',
                 cover: 'https://m.media-amazon.com/images/I/81K3WBwcGRL._AC_UF1000,1000_QL80_.jpg',
                 titel: "The Great Adventure",
-                isbn: "978-1234567890",
                 beschrijving: "An exciting journey into the unknown.",
                 genre: "Adventure",
                 origineletaal: "English",
@@ -71,7 +68,6 @@ export class BookService {
                     id: '4',
                     cover: 'https://media.s-bol.com/NKEEmRjE7A66/g7BW59/544x840.jpg',
                     titel: 'The Silent Patient',
-                    isbn: '978-1250301697',
                     beschrijving: 'A psychological thriller that will keep you guessing.',
                     genre: 'Thriller',
                     origineletaal: 'English',
@@ -83,7 +79,6 @@ export class BookService {
                 id: '5',
                 cover: 'https://media.s-bol.com/5VQqwpx4OMPZ/1Wk51OG/534x840.jpg',
                 titel: 'The Vanishing Half',
-                isbn: '978-0525536291',
                 beschrijving: `The Vanishing Half is a thought-provoking novel by Brit Bennett that delves into themes of
                 identity, race, and family. The story revolves around the Vignes sisters, Stella and Desiree, who
                 grew up in a small, predominantly Black town. The novel takes an unexpected turn when the sisters
@@ -103,7 +98,6 @@ export class BookService {
                 id: '6',
                 cover: 'https://m.media-amazon.com/images/I/713jIoMO3UL._AC_UF894,1000_QL80_.jpg',
                 titel: 'Sapiens: A Brief History of Humankind',
-                isbn: '978-0062316110',
                 beschrijving: `Sapiens: A Brief History of Humankind by Yuval Noah Harari is a captivating journey
                 through the history of humanity. Harari explores the evolution of Homo sapiens from ancient
                 times to the present, examining key revolutions that shaped human societies, including the
@@ -126,7 +120,6 @@ export class BookService {
                 id: '7',
                 cover: 'https://m.media-amazon.com/images/I/71jqpBOycFL._AC_UF894,1000_QL80_.jpg',
                 titel: 'The Night Circus',
-                isbn: '978-0307744432',
                 beschrijving: `The Night Circus by Erin Morgenstern is a magical tale that transports readers to
                 a world of enchantment and wonder. The story revolves around a mysterious competition between
                 two illusionists, Celia and Marco, who are bound by a destiny beyond their control.
@@ -149,7 +142,6 @@ export class BookService {
                 id: '8',
                 cover: 'https://upload.wikimedia.org/wikipedia/en/e/eb/The_goldfinch_by_donna_tart.png',
                 titel: 'The Goldfinch',
-                isbn: '978-0316055444',
                 beschrijving: 'A novel about a young boy whose life changes after a tragic event.',
                 genre: 'Contemporary Fiction',
                 origineletaal: 'English',
@@ -162,7 +154,6 @@ export class BookService {
             id: '9',
             cover: 'https://images-na.ssl-images-amazon.com/images/I/91U3gvhFNuL._AC_UL600_SR600,600_.jpg',
             titel: "Mystery of the Missing Code",
-            isbn: "978-0987654321",
             beschrijving: "A gripping tale of intrigue and suspense.",
             genre: "Mystery",
             origineletaal: "English",
@@ -174,7 +165,6 @@ export class BookService {
             id: '10',
             cover: 'https://cf.geekdo-images.com/A7IOpPt-lHrMYsbRmxXWdQ__itemrep/img/jI1OdHfT1AbmN-AU7zl241CDcm4=/fit-in/246x300/filters:strip_icc()/pic6177962.jpg',
             titel: "Fantasy Realm",
-            isbn: "978-5432109876",
             beschrijving: "Immerse yourself in a world of magic and fantasy.",
             genre: "Fantasy",
             origineletaal: "Elvish",
@@ -204,7 +194,7 @@ export class BookService {
      * return signature - we still want to respond with the complete
      * object
      */
-    create(book: Pick<IBook, 'titel' | 'isbn'>): IBook {
+    create(book: Pick<IBook, 'titel' | 'schrijver'>): IBook {
         Logger.log('create', this.TAG);
         const current = this.books$.value;
 
@@ -215,7 +205,6 @@ export class BookService {
             id: `book-${Math.floor(Math.random() * 10000)}`,
             cover: '',
             titel: 'Somewhere over the rainbow',
-            isbn: "75839397920",
             beschrijving: "Dit is een boek",
             genre: "avontuur",
             origineletaal: "Nederlands",

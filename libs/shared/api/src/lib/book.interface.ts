@@ -4,7 +4,6 @@ export interface IBook {
     id: Id;
     cover: string;
     titel: string;
-    isbn: string;
     beschrijving: string;
     genre: string;
     origineletaal: string;
@@ -15,7 +14,7 @@ export interface IBook {
 
 export type ICreateBook = Pick<
 IBook,
-    'titel' | 'isbn'
+    'titel' | 'schrijver'
 >;
 
 export type IUpdateBook = Partial<Omit<IBook, 'id'>>;

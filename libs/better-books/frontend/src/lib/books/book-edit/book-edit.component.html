@@ -2,28 +2,38 @@
   <form class="m-5">
 
     <div class="form-group mb-4">
-      <label for="exampleInputName" class="fw-bold">Naam</label>
-      <input type="text" class="form-control" id="exampleInpuName" placeholder="Wijzig naam" value={{books?.titel}}>
+      <label for="exampleInputCover" class="fw-bold">Boek cover</label>
+      <input type="text" class="form-control" id="InpuCover" placeholder="Wijzig foto" value={{books?.cover}}>
     </div>
 
     <div class="form-group mb-4">
-      <label for="exampleInputEmail" class="fw-bold">Emailadres</label>
-      <input type="email" class="form-control" id="exampleInputEmail" placeholder="Wijzig email" value={{books?.isbn}}>
+      <label for="exampleInputTitel" class="fw-bold">Titel</label>
+      <input type="email" class="form-control" id="InputTitel" placeholder="Wijzig titel" value={{books?.titel}}>
     </div>
  
     <div class="form-group mb-4">
-      <label for="exampleInputStreet" class="fw-bold">Straatnaam</label>
-      <input type="text" class="form-control" id="exampleInputStreet" placeholder="Wijzig straatnaam" value={{books?.schrijver}}>
+      <label for="exampleInputSchrijver" class="fw-bold">Schrijver</label>
+      <input type="text" class="form-control" id="InputSchrijver" placeholder="Wijzig schrijver" value={{books?.schrijver}}>
     </div>
 
     <div class="form-group mb-4">
-      <label for="exampleInputEmail" class="fw-bold">Huisnummer</label>
-      <input type="number" class="form-control" id="exampleInputHousenumber" placeholder="Wijzig huisnummer" value={{books?.paginas}}>
+      <label for="exampleFormBeschrijving" class="fw-bold">Beschrijving</label>
+      <textarea type="text" class="form-control auto-height" id="InputBeschrijving" placeholder="Wijzig beschrijving">{{ books?.beschrijving?.trim() }}</textarea>
     </div>
 
     <div class="form-group mb-4">
-      <label for="exampleInputStreet" class="fw-bold">Stad</label>
-      <input type="text" class="form-control" id="exampleInputCity" placeholder="Wijzig stad" value={{books?.beschrijving}}>
+      <label for="exampleInputPaginas" class="fw-bold">Pagina's</label>
+      <input type="number" class="form-control" id="InputPages" placeholder="Wijzig pagina's" value={{books?.paginas}}>
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="exampleInputTaal" class="fw-bold">Taal</label>
+      <input type="text" class="form-control" id="InputTaal" placeholder="Wijzig taal" value={{books?.origineletaal}}>
+    </div>
+
+    <div class="form-group mb-4"> 
+      <label for="exampleInputDate" class="fw-bold">Publiceerdatum</label>
+      <input type="date" class="form-control" id="exampleInputDate" placeholder="Wijzig publiceerdatum" [value]="books?.publiceerdatum | date:'yyyy-MM-dd'">
     </div>
     
     <!-- Buttons on a separate row -->
@@ -34,7 +44,7 @@
         </button>    
     
         <button type="button" class="btn btn-dark m-3">
-          <a routerLink="/books" class="text-light text-decoration-none">Annuleren</a>
+          <a routerLink="../" class="text-light text-decoration-none">Annuleren</a>
         </button>
       </div>
     </div>
