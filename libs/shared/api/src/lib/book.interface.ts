@@ -2,6 +2,7 @@ import { Id } from './id.type';
 
 export interface IBook {
     id: Id;
+    cover: string;
     titel: string;
     isbn: string;
     beschrijving: string;

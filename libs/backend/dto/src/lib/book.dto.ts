@@ -37,6 +37,10 @@ export class UpsertBookDto implements IUpsertBook {
 
     @IsString()
     @IsNotEmpty()
+    cover!: string;
+
+    @IsString()
+    @IsNotEmpty()
     isbn!: string;
 
     @IsString()

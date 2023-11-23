@@ -3,9 +3,12 @@
 }
 
 .items a:hover {
-   background-color: cadetblue;
+   background-color: rgb(222, 217, 217);
+   -webkit-text-fill-color: black;
+   border-radius: 10px;
 }
 
 .items a {
+   border-radius: 10px;
    font-size: 1.25em;
 }

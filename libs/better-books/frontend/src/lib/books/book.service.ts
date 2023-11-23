@@ -70,4 +70,22 @@ export class BookService {
 
         return throwError(() => new Error(error.message));
     }
+
+    // public search(query: string): Observable<IBook[] | null> {
+    //     console.log(`search ${this.endpoint}?q=${query}`);
+    
+    //     const options: any = {
+    //         ...httpOptions,
+    //         observe: 'body',
+    //         params: { q: query },
+    //     };
+    
+    //     return this.http
+    //         .get<ApiResponse<IBook[]>>(this.endpoint, options)
+    //         .pipe(
+    //             map((response: any) => response.results as IBook[]),
+    //             tap(console.log),
+    //             catchError(this.handleError)
+    //         );
+    // }
 }

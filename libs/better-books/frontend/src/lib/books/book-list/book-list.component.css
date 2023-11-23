@@ -1,0 +1,59 @@
+.cards{
+    margin-left: 15%;
+    margin-right: 20%;
+}
+@media (max-width: 992px) {
+    .cards {
+        margin: 0;
+    }
+}
+
+.input-group {
+    padding: 3%;
+    background-color: rgb(222, 217, 217);
+    margin-bottom: 5%;
+    width: 75%;
+    height: auto;
+}
+
+.input-group .form-control {
+    width:7em;
+    width: 30%;
+    height: auto;
+}
+
+.input-group .btn{
+    height: auto;
+    margin-right: 3%;
+}
+
+
+.card-title a {
+    text-decoration: none;
+}
+
+.card-title a:hover {
+    text-decoration: underline;
+}
+
+
+.card {
+    width: 100%;
+    margin-bottom: 15px;
+    border-left: none;
+    border-right: none;
+}
+
+.display {
+    display: flex;;
+}
+
+.card img {
+    width: 100px; 
+    height: 150px; 
+    object-fit: cover;
+}
+
+.card-body {
+    flex: 1;
+}

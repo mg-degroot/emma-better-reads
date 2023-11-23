@@ -1,0 +1,40 @@
+.column-left, .column-right {
+    margin-top: 3%;
+}
+
+.column-right{
+    padding-left: 10%;
+    margin-top: 7%;
+}
+
+.column-left img {
+    width: 225px; 
+    height: auto; 
+    object-fit: cover;
+}
+
+.button-container .btn {
+    background-color: rgb(222, 217, 217);
+    width: 275px;
+    height: auto;
+    border-radius: 30px;
+}
+
+
+.button-container .btn:hover {
+    background-color: rgb(194, 190, 190);   
+}
+
+.title-container h5 {
+    font-size: 2em;
+}
+
+.title-container .writer {
+    margin-top: 3%;
+    font-size: 1.5em;
+}
+
+.title-container .description {
+    margin-top: 3%;
+    font-size: 1em;
+}
