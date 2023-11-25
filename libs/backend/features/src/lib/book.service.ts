@@ -12,11 +12,7 @@ export class BookService {
             id: '0',
             cover: 'https://m.media-amazon.com/images/I/81HA6TJ5K-L._AC_UF1000,1000_QL80_.jpg',
             titel: 'Waar de Crawdads Zingen',
-            beschrijving: `Waar de Crawdads Zingen is een meeslepende roman die de mysteries van de natuur en het menselijk hart met elkaar verweeft. Delia Owens, de auteur, neemt lezers mee op een betoverende reis naar de moerassen van North Carolina en introduceert ons aan de raadselachtige Kya Clark, ook wel bekend als de "Moerasmeisje". Verlaten door haar familie en achtergelaten om alleen te overleven, groeit Kya op in het wild.
-          
-            Terwijl Kya de uitdagingen van eenzaamheid navigeert, wordt ze een expert in de natuurlijke wereld om haar heen en ontwikkelt ze een diepe verbinding met de wezens die het moeras bewonen. Het verhaal neemt een onverwachte wending wanneer een lokale man dood wordt gevonden en Kya de hoofdverdachte wordt. De roman vermengt naadloos een coming-of-age verhaal met een rechtbankdrama en houdt lezers op het puntje van hun stoel.
-          
-            De proza van Owens is lyrisch en suggestief, en schildert een levendig beeld van de schoonheid van het moeras en de harde realiteiten van Kya's leven. Waar de Crawdads Zingen is een aangrijpende verkenning van eenzaamheid, veerkracht en de ontembare geest van een jonge vrouw te midden van de wilde natuur.`,
+            beschrijving: `Waar de Crawdads Zingen is een meeslepende roman die de mysteries van de natuur en het menselijk hart met elkaar verweeft. Delia Owens, de auteur, neemt lezers mee op een betoverende reis naar de moerassen van North Carolina en introduceert ons aan de raadselachtige Kya Clark, ook wel bekend als de "Moerasmeisje". Verlaten door haar familie en achtergelaten om alleen te overleven, groeit Kya op in het wild. Terwijl Kya de uitdagingen van eenzaamheid navigeert, wordt ze een expert in de natuurlijke wereld om haar heen en ontwikkelt ze een diepe verbinding met de wezens die het moeras bewonen. Het verhaal neemt een onverwachte wending wanneer een lokale man dood wordt gevonden en Kya de hoofdverdachte wordt. De roman vermengt naadloos een coming-of-age verhaal met een rechtbankdrama en houdt lezers op het puntje van hun stoel. De proza van Owens is lyrisch en suggestief, en schildert een levendig beeld van de schoonheid van het moeras en de harde realiteiten van Kya's leven. Waar de Crawdads Zingen is een aangrijpende verkenning van eenzaamheid, veerkracht en de ontembare geest van een jonge vrouw te midden van de wilde natuur.`,
             genre: 'Fictie',
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2018-08-14'),
@@ -34,11 +30,7 @@ export class BookService {
             id: '1',
             cover: 'https://m.media-amazon.com/images/I/81NwOj14S6L._AC_UF1000,1000_QL80_.jpg',
             titel: 'Geschoold',
-            beschrijving: `Geschoold is een krachtige memoires van Tara Westover, die haar reis vertelt van opgroeien in een streng en gewelddadig huishouden in landelijk Idaho tot het behalen van een PhD aan de Universiteit van Cambridge. Tara's zoektocht naar kennis en zelfontdekking brengt haar op een uitdagend pad waar ze wordt geconfronteerd met de complexiteiten van familie-loyaliteit en het nastreven van onderwijs.
-          
-            Westovers verhaal is zowel hartverscheurend als inspirerend, terwijl ze worstelt met de tegenstellingen tussen de overtuigingen van haar familie en de buitenwereld. Het boek verkent thema's van veerkracht, de transformerende kracht van onderwijs en de strijd om los te breken uit de beperkingen van de opvoeding.
-          
-            Geschoold is een boeiende en prikkelende memoires die vragen oproept over de aard van identiteit, het belang van onderwijs en de lengtes die iemand kan gaan om tegenspoed te overwinnen.`,
+            beschrijving: `Geschoold is een krachtige memoires van Tara Westover, die haar reis vertelt van opgroeien in een streng en gewelddadig huishouden in landelijk Idaho tot het behalen van een PhD aan de Universiteit van Cambridge. Tara's zoektocht naar kennis en zelfontdekking brengt haar op een uitdagend pad waar ze wordt geconfronteerd met de complexiteiten van familie-loyaliteit en het nastreven van onderwijs. Westovers verhaal is zowel hartverscheurend als inspirerend, terwijl ze worstelt met de tegenstellingen tussen de overtuigingen van haar familie en de buitenwereld. Het boek verkent thema's van veerkracht, de transformerende kracht van onderwijs en de strijd om los te breken uit de beperkingen van de opvoeding. Geschoold is een boeiende en prikkelende memoires die vragen oproept over de aard van identiteit, het belang van onderwijs en de lengtes die iemand kan gaan om tegenspoed te overwinnen.`,
             genre: 'Biografie',
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2018-02-20'),
@@ -92,9 +84,7 @@ export class BookService {
             id: '4',
             cover: 'https://media.s-bol.com/5VQqwpx4OMPZ/1Wk51OG/534x840.jpg',
             titel: 'Het Voorval van de Verdwenen Tweeling',
-            beschrijving: `Het Voorval van de Verdwenen Tweeling is een doordachte roman van Brit Bennett die thema's van identiteit, ras en familie onderzoekt. Het verhaal draait om de Vignes-zussen, Stella en Desiree, die opgroeiden in een kleine, overwegend zwarte stad. De roman neemt een onverwachte wending wanneer de zussen verschillende paden kiezen in het leven, met Stella die zich voordoet als wit en Desiree die terugkeert naar haar roots.
-          
-            Bennett's verhaal verkent de impact van de keuzes van de zussen op hun leven en dat van de mensen om hen heen. De roman strekt zich uit over decennia en biedt een rijke lappendeken van personages en hun onderling verbonden verhalen. Het Voorval van de Verdwenen Tweeling is een boeiende verkenning van de complexiteiten van identiteit en de blijvende banden die ons verbinden met ons verleden.`,
+            beschrijving: `Het Voorval van de Verdwenen Tweeling is een doordachte roman van Brit Bennett die thema's van identiteit, ras en familie onderzoekt. Het verhaal draait om de Vignes-zussen, Stella en Desiree, die opgroeiden in een kleine, overwegend zwarte stad. De roman neemt een onverwachte wending wanneer de zussen verschillende paden kiezen in het leven, met Stella die zich voordoet als wit en Desiree die terugkeert naar haar roots. Bennett's verhaal verkent de impact van de keuzes van de zussen op hun leven en dat van de mensen om hen heen. De roman strekt zich uit over decennia en biedt een rijke lappendeken van personages en hun onderling verbonden verhalen. Het Voorval van de Verdwenen Tweeling is een boeiende verkenning van de complexiteiten van identiteit en de blijvende banden die ons verbinden met ons verleden.`,
             genre: 'Historische Fictie',
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2020-06-02'),
@@ -112,11 +102,7 @@ export class BookService {
             id: '5',
             cover: 'https://m.media-amazon.com/images/I/713jIoMO3UL._AC_UF894,1000_QL80_.jpg',
             titel: 'Sapiens: Een Korte Geschiedenis van de Mensheid',
-            beschrijving: `Sapiens: Een Korte Geschiedenis van de Mensheid door Yuval Noah Harari is een boeiende reis door de geschiedenis van de mensheid. Harari onderzoekt de evolutie van Homo sapiens van de oudheid tot heden en onderzoekt belangrijke revoluties die menselijke samenlevingen hebben gevormd, waaronder de Cognitieve Revolutie, Agrarische Revolutie en Wetenschappelijke Revolutie.
-          
-            Het boek daagt conventionele wijsheid uit en daagt lezers uit om hun begrip van geschiedenis en de krachten die de menselijke cultuur hebben gevormd opnieuw te overwegen. Harari's verhaal is zowel informatief als prikkelend en stelt vragen over de impact van technologie, de vorming van rijken en de toekomst van onze soort.
-          
-            Sapiens is een must-read voor degenen die geïnteresseerd zijn in een uitgebreid en boeiend overzicht van de menselijke geschiedenis dat traditionele grenzen overstijgt.`,
+            beschrijving: `Sapiens: Een Korte Geschiedenis van de Mensheid door Yuval Noah Harari is een boeiende reis door de geschiedenis van de mensheid. Harari onderzoekt de evolutie van Homo sapiens van de oudheid tot heden en onderzoekt belangrijke revoluties die menselijke samenlevingen hebben gevormd, waaronder de Cognitieve Revolutie, Agrarische Revolutie en Wetenschappelijke Revolutie. Het boek daagt conventionele wijsheid uit en daagt lezers uit om hun begrip van geschiedenis en de krachten die de menselijke cultuur hebben gevormd opnieuw te overwegen. Harari's verhaal is zowel informatief als prikkelend en stelt vragen over de impact van technologie, de vorming van rijken en de toekomst van onze soort. Sapiens is een must-read voor degenen die geïnteresseerd zijn in een uitgebreid en boeiend overzicht van de menselijke geschiedenis dat traditionele grenzen overstijgt.`,
             genre: 'Geschiedenis',
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2014-02-10'),
@@ -134,11 +120,7 @@ export class BookService {
             id: '6',
             cover: 'https://m.media-amazon.com/images/I/71jqpBOycFL._AC_UF894,1000_QL80_.jpg',
             titel: 'Het Nachtcircus',
-            beschrijving: `Het Nachtcircus van Erin Morgenstern is een magisch verhaal dat lezers meeneemt naar een wereld vol betovering en verwondering. Het verhaal draait om een mysterieuze competitie tussen twee illusionisten, Celia en Marco, die gebonden zijn aan een lot dat buiten hun controle ligt.
-          
-            Gevestigd binnen de grenzen van het betoverende Nachtcircus, weeft de roman een tapijt van buitengewone kunststukken en magische optredens. Naarmate de competitie zich ontvouwt, vervagen de grenzen tussen realiteit en illusie, waardoor een betoverende en meeslepende ervaring ontstaat voor zowel de personages als de lezers.
-          
-            Morgensterns lyrische proza en fantasierijke vertelstijl maken Het Nachtcircus tot een betoverende reis naar een rijk van dromen en illusies, waar de grens tussen fantasie en werkelijkheid prachtig vervaagd is.`,
+            beschrijving: `Het Nachtcircus van Erin Morgenstern is een magisch verhaal dat lezers meeneemt naar een wereld vol betovering en verwondering. Het verhaal draait om een mysterieuze competitie tussen twee illusionisten, Celia en Marco, die gebonden zijn aan een lot dat buiten hun controle ligt. Gevestigd binnen de grenzen van het betoverende Nachtcircus, weeft de roman een tapijt van buitengewone kunststukken en magische optredens. Naarmate de competitie zich ontvouwt, vervagen de grenzen tussen realiteit en illusie, waardoor een betoverende en meeslepende ervaring ontstaat voor zowel de personages als de lezers. Morgensterns lyrische proza en fantasierijke vertelstijl maken Het Nachtcircus tot een betoverende reis naar een rijk van dromen en illusies, waar de grens tussen fantasie en werkelijkheid prachtig vervaagd is.`,
             genre: 'Fantasy',
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2011-09-13'),
@@ -227,13 +209,18 @@ export class BookService {
 
     create(book: IBook): IBook {
       Logger.log(`create(${book.id})`, this.TAG);
-        const nextId = String(this.books$.value.length);
-        const newBook = { ...book, id: nextId };
+      
+      // Increment the current length by 1 to get the next ID
+      const nextId = String(this.books$.value.length + 1);
+      const newBook = { ...book, id: nextId };
     
-        this.books$.next([...this.books$.value, newBook]);
+      console.log('Next ID:', nextId);
+      console.log('New Book:', newBook);
     
-        return newBook;
-      }
+      this.books$.next([...this.books$.value, newBook]);
+    
+      return newBook;
+    }
     
       update(book: IBook): IBook {
         Logger.log(`update(${book.id})`, this.TAG);

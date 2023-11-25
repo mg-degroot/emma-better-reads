@@ -46,21 +46,19 @@ export class BookEditComponent implements OnInit {
       });
     }
 
-    UpdateBook() {
-      const selectedWriterId = this.book.schrijver.id;
-      const selectedWriter = this.writers?.find(
-        (writer) => writer.id === selectedWriterId
+    updateBook() {
+      this.bookService.update(this.book).subscribe(
+        () => {
+          this.router.navigate(['../../books', this.book.id]);
+        },
+        (error) => {
+          console.error('Error updating book:', error);
+        }
       );
-
-      if (selectedWriter) {
-        this.book.schrijver = selectedWriter;
-      } else {
-        console.error('Not exists');
-        return;
-      }
-      this.bookService.update(this.book).subscribe(() => {
-        this.router.navigate(['/books']);
-      })
-
     }
+
+    goBack(): void {
+      this.router.navigate(['../../books', this.book.id]);
+    }
+
 }

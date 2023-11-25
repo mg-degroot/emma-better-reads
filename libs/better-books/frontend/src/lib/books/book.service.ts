@@ -80,7 +80,6 @@ export class BookService {
           );
     }
 
-
     public update(book: IBook): Observable<IBook> {
         console.log(`update ${this.endpoint}/${book.id}`);
         return this.http
