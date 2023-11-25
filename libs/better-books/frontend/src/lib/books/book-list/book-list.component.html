@@ -2,8 +2,7 @@
 
   <div class="d-flex justify-content-center">
     <div class="input-group mb-3">
-      <input type="search" class="form-control" placeholder="Zoeken op boek titel" aria-label="Search" aria-describedby="search-addon" />
-      <button type="button" class="btn btn-info rounded text-decoration-none">Zoeken</button>
+      <input [(ngModel)]="searchTerm" type="search" class="form-control me-5" placeholder="Zoeken op boek titel" aria-label="Search" aria-describedby="search-addon" />
 
       <button type="button" class="btn btn-info">
         <a routerLink="/books/newbook" class="text-dark text-decoration-none">Nieuw Boek</a>
@@ -15,8 +14,9 @@
 
 
   <div class="cards">
-    <div class="card" *ngFor="let book of books">
-      <div class="display">
+    <ng-container *ngFor="let book of books">
+      <div class="card" *ngIf="matchesSearch(book)">
+        <div class="display">
   
         <img src="{{ book.cover }}" class="card-img-top" alt="Book Image">
   
@@ -28,13 +28,8 @@
         </div>
   
       </div>
-  
-      <!-- <div class="card-footer d-flex justify-content-end">
-        <a routerLink="{{ book.id }}" class="btn btn-info me-5">Details boek</a>
       </div>
-       -->
-
-    </div>
+    </ng-container>
   </div>
   
   
