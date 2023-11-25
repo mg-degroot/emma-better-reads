@@ -58,7 +58,14 @@
 
       <div class="author-container">
         <!-- Uiteindelijk moet hier een link komen van de schrijver entiteit met informatie -->
-        <p>Geschreven door {{book.schrijver.schrijvernaam}}</p>
+
+        <h5 class="mt-5 mb-3"> Informatie over de auteur </h5>
+
+        <p>Naam van de auteur is {{book.schrijver.schrijvernaam}}.
+        Geboren op {{book.schrijver.geboortedatum | date: "d MMMM y"}} en woont in {{book.schrijver.geboorteplaats}}.</p>
+
+        <label class="fw-bold">Biographie</label>
+        <p>{{book.schrijver.bio}}</p>
       </div>
     </div>
   </div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
-import { IBook } from '@nx-emma-indiv/shared/api';
-import { ActivatedRoute } from '@angular/router';
+import { IBook, IWriter } from '@nx-emma-indiv/shared/api';
+import { ActivatedRoute, Router } from '@angular/router';
+import { WriterService } from '../../writer/writer.service';
 
 @Component({
   selector: 'nx-emma-indiv-book-edit',
@@ -10,19 +11,70 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class BookNewComponent implements OnInit {
-    books: IBook | null = null;
-    bookId: string | null = null;
+  book: IBook = {
+    id: '',
+    titel: '',
+    cover: '',
+    beschrijving: '',
+    genre: '',
+    origineletaal: '',
+    publiceerdatum: new Date(),
+    schrijver: {} as IWriter, 
+    paginas: 0,
+  };
 
-    constructor( private route: ActivatedRoute, private bookService: BookService ) {}
+    books: IBook[] | null = null;
+    bookId: string | null = null;
+    writers: IWriter[] = [];
+
+    constructor( 
+      private route: ActivatedRoute, 
+      private bookService: BookService,
+      private writerService : WriterService,
+      private router: Router,
+      ) {}
 
     ngOnInit(): void {
-  
       this.route.paramMap.subscribe((params) => {
         this.bookId = params.get('id');
         
           // Bestaande book
           this.bookService.read(this.bookId).subscribe((observable) => 
-          this.books = observable);
+          this.book = observable);
       });
+      this.writerService.list().subscribe((writers) => {
+        this.writers = writers?.sort((a, b) => a.schrijvernaam.localeCompare(b.schrijvernaam)) ?? [];
+      });
+    }
+
+    createBook(): void {
+      const selectedWriterId = this.book.schrijver.id;
+      const selectedWriter = this.writers?.find(
+        (writer) => writer.id === selectedWriterId
+      );
+    
+      if (selectedWriter) {
+        this.book.schrijver = selectedWriter;
+      } else {
+        console.error('Selected writer not found.');
+        return;
+      }
+    
+      console.log('Book before creation:', this.book);
+    
+      this.bookService.create(this.book).subscribe(
+        (createdBook) => {
+          console.log('Book created successfully:', createdBook);
+          this.router.navigate(['../../books'], { relativeTo: this.route });
+        },
+        (error) => {
+          console.error('Error creating book:', error);
+        }
+      );
+    }
+    
+  
+    goBack(): void {
+      this.router.navigate(['../../books']);
     }
 }

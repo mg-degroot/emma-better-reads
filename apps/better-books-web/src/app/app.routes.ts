@@ -57,7 +57,7 @@ export const appRoutes: Route[] = [
         pathMatch: "full", 
         component: BookListComponent },
     { 
-        path: "newbook", 
+        path: "books/newbook", 
         pathMatch: "full", 
         component: BookNewComponent },
     { 

@@ -78,7 +78,7 @@ export class BookService {
             map((response: any) => response.results as IBook),
             catchError(this.handleError)
           );
-      }
+    }
 
 
     public update(book: IBook): Observable<IBook> {

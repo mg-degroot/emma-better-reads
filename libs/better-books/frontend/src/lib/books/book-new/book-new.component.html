@@ -1,56 +1,55 @@
 <div class="container-fluid">
-  <form class="m-5">
+  <form class="m-5"  #userEditForm="ngForm" (submit)="createBook()">
 
     <div class="form-group mb-4">
-      <label for="exampleInputCover" class="fw-bold">Boek cover</label>
-      <input type="text" class="form-control" id="InpuCover" placeholder="FotoURL" required>
+      <label for="InputCover" class="fw-bold">Boek cover</label>
+      <input type="text" class="form-control" id="InputCover" [(ngModel)]="book.cover" name="cover" placeholder="FotoURL" required>
     </div>
 
     <div class="form-group mb-4">
-      <label for="exampleInputTitel" class="fw-bold">Titel</label>
-      <input type="email" class="form-control" id="InputTitel" placeholder="Titel" required>
+      <label for="InputTitel" class="fw-bold">Titel</label>
+      <input type="text" class="form-control" id="InputTitel" [(ngModel)]="book.titel"  name="titel" placeholder="Titel" required>
     </div>
 
     <div class="form-group mb-4">
-      <label for="exampleInputSchrijver" class="fw-bold">Schrijver</label>
-      <input type="text" class="form-control" id="InputSchrijver" placeholder="Schrijver" required>
+      <label for="schrijver" class="fw-bold">Schrijver</label>
+      <select id="schrijver" [(ngModel)]="book.schrijver.id" name="schrijver" class="form-control" required>
+        <option [ngValue]="null" disabled selected>Kies een schrijver</option>
+        <option *ngFor="let writer of writers" [value]="writer.id">{{ writer.schrijvernaam }}</option>
+      </select>
     </div>
 
     <div class="form-group mb-4">
-      <label for="exampleFormBeschrijving" class="fw-bold">Beschrijving</label>
-      <textarea type="text" class="form-control" id="InputBeschrijving" placeholder="Beschrijving" required> </textarea>
+      <label for="InputBeschrijving" class="fw-bold">Beschrijving</label>
+      <textarea class="form-control" id="InputBeschrijving" [(ngModel)]="book.beschrijving" name="beschrijving" placeholder="Beschrijving" required></textarea>
     </div>
 
     <div class="form-group mb-4">
-      <label for="exampleInputPaginas" class="fw-bold">Pagina's</label>
-      <input type="number" class="form-control" id="InputPages" placeholder="Aantal pagina's" required>
+      <label for="InputPages" class="fw-bold">Pagina's</label>
+      <input type="number" class="form-control" id="InputPages" [(ngModel)]="book.paginas" name="paginas" placeholder="Aantal pagina's" required>
     </div>
 
     <div class="form-group mb-4">
-      <label for="exampleInputTaal" class="fw-bold">Taal</label>
-      <input type="text" class="form-control" id="InputTaal" placeholder="Taal" required>
+      <label for="InputTaal" class="fw-bold">Taal</label>
+      <input type="text" class="form-control" id="InputTaal" [(ngModel)]="book.origineletaal" name="origineletaal" placeholder="Taal" required>
     </div>
 
     <div class="form-group mb-4"> 
-      <label for="exampleInputDate" class="fw-bold">Publiceerdatum</label>
-      <input type="date" class="form-control" id="exampleInputDate" placeholder="Publiceerdatum" required>
+      <label for="InputDate" class="fw-bold">Publiceerdatum</label>
+      <input type="date" class="form-control" id="InputDate" [(ngModel)]="book.publiceerdatum" name="publiceerdatum" placeholder="Publiceerdatum" required>
     </div>
     
-    <!-- Buttons on a separate row -->
     <div class="form-row">
       <div class="col-12 mt-3">
-        <button type="submit" class="btn btn-info m-3">
-          <a routerLink="/books" class="text-dark text-decoration-none">Book aanmaken</a>
+        <button type="button" class="btn btn-info m-3" (click)="createBook()">
+          Book aanmaken
         </button>    
     
-        <button type="button" class="btn btn-dark m-3">
-          <a routerLink="/books" class="text-light text-decoration-none">Annuleren</a>
+        <button type="button" class="btn btn-dark m-3" (click)="goBack()">
+          Annuleren
         </button>
       </div>
     </div>
     
-    
   </form>
-
-
 </div>

@@ -18,6 +18,7 @@ export class BookController {
 
     @Post('')
     create(@Body() book: IBook): IBook {
+      console.log('Received book:', book);
       return this.bookService.create(book);
     }
 
