@@ -2,48 +2,49 @@
   <form class="m-5">
 
     <div class="form-group mb-4">
-      <label for="exampleInputName" class="fw-bold">Naam</label>
-      <input type="text" class="form-control" id="exampleInpuName" placeholder="Naam" required>
+      <label for="InputName" class="fw-bold">Naam</label>
+      <input type="text" class="form-control" id="InputName" [(ngModel)]="user.naam" name="naam" placeholder="Naam" required>
     </div>
 
     <div class="form-group mb-4">
-      <label for="exampleInputEmail" class="fw-bold">Emailadres</label>
-      <input type="email" class="form-control" id="exampleInputEmail" placeholder="Emailadres" required>
+      <label for="InputEmail" class="fw-bold">Emailadres</label>
+      <input type="email" class="form-control" id="InputEmail" [(ngModel)]="user.email" name="email" placeholder="Emailadres" required>
     </div>
 
     <div class="form-group mb-4"> 
-      <label for="exampleInputDate" class="fw-bold">Geboortedatum</label>
-      <input type="date" class="form-control" id="exampleInputDate" placeholder="Selecteer geboortedatum" required>
+      <label for="InputDate" class="fw-bold">Geboortedatum</label>
+      <input type="date" class="form-control" id="InputDate" [(ngModel)]="user.geboortedatum" name="geboortedatum" placeholder="Selecteer geboortedatum" required>
     </div>
     
  
     <div class="form-group mb-4">
-      <label for="exampleInputStreet" class="fw-bold">Straatnaam</label>
-      <input type="text" class="form-control" id="exampleInputStreet" placeholder="Straatnaam" required>
+      <label for="InputStreet" class="fw-bold">Straatnaam</label>
+      <input type="text" class="form-control" id="InputStreet" [(ngModel)]="user.straatnaam" name="straatnaam" placeholder="Straatnaam" required>
     </div>
 
     <div class="form-group mb-4">
-      <label for="exampleInputEmail" class="fw-bold">Huisnummer</label>
-      <input type="number" class="form-control" id="exampleInputHousenumber" placeholder="Huisnummer" required>
+      <label for="InputEmail" class="fw-bold">Huisnummer</label>
+      <input type="number" class="form-control" id="InputHousenumber" [(ngModel)]="user.huisnummer" name="huisnummer" placeholder="Huisnummer" required>
     </div>
 
     <div class="form-group mb-4">
-      <label for="exampleInputStreet" class="fw-bold">Stad</label>
-      <input type="text" class="form-control" id="exampleInputCity" placeholder="Stad" required>
+      <label for="InputStreet" class="fw-bold">Stad</label>
+      <input type="text" class="form-control" id="InputCity" [(ngModel)]="user.stad" name="stad" placeholder="Stad" required>
     </div>
     
     <!-- Buttons on a separate row -->
     <div class="form-row">
       <div class="col-12 mt-3">
-        <button type="submit" class="btn btn-info m-3">
-          <a routerLink="/users" class="text-dark text-decoration-none">Gebruiker aanmaken</a>
+        <button type="button" class="btn btn-info m-3" (click)="createUser()">
+          Gebruiker aanmaken
         </button>    
     
-        <button type="button" class="btn btn-dark m-3">
-          <a routerLink="/users" class="text-light text-decoration-none">Annuleren</a>
+        <button type="button" class="btn btn-dark m-3" (click)="goBack()">
+          Annuleren
         </button>
       </div>
     </div>
+    
     
     
   </form>

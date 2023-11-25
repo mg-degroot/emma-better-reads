@@ -13,43 +13,58 @@
   <div class="card m-5 text-center">
     <div class="card-body">
 
-      <h2 class="user-name mb-3">{{users?.naam}}</h2>
+      <h2 class="user-name mb-3">{{user.naam}}</h2>
 
       <ul class="list-group list-group-flush mb-3">
         <li class="list-group-item">
           <span class="fw-bold">Emailadres:</span>
-          <p>{{users?.email}}</p>
+          <p>{{user.email}}</p>
         </li>
         <li class="list-group-item">
           <span class="fw-bold">Geboortedatum:</span>
-          <p>{{users?.geboortedatum | date: 'dd-MM-yyyy'}}</p>
+          <p>{{user.geboortedatum | date: 'dd-MM-yyyy'}}</p>
         </li>
         <li class="list-group-item">
           <span class="fw-bold">Adres:</span>
-          <p>{{users?.straatnaam}} {{users?.huisnummer}}</p>
+          <p>{{user.straatnaam}} {{user.huisnummer}}</p>
         </li>
         <li class="list-group-item">
           <span class="fw-bold">Stad:</span>
-          <p>{{users?.stad}}</p>
+          <p>{{user.stad}}</p>
         </li>
       </ul>
 
-      <div class="d-flex justify-content-start">
-        <button type="button" class="btn btn-dark m-3">
-          <a routerLink="/users" class="text-light text-decoration-none">Annuleren</a>
+      <div class="button-container text-center">
+        <button type="button" class="btn text-center me-4" routerLink="/users">
+          <span class="text-dark text-decoration-none">Terug</span>
         </button>
 
-        <button type="button" class="btn btn-info m-3">
-          <a routerLink="edit" class="text-dark text-decoration-none">Wijzig Gebruiker</a>
-        </button>
+          <button type="button" class="btn text-center">
+            <a routerLink="edit" class="text-dark text-decoration-none">Wijzig Gebruiker</a>
+          </button>
+      </div>
 
-        <button type="button" class="btn btn-danger m-3">
-          <a routerLink="/users" class="text-light text-decoration-none">Verwijder Gebruiker</a>
-        </button>
+        <div class="button-container text-center">
+          <!-- Show the "Verwijder Schrijver" button if the confirmation dialog is not shown -->
+          <ng-container *ngIf="!showDeleteConfirmation; else confirmationDialog">
+            <button type="button" class="btn text-center" (click)="showDeleteConfirmation = true">
+              <a class="text-dark text-decoration-none">Verwijder Gebruiker</a>
+            </button>
+          </ng-container>
+        </div>
+        
+        <!-- Use ngTemplateOutlet to display the confirmation dialog when needed -->
+        <ng-template #confirmationDialog>
+          <div class="confirmation-dialog mt-1">
+            <p>Weet u zeker dat u deze geberuiker wilt verwijderen?</p>
+            <button type="button" (click)="deleteUser()" class="btn text-center me-3">Ja, verwijder gebruiker</button>
+            <button type="button" (click)="showDeleteConfirmation = false" class="btn text-center">Nee, annuleer</button>
+          </div>
+        </ng-template>
+
+
 
       </div>
-      
     </div>
   </div>
 
-</div>

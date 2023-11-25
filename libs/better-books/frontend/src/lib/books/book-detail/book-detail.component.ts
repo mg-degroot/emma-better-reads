@@ -50,7 +50,6 @@ export class BookDetailComponent implements OnInit {
     
     deleteBook(): void {
       if (this.bookId) {
-        // Assuming this.bookService.delete takes the book ID as a parameter
         this.bookService.delete(this.book).subscribe({
           next: () => {
             console.log('Book deleted successfully');

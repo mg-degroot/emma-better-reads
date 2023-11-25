@@ -11,7 +11,7 @@ export interface IUser {
 }
 
 export type ICreateUser = Pick<IUser,
-    'naam' | 'email'
+    'naam' | 'email' | 'geboortedatum' | 'straatnaam' | 'huisnummer' | 'stad'
 >;
 
 export type IUpdateUser = Partial<Omit<IUser, 'id'>>;

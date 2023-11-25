@@ -26,7 +26,8 @@ export class WriterDetailComponent implements OnInit {
     constructor( 
       private route: ActivatedRoute, 
       private writerService: WriterService,
-      private router: Router, ) {}
+      private router: Router, 
+      ) {}
 
     ngOnInit(): void {
   
@@ -42,22 +43,21 @@ export class WriterDetailComponent implements OnInit {
 
     deleteWriter(): void {
       if (this.writerId) {
-        // Assuming this.bookService.delete takes the book ID as a parameter
         this.writerService.delete(this.writer).subscribe({
           next: () => {
-            console.log('Book deleted successfully');
+            console.log('Writer deleted successfully');
 
             // Close the confirmation dialog
             this.showDeleteConfirmation = false;
-            // Navigate back to the book list
+            // Navigate back to the writer list
             this.router.navigate(['../../writers'], { relativeTo: this.route });
           },
           error: (error) => {
-            console.error('Error deleting book:', error);
+            console.error('Error deleting writer:', error);
           }
         });
       } else {
-        console.error('Book id is missing for deletion.');
+        console.error('Writer id is missing for deletion.');
       }
     }
 }

@@ -70,26 +70,48 @@ export class UserService {
         return user;
     }
 
-    /**
-     * Update the arg signature to match the DTO, but keep the
-     * return signature - we still want to respond with the complete
-     * object
-     */
-    create(user: Pick<IUser, 'naam' | 'email'>): IUser {
-        Logger.log('create', this.TAG);
-        const current = this.users$.value;
-
-        // Use the incoming data, a randomized ID, and a default value of `false` to create the new to-do
+    create(user: IUser): IUser {
+        Logger.log(`create(${user.id})`, this.TAG);
         
-        const newUser: IUser = {
-            ...user,
-            id: `meal-${Math.floor(Math.random() * 10000)}`,
-            geboortedatum: new Date(),
-            straatnaam: 'Here',
-            huisnummer: Math.floor(Math.random() * 10000),
-            stad: 'Somewhere',
-        };
-        this.users$.next([...current, newUser]);
+        // Increment the current length by 1 to get the next ID
+        const nextId = String(this.users$.value.length + 1);
+        const newUser = { ...user, id: nextId };
+      
+        console.log('Next ID:', nextId);
+        console.log('New User:', newUser);
+      
+        this.users$.next([...this.users$.value, newUser]);
+      
         return newUser;
-    }
+      }
+      
+        update(user: IUser): IUser {
+          Logger.log(`update(${user.id})`, this.TAG);
+          const index = this.users$.value.findIndex((td) => td.id == user.id);
+          
+          if (index == -1) {
+            throw new Error(`User with id ${user.id} not found`);
+          }
+      
+          this.users$.value[index] = { ...this.users$.value[index], ...user };
+      
+          return this.users$.value[index];
+        }
+      
+        deleteUser(id: string): void {
+          Logger.log(`delete(${id})`, this.TAG);
+          // Find the index of the user with the given id
+          const index = this.users$.value.findIndex((td) => td.id === id);
+        
+          // Check if the user with the given id was found
+          if (index == -1) {
+            throw new Error(`User with id ${id} not found`);
+          }
+        
+          // Update the users$ observable by creating a new array without the user to be deleted
+          this.users$.next([
+            ...this.users$.value.slice(0, index),
+            ...this.users$.value.slice(index + 1),
+          ]);
+        }
 }

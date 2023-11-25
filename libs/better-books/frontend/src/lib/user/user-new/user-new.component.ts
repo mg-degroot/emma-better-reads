@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { IUser } from '@nx-emma-indiv/shared/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'nx-emma-indiv-user-edit',
@@ -10,10 +10,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class UserNewComponent implements OnInit {
-    users: IUser | null = null;
+    user: IUser = {
+      id: '',
+      naam: '',
+      email: '',
+      geboortedatum: new Date(),
+      straatnaam: '',
+      huisnummer: 0,
+      stad: '',
+    }
+    users: IUser[] | null = null;
     userId: string | null = null;
 
-    constructor( private route: ActivatedRoute, private userService: UserService ) {}
+    constructor( 
+      private route: ActivatedRoute, 
+      private userService: UserService,
+      private router: Router, 
+      ) {}
 
     ngOnInit(): void {
   
@@ -22,7 +35,25 @@ export class UserNewComponent implements OnInit {
         
           // Bestaande user
           this.userService.read(this.userId).subscribe((observable) => 
-          this.users = observable);
+          this.user = observable);
       });
+    }
+
+    createUser(): void {
+    
+      this.userService.create(this.user).subscribe(
+        (createdUser) => {
+          console.log('User created successfully:', createdUser);
+          this.router.navigate(['../../users']);
+        },
+        (error) => {
+          console.error('Error creating user:', error);
+        }
+      );
+    }
+    
+  
+    goBack(): void {
+      this.router.navigate(['../../users']);
     }
 }

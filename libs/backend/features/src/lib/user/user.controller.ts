@@ -1,8 +1,7 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Param, Post, Delete, Put, Body } from '@nestjs/common';
 import { UserService } from '../user.service';
-import { Get, Param, Post, Body } from '@nestjs/common';
 import { IUser } from '@nx-emma-indiv/shared/api';
-import { CreateUserDto } from '@nx-emma-indiv/backend/dto';
+
 
 @Controller('user')
 export class UserController {
@@ -19,7 +18,18 @@ export class UserController {
     }
 
     @Post('')
-    create(@Body() data: CreateUserDto): IUser {
-        return this.userService.create(data);
+    create(@Body() user: IUser): IUser {
+      console.log('Received user:', user);
+      return this.userService.create(user);
+    }
+
+    @Put('/:id')
+    edit(@Param('id') id: string, @Body() user: IUser): IUser {
+      return this.userService.update(user);
+    }
+
+    @Delete('/:id')
+    delete(@Param('id') id: string): void {
+      this.userService.deleteUser(id);
     }
 }

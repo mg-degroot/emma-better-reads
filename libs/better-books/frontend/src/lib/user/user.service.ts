@@ -1,5 +1,5 @@
 import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse, IUser } from '@nx-emma-indiv/shared/api';
 import { Injectable } from '@angular/core';
@@ -60,6 +60,39 @@ export class UserService {
                 map((response: any) => response.results as IUser),
                 catchError(this.handleError)
             );
+    }
+
+    public create(user: IUser): Observable<IUser> {
+        console.log(`create ${this.endpoint}`);
+    
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+          }),
+        };
+    
+        return this.http
+          .post<ApiResponse<IUser>>(this.endpoint, user, httpOptions)
+          .pipe(
+            tap(console.log),
+            map((response: any) => response.results as IUser),
+            catchError(this.handleError)
+          );
+    }
+
+    public update(user: IUser): Observable<IUser> {
+        console.log(`update ${this.endpoint}/${user.id}`);
+        return this.http
+          .put<ApiResponse<IUser>>(`${this.endpoint}/${user.id}`, user)
+          .pipe(tap(console.log), catchError(this.handleError)
+          );
+    }
+
+    public delete(user: IUser): Observable<IUser> {
+      console.log(`delete ${this.endpoint}/${user.id}`);
+      return this.http
+        .delete<ApiResponse<IUser>>(`${this.endpoint}/${user.id}`)
+        .pipe(tap(console.log), catchError(this.handleError));
     }
 
     /**

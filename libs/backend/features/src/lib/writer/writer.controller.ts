@@ -18,7 +18,7 @@ export class WriterController {
 
     @Post('')
     create(@Body() writer: IWriter): IWriter {
-      console.log('Received book:', writer);
+      console.log('Received writer:', writer);
       return this.writerService.create(writer);
     }
 
