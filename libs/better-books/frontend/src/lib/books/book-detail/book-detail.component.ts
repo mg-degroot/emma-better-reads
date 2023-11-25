@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
-import { IBook } from '@nx-emma-indiv/shared/api';
-import { ActivatedRoute } from '@angular/router';
+import { IBook, IWriter } from '@nx-emma-indiv/shared/api';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'nx-emma-indiv-book-detail',
@@ -10,10 +11,28 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class BookDetailComponent implements OnInit {
-    books: IBook | null = null;
-    bookId: string | null = null;
+    showDeleteConfirmation = false;
 
-    constructor( private route: ActivatedRoute, private bookService: BookService ) {}
+    book: IBook = {
+      id: '',
+      cover: '',
+      titel: '',
+      beschrijving: '',
+      genre: '',
+      origineletaal: '',
+      publiceerdatum: new Date(),
+      schrijver: {} as IWriter,
+      paginas: 0,
+    }
+      books: IBook[] | null = null;
+      bookId: string | null = null;
+      writers: IWriter[] = [];
+
+    constructor( 
+      private route: ActivatedRoute, 
+      private bookService: BookService,
+      private router: Router,
+      private location: Location ) {}
 
     ngOnInit(): void {
   
@@ -23,7 +42,32 @@ export class BookDetailComponent implements OnInit {
         this.bookId = params.get('id');
 
         this.bookService.read(this.bookId).subscribe((observable) => 
-          this.books = observable);
+          this.book = observable);
       });
     }
+
+
+    
+    deleteBook(): void {
+      if (this.bookId) {
+        // Assuming this.bookService.delete takes the book ID as a parameter
+        this.bookService.delete(this.book).subscribe({
+          next: () => {
+            console.log('Book deleted successfully');
+
+            // Close the confirmation dialog
+            this.showDeleteConfirmation = false;
+            // Navigate back to the book list
+            this.router.navigate(['../../books'], { relativeTo: this.route });
+          },
+          error: (error) => {
+            console.error('Error deleting book:', error);
+          }
+        });
+      } else {
+        console.error('Book id is missing for deletion.');
+      }
+    }
+    
+
 }

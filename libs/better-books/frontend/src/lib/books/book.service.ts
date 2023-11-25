@@ -1,5 +1,5 @@
 import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse, IBook } from '@nx-emma-indiv/shared/api';
 import { Injectable } from '@angular/core';
@@ -62,30 +62,46 @@ export class BookService {
             );
     }
 
-    /**
-     * Handle errors.
-     */
-    public handleError(error: HttpErrorResponse): Observable<any> {
-        console.log('handleError in BookService', error);
+    public create(book: IBook): Observable<IBook> {
+        console.log(`create ${this.endpoint}`);
+    
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+          }),
+        };
+    
+        return this.http
+          .post<ApiResponse<IBook>>(this.endpoint, book, httpOptions)
+          .pipe(
+            tap(console.log),
+            map((response: any) => response.results as IBook),
+            catchError(this.handleError)
+          );
+      }
 
-        return throwError(() => new Error(error.message));
+
+    public update(book: IBook): Observable<IBook> {
+        console.log(`update ${this.endpoint}/${book.id}`);
+        return this.http
+          .put<ApiResponse<IBook>>(`${this.endpoint}/${book.id}`, book)
+          .pipe(tap(console.log), catchError(this.handleError)
+          );
     }
 
-    // public search(query: string): Observable<IBook[] | null> {
-    //     console.log(`search ${this.endpoint}?q=${query}`);
+    public delete(book: IBook): Observable<IBook> {
+      console.log(`delete ${this.endpoint}/${book.id}`);
+      return this.http
+        .delete<ApiResponse<IBook>>(`${this.endpoint}/${book.id}`)
+        .pipe(tap(console.log), catchError(this.handleError));
+    }
+
+        /**
+     * Handle errors.
+     */
+        public handleError(error: HttpErrorResponse): Observable<any> {
+            console.log('handleError in BookService', error);
     
-    //     const options: any = {
-    //         ...httpOptions,
-    //         observe: 'body',
-    //         params: { q: query },
-    //     };
-    
-    //     return this.http
-    //         .get<ApiResponse<IBook[]>>(this.endpoint, options)
-    //         .pipe(
-    //             map((response: any) => response.results as IBook[]),
-    //             tap(console.log),
-    //             catchError(this.handleError)
-    //         );
-    // }
+            return throwError(() => new Error(error.message));
+        }
 }

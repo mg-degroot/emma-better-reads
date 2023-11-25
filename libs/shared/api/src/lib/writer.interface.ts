@@ -10,7 +10,7 @@ export interface IWriter {
 }
 
 export type ICreateWriter = Pick<IWriter,
-    'schrijvernaam' | 'geboortedatum'
+    'schrijvernaam' | 'geboortedatum' | 'bio' | 'geboorteplaats' | 'moedertaal'
 >;
 
 export type IUpdateWriter = Partial<Omit<IWriter, 'id'>>;

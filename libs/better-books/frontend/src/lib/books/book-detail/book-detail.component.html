@@ -2,40 +2,63 @@
   <div class="row">
     <!-- Left Column -->
     <div class="column-left col-12 col-lg-3 align-items-center justify-content-center">
+
       <div class="img-container text-center">
-        <img src="{{ books?.cover }}" class="img-fluid" alt="Book Image">
+        <img src="{{ book.cover }}" class="img-fluid" alt="Book Image">
       </div>
+
       <div class="button-container text-center mt-3">
         <button type="button" class="btn text-center"> 
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
           <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
         </svg><span class="ms-2">Read</span></button>
       </div>
+
       <div class="button-container text-center mt-3">
       <button type="button" class="btn text-center">
         <a routerLink="editbook" class="text-dark text-decoration-none">Wijzig Boek</a>
       </button>
-    </div>
+      </div>
+
+      
+      <div class="button-container text-center mt-3">
+        <!-- Show the "Verwijder Boek" button if the confirmation dialog is not shown -->
+        <ng-container *ngIf="!showDeleteConfirmation; else confirmationDialog">
+          <button type="button" class="btn text-center" (click)="showDeleteConfirmation = true">
+            <a class="text-dark text-decoration-none">Verwijder Boek</a>
+          </button>
+        </ng-container>
+      </div>
+      
+      <!-- Use ngTemplateOutlet to display the confirmation dialog when needed -->
+      <ng-template #confirmationDialog>
+        <div class="confirmation-dialog text-center mt-3">
+          <p>Weet u zeker dat u dit boek wilt verwijderen?</p>
+          <button type="button" (click)="deleteBook()" class="btn text-center mb-3">Ja, verwijder boek</button>
+          <button type="button" (click)="showDeleteConfirmation = false" class="btn text-center">Nee, annuleer</button>
+        </div>
+      </ng-template>
+
     </div>
 
     <!-- Right Column -->
     <div class="column-right col-12 col-lg-9 align-items-center justify-content-center">
       <div class="title-container">
-        <h5> {{books?.titel }} </h5>
-        <p class="writer">{{books?.schrijver}}</p>
+        <h5> {{book.titel }} </h5>
+        <p class="writer"><a [routerLink]="['/writers', book.schrijver.id]" class="text-dark">{{book.schrijver.schrijvernaam}}</a></p>
 
-        <p class="description"> {{books?.beschrijving}}</p>
+        <p class="description"> {{book.beschrijving}}</p>
 
-        <p><span>Genre </span>{{books?.genre}}</p>
+        <p><span>Genre </span>{{book.genre}}</p>
 
-        <p><span>Voor het eerste gepubliceerd in </span>{{books?.publiceerdatum | date: "d MMMM y"}}</p>
+        <p><span>Voor het eerste gepubliceerd in </span>{{book.publiceerdatum | date: "d MMMM y"}}</p>
 
-        <p>{{books?.paginas}}<span> pagina's</span></p>
+        <p>{{book.paginas}}<span> pagina's</span></p>
       </div>
 
       <div class="author-container">
         <!-- Uiteindelijk moet hier een link komen van de schrijver entiteit met informatie -->
-        <p>Geschreven door {{books?.schrijver}}</p>
+        <p>Geschreven door {{book.schrijver.schrijvernaam}}</p>
       </div>
     </div>
   </div>

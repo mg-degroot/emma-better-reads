@@ -9,7 +9,8 @@ import {
 import {
     ICreateBook,
     IUpdateBook,
-    IUpsertBook
+    IUpsertBook,
+    IWriter
 } from '@nx-emma-indiv/shared/api';
 
 /**
@@ -23,11 +24,35 @@ export class CreateBookDto implements ICreateBook {
 
     @IsString()
     @IsNotEmpty()
-    schrijver!: string;
+    cover!: string;
+
+    @IsString()
+    @IsNotEmpty()
+    id!: string;
 
     @IsDate()
     @IsNotEmpty()
     publiceerdatum!: Date;
+
+    @IsString()
+    @IsNotEmpty()
+    beschrijving!: string;
+
+    @IsNumber()
+    @IsNotEmpty()
+    paginas!: number;
+
+    @IsString()
+    @IsNotEmpty()
+    schrijver!: IWriter;
+
+    @IsString()
+    @IsNotEmpty()
+    genre!: string;
+
+    @IsString()
+    @IsNotEmpty()
+    origineletaal!: string;
 }
 
 export class UpsertBookDto implements IUpsertBook {
@@ -57,7 +82,7 @@ export class UpsertBookDto implements IUpsertBook {
 
     @IsString()
     @IsNotEmpty()
-    schrijver!: string;
+    schrijver!: IWriter;
 
     @IsString()
     @IsNotEmpty()

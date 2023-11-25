@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 import { AboutComponent} from '@nx-emma-indiv/better-books/frontend';
+
 import { UserListComponent, UserDetailComponent, UserEditComponent, UserNewComponent} from '@nx-emma-indiv/better-books/frontend';
 import { BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent} from '@nx-emma-indiv/better-books/frontend';
 import { WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent} from '@nx-emma-indiv/better-books/frontend';
+
 
 export const appRoutes: Route[] = [
     {
@@ -65,7 +67,7 @@ export const appRoutes: Route[] = [
     { 
         path: "books/:id/editbook", 
         pathMatch: "full", 
-        component: BookEditComponent }
+        component: BookEditComponent },
    
 
 ];

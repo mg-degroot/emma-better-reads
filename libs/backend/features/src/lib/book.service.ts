@@ -28,7 +28,14 @@ export class BookService {
                 genre: 'Fiction',
                 origineletaal: 'English',
                 publiceerdatum: new Date('2018-08-14'),
-                schrijver: 'Delia Owens',
+                schrijver: {
+                    id: '1',
+                    schrijvernaam: 'Delia Owens',
+                    geboortedatum: new Date('1949-05-25'),
+                    bio: 'Delia Owens is an American author and zoologist. She is best known for her debut novel, Where the Crawdads Sing, which became a bestseller.',
+                    geboorteplaats: 'Thomasville, Georgia, USA',
+                    moedertaal: 'English',
+                },
                 paginas: 384,
             },
             {
@@ -50,7 +57,14 @@ export class BookService {
                 genre: 'Biography',
                 origineletaal: 'English',
                 publiceerdatum: new Date('2018-02-20'),
-                schrijver: 'Tara Westover',
+                schrijver: {
+                    id: '2',
+                    schrijvernaam: 'Tara Westover',
+                    geboortedatum: new Date('1986-09-27'),
+                    bio: 'Tara Westover is an American author known for her memoir Educated. She was born in Clifton, Idaho, and her journey from a strict household to earning a PhD is detailed in her book.',
+                    geboorteplaats: 'Clifton, Idaho, USA',
+                    moedertaal: 'English',
+                  },
                 paginas: 352,
             },
             {
@@ -61,7 +75,14 @@ export class BookService {
                 genre: "Adventure",
                 origineletaal: "English",
                 publiceerdatum: new Date("2023-01-01"),
-                schrijver: "John Doe",
+                schrijver: {
+                    id: '3',
+                    schrijvernaam: 'John Doe',
+                    geboortedatum: new Date('1970-01-01'),
+                    bio: 'John Doe is a pseudonymous author known for The Great Adventure. Not much is known about the author as they prefer to keep their identity a secret.',
+                    geboorteplaats: 'Unknown',
+                    moedertaal: 'English',
+                  },
                 paginas: 300,
             },
                 {
@@ -72,7 +93,14 @@ export class BookService {
                     genre: 'Thriller',
                     origineletaal: 'English',
                     publiceerdatum: new Date('2019-02-05'),
-                    schrijver: 'Alex Michaelides',
+                    schrijver: {
+                        id: '4',
+                        schrijvernaam: 'Alex Michaelides',
+                        geboortedatum: new Date('Unknown'),
+                        bio: 'Alex Michaelides is a British-Cypriot author and screenwriter. He is best known for his psychological thriller, The Silent Patient.',
+                        geboorteplaats: 'Unknown',
+                        moedertaal: 'English',
+                      },
                     paginas: 336,
                 },
             {
@@ -91,7 +119,14 @@ export class BookService {
                 genre: 'Historical Fiction',
                 origineletaal: 'English',
                 publiceerdatum: new Date('2020-06-02'),
-                schrijver: 'Brit Bennett',
+                schrijver:           {
+                    id: '5',
+                    schrijvernaam: 'Brit Bennett',
+                    geboortedatum: new Date('1989-06-24'),
+                    bio: 'Brit Bennett is an American author known for her novels The Mothers and The Vanishing Half. She explores themes of identity, race, and family in her works.',
+                    geboorteplaats: 'Los Angeles, California, USA',
+                    moedertaal: 'English',
+                  },
                 paginas: 352,
             },
             {
@@ -113,7 +148,14 @@ export class BookService {
                 genre: 'History',
                 origineletaal: 'English',
                 publiceerdatum: new Date('2014-02-10'),
-                schrijver: 'Yuval Noah Harari',
+                schrijver:           {
+                    id: '6',
+                    schrijvernaam: 'Yuval Noah Harari',
+                    geboortedatum: new Date('1976-02-24'),
+                    bio: 'Yuval Noah Harari is an Israeli historian and professor. He is best known for his book Sapiens: A Brief History of Humankind, which explores the evolution of humanity.',
+                    geboorteplaats: 'Haifa, Israel',
+                    moedertaal: 'Hebrew',
+                  },
                 paginas: 464,
             },
             {
@@ -135,7 +177,14 @@ export class BookService {
                 genre: 'Fantasy',
                 origineletaal: 'English',
                 publiceerdatum: new Date('2011-09-13'),
-                schrijver: 'Erin Morgenstern',
+                schrijver:           {
+                    id: '7',
+                    schrijvernaam: 'Erin Morgenstern',
+                    geboortedatum: new Date('1978-07-08'),
+                    bio: 'Erin Morgenstern is an American author and multimedia artist. She gained fame with her novel The Night Circus, a magical tale set in an enchanting world.',
+                    geboorteplaats: 'Marshfield, Massachusetts, USA',
+                    moedertaal: 'English',
+                  },
                 paginas: 512,
             },
             {
@@ -146,7 +195,14 @@ export class BookService {
                 genre: 'Contemporary Fiction',
                 origineletaal: 'English',
                 publiceerdatum: new Date('2013-10-22'),
-                schrijver: 'Donna Tartt',
+                schrijver:           {
+                    id: '8',
+                    schrijvernaam: 'Donna Tartt',
+                    geboortedatum: new Date('1963-12-23'),
+                    bio: 'Donna Tartt is an American author and winner of the Pulitzer Prize for Fiction. She is known for her novels, including The Goldfinch, which explores the life of a young boy after a tragic event.',
+                    geboorteplaats: 'Greenwood, Mississippi, USA',
+                    moedertaal: 'English',
+                  },
                 paginas: 771,
             },
         
@@ -158,7 +214,14 @@ export class BookService {
             genre: "Mystery",
             origineletaal: "English",
             publiceerdatum: new Date("2023-02-15"),
-            schrijver: "Jane Smith",
+            schrijver:           {
+                id: '9',
+                schrijvernaam: 'Jane Smith',
+                geboortedatum: new Date('1985-04-10'),
+                bio: 'Jane Smith is a mystery author known for her gripping tales of intrigue and suspense. The Mystery of the Missing Code is one of her notable works.',
+                geboorteplaats: 'Unknown',
+                moedertaal: 'English',
+              },
             paginas: 250,
         },
         {
@@ -169,10 +232,18 @@ export class BookService {
             genre: "Fantasy",
             origineletaal: "Elvish",
             publiceerdatum: new Date("2023-03-30"),
-            schrijver: "Fantasy Author",
+            schrijver:           {
+                id: '10',
+                schrijvernaam: 'Fantasy Author',
+                geboortedatum: new Date('Unknown'),
+                bio: 'Fantasy Author is a pseudonymous writer known for creating immersive worlds of magic and fantasy. Fantasy Realm is one of the captivating tales from this author.',
+                geboorteplaats: 'Unknown',
+                moedertaal: 'Elvish',
+              },
             paginas: 400,
         },
     ]);
+  bookService: any;
     
 
     getAll(): IBook[] {
@@ -189,30 +260,44 @@ export class BookService {
         return book;
     }
 
-    /**
-     * Update the arg signature to match the DTO, but keep the
-     * return signature - we still want to respond with the complete
-     * object
-     */
-    create(book: Pick<IBook, 'titel' | 'schrijver'>): IBook {
-        Logger.log('create', this.TAG);
-        const current = this.books$.value;
-
-        // Use the incoming data, a randomized ID, and a default value of `false` to create the new to-do
-        
-        const newBook: IBook = {
-            ...book,
-            id: `book-${Math.floor(Math.random() * 10000)}`,
-            cover: '',
-            titel: 'Somewhere over the rainbow',
-            beschrijving: "Dit is een boek",
-            genre: "avontuur",
-            origineletaal: "Nederlands",
-            publiceerdatum: new Date(),
-            schrijver: "me",
-            paginas: 1267,
-        };
-        this.books$.next([...current, newBook]);
+    create(book: IBook): IBook {
+      Logger.log(`create(${book.id})`, this.TAG);
+        const nextId = String(this.books$.value.length);
+        const newBook = { ...book, id: nextId };
+    
+        this.books$.next([...this.books$.value, newBook]);
+    
         return newBook;
-    }
+      }
+    
+      update(book: IBook): IBook {
+        Logger.log(`update(${book.id})`, this.TAG);
+        const index = this.books$.value.findIndex((td) => td.id == book.id);
+        
+        if (index == -1) {
+          throw new Error(`Book with id ${book.id} not found`);
+        }
+    
+        this.books$.value[index] = { ...this.books$.value[index], ...book };
+    
+        return this.books$.value[index];
+      }
+    
+      deleteBook(id: string): void {
+        Logger.log(`delete(${id})`, this.TAG);
+        // Find the index of the book with the given id
+        const index = this.books$.value.findIndex((td) => td.id === id);
+      
+        // Check if the book with the given id was found
+        if (index == -1) {
+          throw new Error(`Book with id ${id} not found`);
+        }
+      
+        // Update the books$ observable by creating a new array without the book to be deleted
+        this.books$.next([
+          ...this.books$.value.slice(0, index),
+          ...this.books$.value.slice(index + 1),
+        ]);
+      }
+      
 }

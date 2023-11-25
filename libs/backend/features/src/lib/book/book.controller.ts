@@ -1,8 +1,6 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Param, Post, Delete, Put, Body } from '@nestjs/common';
 import { BookService } from '../book.service';
-import { Get, Param, Post, Body } from '@nestjs/common';
 import { IBook } from '@nx-emma-indiv/shared/api';
-import { CreateBookDto } from '@nx-emma-indiv/backend/dto';
 
 @Controller('book')
 export class BookController {
@@ -19,7 +17,17 @@ export class BookController {
     }
 
     @Post('')
-    create(@Body() data: CreateBookDto): IBook {
-        return this.bookService.create(data);
+    create(@Body() book: IBook): IBook {
+      return this.bookService.create(book);
+    }
+
+    @Put('/:id')
+    edit(@Param('id') id: string, @Body() book: IBook): IBook {
+      return this.bookService.update(book);
+    }
+
+    @Delete('/:id')
+    delete(@Param('id') id: string): void {
+      this.bookService.deleteBook(id);
     }
 }

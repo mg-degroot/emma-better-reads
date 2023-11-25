@@ -17,7 +17,7 @@
 
       <ul class="list-group list-group-flush mb-3">
         <li class="list-group-item">
-          <span class="fw-bold">Emailadres:</span>
+          <span class="fw-bold">Geboorteplaats:</span>
           <p>{{writers?.geboorteplaats}}</p>
         </li>
         <li class="list-group-item">
@@ -25,11 +25,11 @@
           <p>{{writers?.geboortedatum | date: 'dd-MM-yyyy'}}</p>
         </li>
         <li class="list-group-item">
-          <span class="fw-bold">Adres:</span>
+          <span class="fw-bold">Biografie:</span>
           <p>{{writers?.bio}}</p>
         </li>
         <li class="list-group-item">
-          <span class="fw-bold">Stad:</span>
+          <span class="fw-bold">Moedertaal:</span>
           <p>{{writers?.moedertaal}}</p>
         </li>
       </ul>
@@ -40,11 +40,11 @@
         </button>
 
         <button type="button" class="btn btn-info m-3">
-          <a routerLink="edit" class="text-dark text-decoration-none">Wijzig Gebruiker</a>
+          <a routerLink="editwriter" class="text-dark text-decoration-none">Wijzig Schrijver</a>
         </button>
 
         <button type="button" class="btn btn-danger m-3">
-          <a routerLink="/writers" class="text-light text-decoration-none">Verwijder Gebruiker</a>
+          <a routerLink="/writers" class="text-light text-decoration-none">Verwijder Schrijver</a>
         </button>
 
       </div>

@@ -10,6 +10,4 @@ import { UiModule } from '@nx-emma-indiv/ui';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'better-books-web';
-}
+export class AppComponent {}
