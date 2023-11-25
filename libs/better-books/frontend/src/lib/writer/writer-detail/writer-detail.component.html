@@ -1,55 +1,59 @@
-<!-- <div class="d-flex">
-  <ul class="list-group list-group-flush mx-auto">
-    <li class="list-group-item"><span>Naam: </span> {{writers?.naam}}</li>
-    <li class="list-group-item"><span>Email: </span> {{writers?.email}}</li>
-    <li class="list-group-item"><span>Geboortedatum: </span> {{writers?.geboortedatum | date: 'dd-MM-yyyy'}}</li>
-    <li class="list-group-item"><span>Straat: </span> {{writers?.straatnaam}} {{writers?.huisnummer}}</li>
-    <li class="list-group-item"><span>Stad: </span> {{writers?.stad}}</li>
-  </ul>
-</div> -->
-
-
 <div class="container-fluid">
   <div class="card m-5 text-center">
     <div class="card-body">
 
-      <h2 class="writer-name mb-3">{{writers?.schrijvernaam}}</h2>
+      <h2 class="writer-name mb-3">{{writer.schrijvernaam}}</h2>
 
       <ul class="list-group list-group-flush mb-3">
         <li class="list-group-item">
           <span class="fw-bold">Geboorteplaats:</span>
-          <p>{{writers?.geboorteplaats}}</p>
+          <p>{{writer.geboorteplaats}}</p>
         </li>
         <li class="list-group-item">
           <span class="fw-bold">Geboortedatum:</span>
-          <p>{{writers?.geboortedatum | date: 'dd-MM-yyyy'}}</p>
+          <p>{{writer.geboortedatum | date: 'dd-MM-yyyy'}}</p>
         </li>
         <li class="list-group-item">
           <span class="fw-bold">Biografie:</span>
-          <p>{{writers?.bio}}</p>
+          <p>{{writer.bio}}</p>
         </li>
         <li class="list-group-item">
           <span class="fw-bold">Moedertaal:</span>
-          <p>{{writers?.moedertaal}}</p>
+          <p>{{writer.moedertaal}}</p>
         </li>
       </ul>
 
-      <div class="d-flex justify-content-start">
-        <button type="button" class="btn btn-dark m-3">
-          <a routerLink="/writers" class="text-light text-decoration-none">Annuleren</a>
+
+      <div class="button-container text-center">
+        <button type="button" class="btn text-center me-4" routerLink="/writers">
+          <span class="text-dark text-decoration-none">Terug</span>
         </button>
 
-        <button type="button" class="btn btn-info m-3">
-          <a routerLink="editwriter" class="text-dark text-decoration-none">Wijzig Schrijver</a>
-        </button>
-
-        <button type="button" class="btn btn-danger m-3">
-          <a routerLink="/writers" class="text-light text-decoration-none">Verwijder Schrijver</a>
-        </button>
-
+          <button type="button" class="btn text-center">
+            <a routerLink="editwriter" class="text-dark text-decoration-none">Wijzig Schrijver</a>
+          </button>
       </div>
+
+        <div class="button-container text-center">
+          <!-- Show the "Verwijder Schrijver" button if the confirmation dialog is not shown -->
+          <ng-container *ngIf="!showDeleteConfirmation; else confirmationDialog">
+            <button type="button" class="btn text-center" (click)="showDeleteConfirmation = true">
+              <a class="text-dark text-decoration-none">Verwijder Schrijver</a>
+            </button>
+          </ng-container>
+        </div>
+        
+        <!-- Use ngTemplateOutlet to display the confirmation dialog when needed -->
+        <ng-template #confirmationDialog>
+          <div class="confirmation-dialog mt-1">
+            <p>Weet u zeker dat u deze schrijver wilt verwijderen?</p>
+            <button type="button" (click)="deleteWriter()" class="btn text-center me-3">Ja, verwijder schrijver</button>
+            <button type="button" (click)="showDeleteConfirmation = false" class="btn text-center">Nee, annuleer</button>
+          </div>
+        </ng-template>
+
+
       
     </div>
   </div>
-
 </div>

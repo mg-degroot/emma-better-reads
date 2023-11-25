@@ -1,8 +1,6 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Param, Post, Delete, Put, Body } from '@nestjs/common';
 import { WriterService } from '../writer.service';
-import { Get, Param, Post, Body } from '@nestjs/common';
 import { IWriter } from '@nx-emma-indiv/shared/api';
-import { CreateWriterDto } from '@nx-emma-indiv/backend/dto';
 
 @Controller('writer')
 export class WriterController {
@@ -19,7 +17,18 @@ export class WriterController {
     }
 
     @Post('')
-    create(@Body() data: CreateWriterDto): IWriter {
-        return this.writerService.create(data);
+    create(@Body() writer: IWriter): IWriter {
+      console.log('Received book:', writer);
+      return this.writerService.create(writer);
+    }
+
+    @Put('/:id')
+    edit(@Param('id') id: string, @Body() writer: IWriter): IWriter {
+      return this.writerService.update(writer);
+    }
+
+    @Delete('/:id')
+    delete(@Param('id') id: string): void {
+      this.writerService.deleteWriter(id);
     }
 }

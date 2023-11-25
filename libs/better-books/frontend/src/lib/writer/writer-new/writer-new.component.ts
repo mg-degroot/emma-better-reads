@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WriterService } from '../writer.service';
 import { IWriter } from '@nx-emma-indiv/shared/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'nx-emma-indiv-writer-edit',
@@ -10,10 +10,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class WriterNewComponent implements OnInit {
-    writers: IWriter | null = null;
+  writer: IWriter = {
+    id: '',
+    schrijvernaam: '',
+    geboortedatum: new Date(),
+    bio: '',
+    geboorteplaats: '',
+    moedertaal: '',
+  }
+
+    writers: IWriter[] | null = null;
     writerId: string | null = null;
 
-    constructor( private route: ActivatedRoute, private writerService: WriterService ) {}
+    constructor( 
+      private route: ActivatedRoute, 
+      private writerService: WriterService,
+      private router: Router, 
+      ) {}
 
     ngOnInit(): void {
   
@@ -22,7 +35,25 @@ export class WriterNewComponent implements OnInit {
         
           // Bestaande writer
           this.writerService.read(this.writerId).subscribe((observable) => 
-          this.writers = observable);
+          this.writer = observable);
       });
+    }
+
+    createWriter(): void {
+    
+      this.writerService.create(this.writer).subscribe(
+        (createdWriter) => {
+          console.log('Writer created successfully:', createdWriter);
+          this.router.navigate(['../../writers']);
+        },
+        (error) => {
+          console.error('Error creating writer:', error);
+        }
+      );
+    }
+    
+  
+    goBack(): void {
+      this.router.navigate(['../../writers']);
     }
 }

@@ -28,7 +28,7 @@ export const appRoutes: Route[] = [
         pathMatch: "full", 
         component: WriterDetailComponent },
     { 
-        path: "writers/:id/edit", 
+        path: "writers/:id/editwriter", 
         pathMatch: "full", 
         component: WriterEditComponent },
 

@@ -1,5 +1,5 @@
 import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse, IWriter } from '@nx-emma-indiv/shared/api';
 import { Injectable } from '@angular/core';
@@ -60,6 +60,39 @@ export class WriterService {
                 map((response: any) => response.results as IWriter),
                 catchError(this.handleError)
             );
+    }
+
+    public create(writer: IWriter): Observable<IWriter> {
+        console.log(`create ${this.endpoint}`);
+    
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+          }),
+        };
+    
+        return this.http
+          .post<ApiResponse<IWriter>>(this.endpoint, writer, httpOptions)
+          .pipe(
+            tap(console.log),
+            map((response: any) => response.results as IWriter),
+            catchError(this.handleError)
+          );
+    }
+
+    public update(writer: IWriter): Observable<IWriter> {
+        console.log(`update ${this.endpoint}/${writer.id}`);
+        return this.http
+          .put<ApiResponse<IWriter>>(`${this.endpoint}/${writer.id}`, writer)
+          .pipe(tap(console.log), catchError(this.handleError)
+          );
+    }
+
+    public delete(writer: IWriter): Observable<IWriter> {
+      console.log(`delete ${this.endpoint}/${writer.id}`);
+      return this.http
+        .delete<ApiResponse<IWriter>>(`${this.endpoint}/${writer.id}`)
+        .pipe(tap(console.log), catchError(this.handleError));
     }
 
     /**

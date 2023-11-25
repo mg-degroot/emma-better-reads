@@ -1,40 +1,40 @@
 <div class="container-fluid">
-  <form class="m-5">
+  <form class="m-5" #userEditForm="ngForm" (ngSubmit)="updateWriter()">
 
     <div class="form-group mb-4">
       <label for="exampleInputName" class="fw-bold">Naam</label>
-      <input type="text" class="form-control" id="exampleInpuName" placeholder="Wijzig naam" value={{writers?.schrijvernaam}}>
+      <input type="text" class="form-control" id="exampleInpuName" [(ngModel)]="writer.schrijvernaam"  name="schrijvernaam" placeholder="Naam" required>
     </div>
 
     <div class="form-group mb-4">
       <label for="exampleInputEmail" class="fw-bold">Geboorteplaats</label>
-      <input type="email" class="form-control" id="exampleInputEmail" placeholder="Wijzig geboorteplaats" value={{writers?.geboorteplaats}}>
+      <input type="email" class="form-control" id="exampleInputEmail" [(ngModel)]="writer.geboorteplaats"  name="geboorteplaats" placeholder="Geboorteplaats" required>
     </div>
- 
-    <div class="form-group mb-4">
-      <label for="exampleInputStreet" class="fw-bold">Geboortedatum</label>
-      <input type="text" class="form-control" id="exampleInputStreet" placeholder="Wijzig geboortedatum" value={{writers?.geboortedatum}}>
+
+    <div class="form-group mb-4"> 
+      <label for="exampleInputDate" class="fw-bold">Geboortedatum</label>
+      <input type="date" class="form-control" id="exampleInputDate" [(ngModel)]="writer.geboortedatum"  name="geboortedatum" placeholder="Selecteer geboortedatum" required>
     </div>
 
     <div class="form-group mb-4">
-      <label for="exampleInputEmail" class="fw-bold">Biografie</label>
-      <input type="number" class="form-control" id="exampleInputHousenumber" placeholder="Wijzig biografie" value={{writers?.bio}}>
+      <label for="InputBiografie" class="fw-bold">Biografie</label>
+      <textarea class="form-control" id="InputBiografie" [(ngModel)]="writer.bio" name="bio" placeholder="Biografie" rows="8" required></textarea>
     </div>
-
+    
     <div class="form-group mb-4">
       <label for="exampleInputStreet" class="fw-bold">Moedertaal</label>
-      <input type="text" class="form-control" id="exampleInputCity" placeholder="Wijzig moedertaal" value={{writers?.moedertaal}}>
+      <input type="text" class="form-control" id="exampleInputCity" [(ngModel)]="writer.moedertaal"  name="moedertaal" placeholder="Moedertaal" required>
     </div>
     
     <!-- Buttons on a separate row -->
     <div class="form-row">
       <div class="col-12 mt-3">
-        <button type="submit" class="btn btn-info m-3">
-          <a routerLink="../" class="text-dark text-decoration-none">Wijzigen</a>
+        <button type="button" class="btn m-3" (click)="updateWriter()">
+          Schrijver wijzigen
         </button>    
     
-        <button type="button" class="btn btn-dark m-3">
-          <a routerLink="/writers" class="text-light text-decoration-none">Annuleren</a>
+        <button type="button" class="btn m-3" (click)="goBack()">
+          Annuleren
         </button>
       </div>
     </div>

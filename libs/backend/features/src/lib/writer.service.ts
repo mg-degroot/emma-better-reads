@@ -104,29 +104,49 @@ export class WriterService {
         }
         return writer;
     }
-
-    /**
-     * Update the arg signature to match the DTO, but keep the
-     * return signature - we still want to respond with the complete
-     * object
-     */
-    create(writer: Pick<IWriter, 'schrijvernaam' | 'geboortedatum'>): IWriter {
-        Logger.log('create', this.TAG);
-        const current = this.writers$.value;
-
-        // Use the incoming data, a randomized ID, and a default value of `false` to create the new to-do
-        
-        const newWriter: IWriter = {
-            ...writer,
-            id: `meal-${Math.floor(Math.random() * 10000)}`,
-            schrijvernaam: '',
-            geboortedatum: new Date(),
-            bio: '',
-            geboorteplaats: '',
-            moedertaal: ''
-
-        };
-        this.writers$.next([...current, newWriter]);
-        return newWriter;
+    create(writer: IWriter): IWriter {
+      Logger.log(`create(${writer.id})`, this.TAG);
+      
+      // Increment the current length by 1 to get the next ID
+      const nextId = String(this.writers$.value.length + 1);
+      const newWriter = { ...writer, id: nextId };
+    
+      console.log('Next ID:', nextId);
+      console.log('New Writer:', newWriter);
+    
+      this.writers$.next([...this.writers$.value, newWriter]);
+    
+      return newWriter;
     }
+    
+      update(writer: IWriter): IWriter {
+        Logger.log(`update(${writer.id})`, this.TAG);
+        const index = this.writers$.value.findIndex((td) => td.id == writer.id);
+        
+        if (index == -1) {
+          throw new Error(`Writer with id ${writer.id} not found`);
+        }
+    
+        this.writers$.value[index] = { ...this.writers$.value[index], ...writer };
+    
+        return this.writers$.value[index];
+      }
+
+    deleteWriter(id: string): void {
+      Logger.log(`delete(${id})`, this.TAG);
+      // Find the index of the writer with the given id
+      const index = this.writers$.value.findIndex((td) => td.id === id);
+    
+      // Check if the writer with the given id was found
+      if (index == -1) {
+        throw new Error(`Writer with id ${id} not found`);
+      }
+    
+      // Update the writers$ observable by creating a new array without the writer to be deleted
+      this.writers$.next([
+        ...this.writers$.value.slice(0, index),
+        ...this.writers$.value.slice(index + 1),
+      ]);
+    }
+
 }
