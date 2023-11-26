@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import {RouterModule, RouterLink} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 //about-page
@@ -31,7 +32,7 @@ import { WriterNewComponent } from './writer/writer-new/writer-new.component';
 
 
 @NgModule({
-  imports: [RouterModule, CommonModule, HttpClientModule, RouterLink, FormsModule, ReactiveFormsModule],
+  imports: [RouterModule, CommonModule, HttpClientModule, RouterLink, FormsModule, ReactiveFormsModule, NgSelectModule],
   declarations: [UserListComponent, UserDetailComponent, UserEditComponent, UserNewComponent, AboutComponent, 
                 BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent,
               WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent],

@@ -3,3 +3,9 @@
         float: left;
     }
 }
+
+.ng-dropdown-panel {
+    white-space: normal;
+    height: fit-content;
+    background-color: #fff;
+}

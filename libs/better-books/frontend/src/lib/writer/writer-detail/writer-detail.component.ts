@@ -26,7 +26,7 @@ export class WriterDetailComponent implements OnInit {
     constructor( 
       private route: ActivatedRoute, 
       private writerService: WriterService,
-      private router: Router, 
+      private router: Router,
       ) {}
 
     ngOnInit(): void {
@@ -59,5 +59,10 @@ export class WriterDetailComponent implements OnInit {
       } else {
         console.error('Writer id is missing for deletion.');
       }
+    }
+
+    goBack() {
+      // Navigate back to the previous route
+      window.history.back();
     }
 }

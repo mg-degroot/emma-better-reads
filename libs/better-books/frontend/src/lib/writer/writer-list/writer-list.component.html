@@ -19,7 +19,7 @@
       <tbody>
         <tr *ngFor="let writer of writers">
           <th class="table-info"> {{writer.id}}</th>
-          <td><a routerLink="{{ writer.id }}" class="text-primary text-decoration-none">{{ writer.schrijvernaam }}</a></td>
+          <td><a routerLink="{{ writer.id }}" class="text-primary text-dark">{{ writer.schrijvernaam }}</a></td>
           <td>{{writer.geboorteplaats}}</td>
           <td>{{ writer.geboortedatum | date : 'dd-MM-yyyy' }}</td>
         </tr>
