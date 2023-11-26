@@ -2,6 +2,7 @@ import { Id } from './id.type';
 
 export interface IWriter {
     id: Id;
+    profielFoto: string;
     schrijvernaam: string;
     geboortedatum: Date;
     bio: string;

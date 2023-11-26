@@ -14,6 +14,7 @@ export class WriterDetailComponent implements OnInit {
 
     writer: IWriter = {
       id: '',
+      profielFoto: '',
       schrijvernaam: '',
       geboortedatum: new Date(),
       bio: '',

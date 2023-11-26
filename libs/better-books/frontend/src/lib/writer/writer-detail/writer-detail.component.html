@@ -1,59 +1,70 @@
 <div class="container-fluid">
-  <div class="card m-5 text-center">
-    <div class="card-body">
 
-      <h2 class="writer-name mb-3">{{writer.schrijvernaam}}</h2>
+  <div class="row mt-5">
+    <!-- Left Column -->
+    <div class="column-left col-12 col-lg-5 align-items-center justify-content-center">
 
-      <ul class="list-group list-group-flush mb-3">
-        <li class="list-group-item">
-          <span class="fw-bold">Geboorteplaats:</span>
-          <p>{{writer.geboorteplaats}}</p>
-        </li>
-        <li class="list-group-item">
-          <span class="fw-bold">Geboortedatum:</span>
-          <p>{{writer.geboortedatum | date: 'dd-MM-yyyy'}}</p>
-        </li>
-        <li class="list-group-item">
-          <span class="fw-bold">Biografie:</span>
-          <p>{{writer.bio}}</p>
-        </li>
-        <li class="list-group-item">
-          <span class="fw-bold">Moedertaal:</span>
-          <p>{{writer.moedertaal}}</p>
-        </li>
-      </ul>
-
-
-      <div class="button-container text-center">
-        <button type="button" class="btn text-center me-4" (click)="goBack()">
-          <span class="text-dark text-decoration-none">Terug</span>
-        </button>
-
-          <button type="button" class="btn text-center">
-            <a routerLink="editwriter" class="text-dark text-decoration-none">Wijzig Schrijver</a>
-          </button>
+      <div class="img-container text-center">
+        <img src="{{ writer.profielFoto }}" alt="Profile Image" class="round-image" onerror="this.src='/assets/placeholder-person.png'">
       </div>
+    </div>
 
-        <div class="button-container text-center">
-          <!-- Show the "Verwijder Schrijver" button if the confirmation dialog is not shown -->
-          <ng-container *ngIf="!showDeleteConfirmation; else confirmationDialog">
-            <button type="button" class="btn text-center" (click)="showDeleteConfirmation = true">
-              <a class="text-dark text-decoration-none">Verwijder Schrijver</a>
-            </button>
-          </ng-container>
-        </div>
-        
-        <!-- Use ngTemplateOutlet to display the confirmation dialog when needed -->
-        <ng-template #confirmationDialog>
-          <div class="confirmation-dialog mt-1">
-            <p>Weet u zeker dat u deze schrijver wilt verwijderen?</p>
-            <button type="button" (click)="deleteWriter()" class="btn text-center me-3">Ja, verwijder schrijver</button>
-            <button type="button" (click)="showDeleteConfirmation = false" class="btn text-center">Nee, annuleer</button>
-          </div>
-        </ng-template>
+    <!-- Right Column -->
+    <div class="column-right col-12 col-lg-7 d-flex align-items-center justify-content-center pe-5">
 
-
+      <div class="title-container">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <h2 class="writer-name mb-3">{{writer.schrijvernaam}}</h2>
+          </li>
+          <li class="list-group-item">
+            <span class="fw-bold">Geboorteplaats:</span>
+            <p>{{writer.geboorteplaats}}</p>
+          </li>
+          <li class="list-group-item">
+            <span class="fw-bold">Geboortedatum:</span>
+            <p>{{writer.geboortedatum | date: 'dd-MM-yyyy'}}</p>
+          </li>
+          <li class="list-group-item">
+            <span class="fw-bold">Biografie:</span>
+            <p>{{writer.bio}}</p>
+          </li>
+          <li class="list-group-item">
+            <span class="fw-bold">Moedertaal:</span>
+            <p>{{writer.moedertaal}}</p>
+          </li>
+        </ul>
+      </div>
       
     </div>
+
+
+    <div class="button-container text-center">
+      <button type="button" class="btn text-center me-4" (click)="goBack()">
+        <span class="text-dark text-decoration-none">Terug</span>
+      </button>
+
+        <button type="button" class="btn text-center">
+          <a routerLink="editwriter" class="text-dark text-decoration-none">Wijzig Schrijver</a>
+        </button>
+    </div>
+
+      <div class="button-container text-center">
+        <!-- Show the "Verwijder Schrijver" button if the confirmation dialog is not shown -->
+        <ng-container *ngIf="!showDeleteConfirmation; else confirmationDialog">
+          <button type="button" class="btn text-center" (click)="showDeleteConfirmation = true">
+            <a class="text-dark text-decoration-none">Verwijder Schrijver</a>
+          </button>
+        </ng-container>
+      </div>
+      
+      <!-- Use ngTemplateOutlet to display the confirmation dialog when needed -->
+      <ng-template #confirmationDialog>
+        <div class="confirmation-dialog mt-1">
+          <p>Weet u zeker dat u deze schrijver wilt verwijderen?</p>
+          <button type="button" (click)="deleteWriter()" class="btn text-center me-3">Ja, verwijder schrijver</button>
+          <button type="button" (click)="showDeleteConfirmation = false" class="btn text-center">Nee, annuleer</button>
+        </div>
+      </ng-template>
   </div>
 </div>

@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class WriterEditComponent implements OnInit {
     writer: IWriter = {
       id: '',
+      profielFoto: '',
       schrijvernaam: '',
       geboortedatum: new Date(),
       bio: '',

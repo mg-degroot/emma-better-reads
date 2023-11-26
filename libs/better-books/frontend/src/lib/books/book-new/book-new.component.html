@@ -21,7 +21,7 @@
 
     <div class="form-group mb-4">
       <label for="schrijver" class="fw-bold">Schrijver</label>
-      <ng-select [items]="writers" bindValue="id" bindLabel="schrijvernaam" [(ngModel)]="selectedWriterId" name="schrijver" [searchable]="true" [searchFn]="customSearch"></ng-select>
+      <ng-select [items]="writers" bindValue="id" bindLabel="schrijvernaam" [(ngModel)]="selectedWriterId" name="schrijver" placeholder="Kies een auteur" [searchable]="true" [searchFn]="customSearch"></ng-select>
     </div>
     
 
@@ -33,6 +33,11 @@
     <div class="form-group mb-4">
       <label for="InputPages" class="fw-bold">Pagina's</label>
       <input type="number" class="form-control" id="InputPages" [(ngModel)]="book.paginas" name="paginas" placeholder="Aantal pagina's" required>
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="InputGenre" class="fw-bold">Genre</label>
+      <input type="text" class="form-control" id="InputGenre" [(ngModel)]="book.genre" name="genre" placeholder="Genre" required>
     </div>
 
     <div class="form-group mb-4">

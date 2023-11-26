@@ -22,6 +22,10 @@ export class CreateWriterDto implements ICreateWriter {
 
     @IsString()
     @IsNotEmpty()
+    profielFoto!: string;
+
+    @IsString()
+    @IsNotEmpty()
     bio!: string;
 
     @IsDate()
@@ -42,6 +46,10 @@ export class UpsertWriterDto implements IUpsertWriter {
     @IsString()
     @IsNotEmpty()
     id!: string;
+
+    @IsString()
+    @IsNotEmpty()
+    profielFoto!: string;
 
     @IsString()
     @IsNotEmpty()
@@ -66,12 +74,28 @@ export class UpsertWriterDto implements IUpsertWriter {
 
 export class UpdateWriterDto implements IUpdateWriter {
     @IsString()
-    @IsOptional()
+    @IsNotEmpty()
+    profielFoto!: string;
+
+    @IsString()
+    @IsNotEmpty()
     schrijvernaam!: string;
 
     @IsString()
-    @IsOptional()
+    @IsNotEmpty()
+    bio!: string;
+
+    @IsDate()
+    @IsNotEmpty()
     geboortedatum!: Date;
+
+    @IsDate()
+    @IsNotEmpty()
+    geboorteplaats!: string;
+
+    @IsDate()
+    @IsNotEmpty()
+    moedertaal!: string;
 
     @IsBoolean()
     @IsOptional()
