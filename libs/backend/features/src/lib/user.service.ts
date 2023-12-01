@@ -51,21 +51,22 @@ export class UserService {
         return createdItem;
     }
 
-    async update(userId: string, updateUserDto: Partial<IUser>): Promise<IUser> {
+
+    async update(userId: string, updateUserDto: UpdateUserDto): Promise<IUser> {
         const existingUser = await this.userModel.findById(userId).exec();
-    
+      
         if (!existingUser) {
           throw new NotFoundException(`User with id ${userId} not found`);
         }
-    
+      
         // Update user properties
         Object.assign(existingUser, updateUserDto);
-    
+      
         // Save the updated user
         const updatedUser = await existingUser.save();
-        
+      
         return updatedUser;
-      }
+    }
     
 
     async deleteUser(_id: string): Promise<void> {

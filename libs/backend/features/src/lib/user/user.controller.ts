@@ -24,7 +24,7 @@ export class UserController {
     }
 
     @Put(':id')
-    async update(@Param('id') userId: string, @Body() updateUserDto: Partial<IUser>) {
+    async update(@Param('id') userId: string, @Body() updateUserDto: UpdateUserDto) {
       const updatedUser = await this.userService.update(userId, updateUserDto);
       return { message: 'User updated successfully', user: updatedUser };
     }

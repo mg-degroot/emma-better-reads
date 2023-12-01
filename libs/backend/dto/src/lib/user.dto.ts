@@ -3,8 +3,8 @@ import {
     IsString,
     IsBoolean,
     IsOptional,
-    IsDate,
-    IsMongoId
+    IsMongoId,
+    IsNumber
 } from 'class-validator';
 import {
     ICreateUser,
@@ -25,24 +25,27 @@ export class CreateUserDto implements ICreateUser {
     @IsNotEmpty()
     email!: string;
 
-    @IsDate()
     @IsNotEmpty()
     geboortedatum!: Date;
 
-    @IsDate()
+    @IsString()
     @IsNotEmpty()
     straatnaam!: string;
 
-    @IsDate()
+    @IsNumber()
     @IsNotEmpty()
     huisnummer!: number;
 
-    @IsDate()
+    @IsString()
     @IsNotEmpty()
     stad!: string;
 }
 
 export class UpsertUserDto implements IUpsertUser {
+    @IsMongoId()
+    @IsNotEmpty()
+    _id!: string;
+
     @IsString()
     @IsNotEmpty()
     naam!: string;
@@ -51,23 +54,18 @@ export class UpsertUserDto implements IUpsertUser {
     @IsNotEmpty()
     email!: string;
 
-    @IsMongoId()
-    @IsNotEmpty()
-    _id!: string;
-
-    @IsDate()
     @IsNotEmpty()
     geboortedatum!: Date;
 
-    @IsDate()
+    @IsString()
     @IsNotEmpty()
     straatnaam!: string;
 
-    @IsDate()
+    @IsNumber()
     @IsNotEmpty()
     huisnummer!: number;
 
-    @IsDate()
+    @IsString()
     @IsNotEmpty()
     stad!: string;
 }
@@ -83,19 +81,18 @@ export class UpdateUserDto implements IUpdateUser {
     @IsNotEmpty()
     email!: string;
 
-    @IsDate()
     @IsNotEmpty()
     geboortedatum!: Date;
 
-    @IsDate()
+    @IsString()
     @IsNotEmpty()
     straatnaam!: string;
 
-    @IsDate()
+    @IsNumber()
     @IsNotEmpty()
     huisnummer!: number;
 
-    @IsDate()
+    @IsString()
     @IsNotEmpty()
     stad!: string;
 
