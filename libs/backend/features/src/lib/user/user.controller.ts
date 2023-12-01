@@ -20,7 +20,8 @@ export class UserController {
 
     @Post('')
     async create(@Body() createUserDto: CreateUserDto): Promise<IUser> {
-        return await this.userService.create(createUserDto);
+        const {...userWithoutId } = createUserDto;
+        return await this.userService.create(userWithoutId);
     }
 
     @Put(':id')

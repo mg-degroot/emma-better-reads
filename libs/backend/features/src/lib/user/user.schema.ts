@@ -1,13 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { IUser } from '@nx-emma-indiv/shared/api';
-import { IsMongoId } from 'class-validator';
 
 export type UserDocument = User & Document;
 
 @Schema()
 export class User implements IUser {
-    @IsMongoId()
     _id!: string;
 
     @Prop({

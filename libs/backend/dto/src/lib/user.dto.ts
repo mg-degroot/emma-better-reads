@@ -17,6 +17,11 @@ import {
  * new to-do items
  */
 export class CreateUserDto implements ICreateUser {
+
+    @IsOptional()
+    @IsString()
+    _id?: string;
+
     @IsString()
     @IsNotEmpty()
     naam!: string;

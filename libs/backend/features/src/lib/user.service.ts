@@ -45,13 +45,17 @@ export class UserService {
         return item;
     }
 
-    async create(user: CreateUserDto): Promise<IUser> {
-        this.logger.log(`Create user ${user.naam}`);
-        const createdItem = await this.userModel.create(user);
+    async create(userDto: CreateUserDto): Promise<IUser> {
+        this.logger.log(`Create user ${userDto.naam}`);
+        
+        // Sluit _id expliciet uit
+        const { _id, ...userWithoutId } = userDto;
+        
+        const createdItem = await this.userModel.create(userWithoutId);
         return createdItem;
     }
-
-
+    
+      
     async update(userId: string, updateUserDto: UpdateUserDto): Promise<IUser> {
         const existingUser = await this.userModel.findById(userId).exec();
       
