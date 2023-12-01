@@ -18,8 +18,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let user of users">
-          <th class="table-info"> {{user.id}}</th>
-          <td><a routerLink="{{ user.id }}" class="text-primary text-dark">{{ user.naam }}</a></td>
+          <th class="table-info"> {{user._id}}</th>
+          <td><a routerLink="{{ user._id }}" class="text-primary text-dark">{{ user.naam }}</a></td>
           <td>{{user.email}}</td>
           <td>{{ user.geboortedatum | date : 'dd-MM-yyyy' }}</td>
         </tr>

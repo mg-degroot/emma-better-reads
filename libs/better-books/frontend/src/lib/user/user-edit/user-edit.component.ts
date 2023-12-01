@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class UserEditComponent implements OnInit {
     user: IUser = {
-      id: '',
+      _id: '',
       naam: '',
       email: '',
       geboortedatum: new Date(),
@@ -31,7 +31,7 @@ export class UserEditComponent implements OnInit {
     ngOnInit(): void {
   
       this.route.paramMap.subscribe((params) => {
-        this.userId = params.get('id');
+        this.userId = params.get('_id');
         
           // Bestaande user
           this.userService.read(this.userId).subscribe((observable) => 
@@ -40,17 +40,21 @@ export class UserEditComponent implements OnInit {
     }
 
     updateUser() {
-      this.userService.update(this.user).subscribe(
-        () => {
-          this.router.navigate(['../../users', this.user.id]);
+      console.log('Updating user:', this.user);
+      
+      this.userService.update(this.user).subscribe({
+        next: (updatedUser) => {
+          console.log('User updated successfully:', updatedUser);
+          this.router.navigate(['../../users', this.user._id]);
         },
-        (error) => {
+        error: (error) => {
           console.error('Error updating user:', error);
         }
-      );
+      });
+      
     }
-
+    
     goBack(): void {
-      this.router.navigate(['../../writers', this.user.id]);
+      this.router.navigate(['../../users', this.user._id]);
     }
 }

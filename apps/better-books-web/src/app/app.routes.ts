@@ -43,11 +43,11 @@ export const appRoutes: Route[] = [
         pathMatch: "full", 
         component: UserNewComponent },
     { 
-        path: "users/:id", 
+        path: "users/:_id", 
         pathMatch: "full", 
         component: UserDetailComponent },
     { 
-        path: "users/:id/edit", 
+        path: "users/:_id/edit", 
         pathMatch: "full", 
         component: UserEditComponent },
         

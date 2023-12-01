@@ -1,6 +1,7 @@
 import { Controller, Get, Param, Post, Delete, Put, Body } from '@nestjs/common';
 import { UserService } from '../user.service';
 import { IUser } from '@nx-emma-indiv/shared/api';
+import { CreateUserDto, UpdateUserDto } from '@nx-emma-indiv/backend/dto';
 
 
 @Controller('user')
@@ -8,28 +9,29 @@ export class UserController {
     constructor(private userService: UserService) {}
 
     @Get('')
-    getAll(): IUser[] {
-        return this.userService.getAll();
+    async getAll(): Promise<IUser[]> {
+        return await this.userService.findAll();
     }
 
-    @Get(':id')
-    getOne(@Param('id') id: string): IUser {
-        return this.userService.getOne(id);
+    @Get(':_id')
+    async getOne(@Param('_id') _id: string): Promise<IUser | null> {
+        return await this.userService.findOne(_id);
     }
 
     @Post('')
-    create(@Body() user: IUser): IUser {
-      console.log('Received user:', user);
-      return this.userService.create(user);
+    async create(@Body() createUserDto: CreateUserDto): Promise<IUser> {
+        return await this.userService.create(createUserDto);
     }
 
-    @Put('/:id')
-    edit(@Param('id') id: string, @Body() user: IUser): IUser {
-      return this.userService.update(user);
+    @Put(':id')
+    async update(@Param('id') userId: string, @Body() updateUserDto: Partial<IUser>) {
+      const updatedUser = await this.userService.update(userId, updateUserDto);
+      return { message: 'User updated successfully', user: updatedUser };
     }
+    
 
-    @Delete('/:id')
-    delete(@Param('id') id: string): void {
-      this.userService.deleteUser(id);
+    @Delete('/:_id')
+    async delete(@Param('_id') _id: string): Promise<void> {
+        await this.userService.deleteUser(_id);
     }
 }

@@ -13,7 +13,7 @@ export class UserDetailComponent implements OnInit {
   showDeleteConfirmation = false;
 
     user: IUser = {
-      id: '',
+      _id: '',
       naam: '',
       email: '',
       geboortedatum: new Date(),
@@ -35,7 +35,7 @@ export class UserDetailComponent implements OnInit {
       // Deze manier maakt gebruik van RxJs Observables.
       // We komen hier bij services en HTTP op terug.
       this.route.paramMap.subscribe((params) => {
-        this.userId = params.get('id');
+        this.userId = params.get('_id');
 
         this.userService.read(this.userId).subscribe((observable) => 
           this.user = observable);
@@ -58,7 +58,7 @@ export class UserDetailComponent implements OnInit {
           }
         });
       } else {
-        console.error('User id is missing for deletion.');
+        console.error('User _id is missing for deletion.');
       }
     }
 }

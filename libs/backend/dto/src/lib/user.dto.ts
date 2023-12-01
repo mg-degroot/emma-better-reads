@@ -3,7 +3,8 @@ import {
     IsString,
     IsBoolean,
     IsOptional,
-    IsDate
+    IsDate,
+    IsMongoId
 } from 'class-validator';
 import {
     ICreateUser,
@@ -50,9 +51,9 @@ export class UpsertUserDto implements IUpsertUser {
     @IsNotEmpty()
     email!: string;
 
-    @IsString()
+    @IsMongoId()
     @IsNotEmpty()
-    id!: string;
+    _id!: string;
 
     @IsDate()
     @IsNotEmpty()
@@ -72,13 +73,31 @@ export class UpsertUserDto implements IUpsertUser {
 }
 
 export class UpdateUserDto implements IUpdateUser {
+    _id?: string | undefined;
+    
     @IsString()
-    @IsOptional()
+    @IsNotEmpty()
     naam!: string;
 
     @IsString()
-    @IsOptional()
+    @IsNotEmpty()
     email!: string;
+
+    @IsDate()
+    @IsNotEmpty()
+    geboortedatum!: Date;
+
+    @IsDate()
+    @IsNotEmpty()
+    straatnaam!: string;
+
+    @IsDate()
+    @IsNotEmpty()
+    huisnummer!: number;
+
+    @IsDate()
+    @IsNotEmpty()
+    stad!: string;
 
     @IsBoolean()
     @IsOptional()

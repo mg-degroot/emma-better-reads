@@ -48,10 +48,10 @@ export class UserService {
      * Get a single item from the service.
      *
      */
-    public read(id: string | null, options?: any): Observable<IUser> {
-        console.log(`read ${this.endpoint}/${id}`);
+    public read(_id: string | null, options?: any): Observable<IUser> {
+        console.log(`read ${this.endpoint}/${_id}`);
         return this.http
-            .get<ApiResponse<IUser>>(`${this.endpoint}/${id}`, {
+            .get<ApiResponse<IUser>>(`${this.endpoint}/${_id}`, {
                 ...options,
                 ...httpOptions,
             })
@@ -81,17 +81,22 @@ export class UserService {
     }
 
     public update(user: IUser): Observable<IUser> {
-        console.log(`update ${this.endpoint}/${user.id}`);
+        console.log(`update ${this.endpoint}/${user._id}`);
         return this.http
-          .put<ApiResponse<IUser>>(`${this.endpoint}/${user.id}`, user)
-          .pipe(tap(console.log), catchError(this.handleError)
+          .put<ApiResponse<IUser>>(`${this.endpoint}/${user._id}`, user)
+          .pipe(
+            tap(console.log),
+            catchError((error) => {
+              console.error('Update error:', error);
+              throw error;
+            })
           );
     }
 
     public delete(user: IUser): Observable<IUser> {
-      console.log(`delete ${this.endpoint}/${user.id}`);
+      console.log(`delete ${this.endpoint}/${user._id}`);
       return this.http
-        .delete<ApiResponse<IUser>>(`${this.endpoint}/${user.id}`)
+        .delete<ApiResponse<IUser>>(`${this.endpoint}/${user._id}`)
         .pipe(tap(console.log), catchError(this.handleError));
     }
 

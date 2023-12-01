@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class UserNewComponent implements OnInit {
     user: IUser = {
-      id: '',
+      _id: '',
       naam: '',
       email: '',
       geboortedatum: new Date(),
