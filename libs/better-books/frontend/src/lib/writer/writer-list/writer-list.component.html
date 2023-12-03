@@ -16,7 +16,7 @@
         <img src="{{ writer.profielFoto }}" class="card-img-top me-5 ms-5 mt-3 mb-3" alt="Book Image" onerror="this.src='/assets/placeholder-person.png'">
   
         <div class="card-body me-5 ms-5 mt-5">
-          <h5 class="card-title"><a routerLink ="{{ writer.id }}" class="text text-dark text-decoration-none">{{ writer.schrijvernaam }}</a></h5>
+          <h5 class="card-title"><a routerLink ="{{ writer._id }}" class="text text-dark text-decoration-none">{{ writer.schrijvernaam }}</a></h5>
           <p class="card-text mt-5"><span>Geboortedatum  </span>{{ writer.geboortedatum | date : 'dd-MM-yyyy' }}</p>
         </div>
   

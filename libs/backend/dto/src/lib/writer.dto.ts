@@ -3,7 +3,7 @@ import {
     IsString,
     IsBoolean,
     IsOptional,
-    IsDate
+    IsMongoId,
 } from 'class-validator';
 import {
     ICreateWriter,
@@ -16,6 +16,11 @@ import {
  * new to-do items
  */
 export class CreateWriterDto implements ICreateWriter {
+
+    @IsOptional()
+    @IsString()
+    _id?: string;
+
     @IsString()
     @IsNotEmpty()
     schrijvernaam!: string;
@@ -28,24 +33,22 @@ export class CreateWriterDto implements ICreateWriter {
     @IsNotEmpty()
     bio!: string;
 
-    @IsDate()
     @IsNotEmpty()
     geboortedatum!: Date;
 
-    @IsDate()
+    @IsString()
     @IsNotEmpty()
     geboorteplaats!: string;
 
-    @IsDate()
+    @IsString()
     @IsNotEmpty()
     moedertaal!: string;
 }
 
 export class UpsertWriterDto implements IUpsertWriter {
-
-    @IsString()
+    @IsMongoId()
     @IsNotEmpty()
-    id!: string;
+    _id!: string;
 
     @IsString()
     @IsNotEmpty()
@@ -59,20 +62,21 @@ export class UpsertWriterDto implements IUpsertWriter {
     @IsNotEmpty()
     bio!: string;
 
-    @IsDate()
     @IsNotEmpty()
     geboortedatum!: Date;
 
-    @IsDate()
+    @IsString()
     @IsNotEmpty()
     geboorteplaats!: string;
 
-    @IsDate()
+    @IsString()
     @IsNotEmpty()
     moedertaal!: string;
 }
 
 export class UpdateWriterDto implements IUpdateWriter {
+    _id?: string | undefined;
+    
     @IsString()
     @IsNotEmpty()
     profielFoto!: string;
@@ -85,15 +89,14 @@ export class UpdateWriterDto implements IUpdateWriter {
     @IsNotEmpty()
     bio!: string;
 
-    @IsDate()
     @IsNotEmpty()
     geboortedatum!: Date;
 
-    @IsDate()
+    @IsString()
     @IsNotEmpty()
     geboorteplaats!: string;
 
-    @IsDate()
+    @IsString()
     @IsNotEmpty()
     moedertaal!: string;
 

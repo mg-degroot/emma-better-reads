@@ -17,7 +17,7 @@ export class BookService {
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2018-08-14'),
             schrijver: {
-              id: '1',
+              _id: '',
               profielFoto: 'https://images.squarespace-cdn.com/content/v1/5aadc6402714e55458f1f5b6/1617060360564-Z0RG3T8PMLBWJJUTY105/delia-owens-2020-2.jpg',
               schrijvernaam: 'Delia Owens',
               geboortedatum: new Date('1949-05-25'),
@@ -36,7 +36,7 @@ export class BookService {
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2018-02-20'),
             schrijver: {
-              id: '2',
+              _id: '',
               profielFoto: 'https://www.debezigebij.nl/wp-content/uploads/sites/53/external/be36c0cfda7771eb67d7e0a4af1f5656-200x0-c-default.png?t=1685125975',
               schrijvernaam: 'Tara Westover',
               geboortedatum: new Date('1986-09-27'),
@@ -55,7 +55,7 @@ export class BookService {
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2023-01-01'),
             schrijver: {
-              id: '3',
+              _id: '',
               profielFoto: '',
               schrijvernaam: 'John Doe',
               geboortedatum: new Date('1970-01-01'),
@@ -74,7 +74,7 @@ export class BookService {
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2019-02-05'),
             schrijver: {
-              id: '4',
+              _id: '',
               profielFoto: 'https://www.athensinsider.com/wp-content/uploads/2020/01/Alex-Michailides-for-website.jpg',
               schrijvernaam: 'Alex Michaelides',
               geboortedatum: new Date('Onbekend'),
@@ -93,7 +93,7 @@ export class BookService {
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2020-06-02'),
             schrijver: {
-              id: '5',
+              _id: '',
               profielFoto: 'https://upload.wikimedia.org/wikipedia/commons/9/96/BritBennett.jpg',
               schrijvernaam: 'Brit Bennett',
               geboortedatum: new Date('1989-06-24'),
@@ -112,7 +112,7 @@ export class BookService {
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2014-02-10'),
             schrijver: {
-              id: '6',
+              _id: '',
               schrijvernaam: 'Yuval Noah Harari',
               profielFoto: 'https://assets.weforum.org/sf_account/image/OYPGh90FjJt0XME4g2dW5jxEQzBdvNv7YPGsrt8tqds.jpg',
               geboortedatum: new Date('1976-02-24'),
@@ -131,7 +131,7 @@ export class BookService {
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2011-09-13'),
             schrijver: {
-              id: '7',
+              _id: '',
               profielFoto: 'https://erinmorgenstern.com/wp-content/uploads/2018/11/erin1-610x839.jpg',
               schrijvernaam: 'Erin Morgenstern',
               geboortedatum: new Date('1978-07-08'),
@@ -150,7 +150,7 @@ export class BookService {
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2013-10-22'),
             schrijver: {
-              id: '8',
+              _id: '',
               profielFoto: 'https://images0.persgroep.net/rcs/a6VYjNLYCabnjMOnLPRZM7FgSTM/diocontent/112402275/_crop/0/0/1312/2000/_fitwidth/1240?appId=93a17a8fd81db0de025c8abd1cca1279&quality=0.9',
               schrijvernaam: 'Donna Tartt',
               geboortedatum: new Date('1963-12-23'),
@@ -169,7 +169,7 @@ export class BookService {
             origineletaal: 'Nederlands',
             publiceerdatum: new Date('2023-02-15'),
             schrijver: {
-              id: '9',
+              _id: '',
               profielFoto: 'https://upload.wikimedia.org/wikipedia/en/0/0e/Sarah_Jane_Smith_2006.jpg',
               schrijvernaam: 'Jane Smith',
               geboortedatum: new Date('1985-04-10'),
@@ -188,7 +188,7 @@ export class BookService {
             origineletaal: 'Elvish',
             publiceerdatum: new Date('2023-03-30'),
             schrijver: {
-              id: '10',
+              _id: '',
               profielFoto: '',
               schrijvernaam: 'Fantasy-auteur',
               geboortedatum: new Date('Onbekend'),

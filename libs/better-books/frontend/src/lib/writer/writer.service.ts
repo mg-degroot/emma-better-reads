@@ -48,10 +48,10 @@ export class WriterService {
      * Get a single item from the service.
      *
      */
-    public read(id: string | null, options?: any): Observable<IWriter> {
-        console.log(`read ${this.endpoint}/${id}`);
+    public read(_id: string | null, options?: any): Observable<IWriter> {
+        console.log(`read ${this.endpoint}/${_id}`);
         return this.http
-            .get<ApiResponse<IWriter>>(`${this.endpoint}/${id}`, {
+            .get<ApiResponse<IWriter>>(`${this.endpoint}/${_id}`, {
                 ...options,
                 ...httpOptions,
             })
@@ -81,17 +81,17 @@ export class WriterService {
     }
 
     public update(writer: IWriter): Observable<IWriter> {
-        console.log(`update ${this.endpoint}/${writer.id}`);
+        console.log(`update ${this.endpoint}/${writer._id}`);
         return this.http
-          .put<ApiResponse<IWriter>>(`${this.endpoint}/${writer.id}`, writer)
+          .put<ApiResponse<IWriter>>(`${this.endpoint}/${writer._id}`, writer)
           .pipe(tap(console.log), catchError(this.handleError)
           );
     }
 
     public delete(writer: IWriter): Observable<IWriter> {
-      console.log(`delete ${this.endpoint}/${writer.id}`);
+      console.log(`delete ${this.endpoint}/${writer._id}`);
       return this.http
-        .delete<ApiResponse<IWriter>>(`${this.endpoint}/${writer.id}`)
+        .delete<ApiResponse<IWriter>>(`${this.endpoint}/${writer._id}`)
         .pipe(tap(console.log), catchError(this.handleError));
     }
 

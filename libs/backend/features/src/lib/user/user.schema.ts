@@ -9,39 +9,34 @@ export class User implements IUser {
     _id!: string;
 
     @Prop({
-        required: true,
-        unique: true
+        required: true
     })
     naam!: string;
 
 
     @Prop({
         required: true,
-        type: String
+        unique: true
     })
-    email = '';
+    email!: string;
 
     @Prop({
-        required: true,
-        unique: true
+        required: true
     })
     geboortedatum!: Date;
 
     @Prop({
-        required: true,
-        unique: true
+        required: true
     })
     straatnaam!: string;
 
     @Prop({
-        required: true,
-        unique: true
+        required: true
     })
     huisnummer!: number;
 
     @Prop({
-        required: true,
-        unique: true
+        required: true
     })
     stad!: string;
 

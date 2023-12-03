@@ -34,7 +34,6 @@ export class UserService {
         }
         return item;
     }
-    
 
     async findOneByEmail(email: string): Promise<IUser | null> {
         this.logger.log(`Finding user by email ${email}`);
@@ -54,8 +53,7 @@ export class UserService {
         const createdItem = await this.userModel.create(userWithoutId);
         return createdItem;
     }
-    
-      
+        
     async update(userId: string, updateUserDto: UpdateUserDto): Promise<IUser> {
         const existingUser = await this.userModel.findById(userId).exec();
       
@@ -72,7 +70,6 @@ export class UserService {
         return updatedUser;
     }
     
-
     async deleteUser(_id: string): Promise<void> {
       this.logger.log(`Deleting user with id ${_id}`);
       const deletedItem = await this.userModel.findByIdAndDelete(_id).exec();

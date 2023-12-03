@@ -21,7 +21,7 @@
 
     <div class="form-group mb-4">
       <label for="schrijver" class="fw-bold">Schrijver</label>
-      <ng-select [items]="writers" bindValue="id" bindLabel="schrijvernaam" [(ngModel)]="selectedWriterId" name="schrijver" placeholder="Kies een auteur" [searchable]="true" [searchFn]="customSearch"></ng-select>
+      <ng-select [items]="writers" bindValue="_id" bindLabel="schrijvernaam" [(ngModel)]="selectedWriterId" name="schrijver" placeholder="Kies een auteur" [searchable]="true" [searchFn]="customSearch"></ng-select>
     </div>
     
 

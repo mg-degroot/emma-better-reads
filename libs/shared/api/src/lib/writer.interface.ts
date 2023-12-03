@@ -1,7 +1,7 @@
 import { Id } from './id.type';
 
 export interface IWriter {
-    id: Id;
+    _id: Id;
     profielFoto: string;
     schrijvernaam: string;
     geboortedatum: Date;
@@ -14,5 +14,5 @@ export type ICreateWriter = Pick<IWriter,
     'schrijvernaam' | 'geboortedatum' | 'bio' | 'geboorteplaats' | 'moedertaal'
 >;
 
-export type IUpdateWriter = Partial<Omit<IWriter, 'id'>>;
+export type IUpdateWriter = Partial<Omit<IWriter, '_id'>>;
 export type IUpsertWriter = IWriter;

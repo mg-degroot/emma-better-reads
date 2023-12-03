@@ -24,11 +24,11 @@ export const appRoutes: Route[] = [
         pathMatch: "full", 
         component: WriterNewComponent },
     { 
-        path: "writers/:id", 
+        path: "writers/:_id", 
         pathMatch: "full", 
         component: WriterDetailComponent },
     { 
-        path: "writers/:id/editwriter", 
+        path: "writers/:_id/editwriter", 
         pathMatch: "full", 
         component: WriterEditComponent },
 

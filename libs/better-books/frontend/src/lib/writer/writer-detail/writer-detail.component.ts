@@ -13,7 +13,7 @@ export class WriterDetailComponent implements OnInit {
   showDeleteConfirmation = false;
 
     writer: IWriter = {
-      id: '',
+      _id: '',
       profielFoto: '',
       schrijvernaam: '',
       geboortedatum: new Date(),
@@ -35,7 +35,7 @@ export class WriterDetailComponent implements OnInit {
       // Deze manier maakt gebruik van RxJs Observables.
       // We komen hier bij services en HTTP op terug.
       this.route.paramMap.subscribe((params) => {
-        this.writerId = params.get('id');
+        this.writerId = params.get('_id');
 
         this.writerService.read(this.writerId).subscribe((observable) => 
           this.writer = observable);
@@ -58,7 +58,7 @@ export class WriterDetailComponent implements OnInit {
           }
         });
       } else {
-        console.error('Writer id is missing for deletion.');
+        console.error('Writer _id is missing for deletion.');
       }
     }
 

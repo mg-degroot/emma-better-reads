@@ -45,7 +45,7 @@
     <div class="column-right col-12 col-lg-9 align-items-center justify-content-center">
       <div class="title-container">
         <h5> {{book.titel }} </h5>
-        <p class="writer"><a [routerLink]="['/writers', book.schrijver.id]" class="text-dark">{{book.schrijver.schrijvernaam}}</a></p>
+        <p class="writer"><a [routerLink]="['/writers', book.schrijver._id]" class="text-dark">{{book.schrijver.schrijvernaam}}</a></p>
 
         <p class="description"> {{book.beschrijving}}</p>
 

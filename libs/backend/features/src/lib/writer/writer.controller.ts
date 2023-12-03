@@ -1,34 +1,38 @@
 import { Controller, Get, Param, Post, Delete, Put, Body } from '@nestjs/common';
 import { WriterService } from '../writer.service';
 import { IWriter } from '@nx-emma-indiv/shared/api';
+import { CreateWriterDto, UpdateWriterDto } from '@nx-emma-indiv/backend/dto';
+
 
 @Controller('writer')
 export class WriterController {
     constructor(private writerService: WriterService) {}
 
     @Get('')
-    getAll(): IWriter[] {
-        return this.writerService.getAll();
+    async getAll(): Promise<IWriter[]> {
+        return await this.writerService.findAll();
     }
 
-    @Get(':id')
-    getOne(@Param('id') id: string): IWriter {
-        return this.writerService.getOne(id);
+    @Get(':_id')
+    async getOne(@Param('_id') _id: string): Promise<IWriter | null> {
+        return await this.writerService.findOne(_id);
     }
 
     @Post('')
-    create(@Body() writer: IWriter): IWriter {
-      console.log('Received writer:', writer);
-      return this.writerService.create(writer);
+    async create(@Body() createWriterDto: CreateWriterDto): Promise<IWriter> {
+        const {...writerWithoutId } = createWriterDto;
+        return await this.writerService.create(writerWithoutId);
     }
 
-    @Put('/:id')
-    edit(@Param('id') id: string, @Body() writer: IWriter): IWriter {
-      return this.writerService.update(writer);
+    @Put(':id')
+    async update(@Param('id') writerId: string, @Body() updateWriterDto: UpdateWriterDto) {
+      const updatedWriter = await this.writerService.update(writerId, updateWriterDto);
+      return { message: 'writer updated successfully', writer: updatedWriter };
     }
+    
 
-    @Delete('/:id')
-    delete(@Param('id') id: string): void {
-      this.writerService.deleteWriter(id);
+    @Delete('/:_id')
+    async delete(@Param('_id') _id: string): Promise<void> {
+        await this.writerService.deleteWriter(_id);
     }
 }

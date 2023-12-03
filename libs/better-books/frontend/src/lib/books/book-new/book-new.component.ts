@@ -49,7 +49,7 @@ export class BookNewComponent implements OnInit {
     
       createBook(): void {
         const selectedWriterId = this.selectedWriterId; // Use the declared property
-        const selectedWriter = this.writers?.find((writer) => writer.id === selectedWriterId);
+        const selectedWriter = this.writers?.find((writer) => writer._id === selectedWriterId);
     
         if (selectedWriter) {
           this.book.schrijver = selectedWriter;

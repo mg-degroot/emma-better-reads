@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class WriterEditComponent implements OnInit {
     writer: IWriter = {
-      id: '',
+      _id: '',
       profielFoto: '',
       schrijvernaam: '',
       geboortedatum: new Date(),
@@ -31,7 +31,7 @@ export class WriterEditComponent implements OnInit {
     ngOnInit(): void {
   
       this.route.paramMap.subscribe((params) => {
-        this.writerId = params.get('id');
+        this.writerId = params.get('_id');
         
           // Bestaande writer
           this.writerService.read(this.writerId).subscribe((observable) => 
@@ -40,17 +40,21 @@ export class WriterEditComponent implements OnInit {
     }
 
     updateWriter() {
-      this.writerService.update(this.writer).subscribe(
-        () => {
-          this.router.navigate(['../../writers', this.writer.id]);
+      console.log('Updating writer:', this.writer);
+      
+      this.writerService.update(this.writer).subscribe({
+        next: (updatedWriter) => {
+          console.log('Writer updated successfully:', updatedWriter);
+          this.router.navigate(['../../writers', this.writer._id]);
         },
-        (error) => {
-          console.error('Error updating book:', error);
+        error: (error) => {
+          console.error('Error updating writer:', error);
         }
-      );
+      });
+      
     }
 
     goBack(): void {
-      this.router.navigate(['../../writers', this.writer.id]);
+      this.router.navigate(['../../writers', this.writer._id]);
     }
 }
