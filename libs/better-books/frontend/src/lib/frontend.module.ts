@@ -5,7 +5,6 @@ import {RouterModule, RouterLink} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 
-
 //about-page
 import { AboutComponent } from './about/about.component';
 

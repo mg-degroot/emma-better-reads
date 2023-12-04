@@ -1,0 +1,41 @@
+<!-- home.component.html -->
+
+<div class="container-fluid">
+  <!-- Afbeelding met boogvormige onderkant -->
+  <div class="arc-image">
+    <img src="https://afasienet.com/wp-content/uploads/Boekmetletters-900x600-780x448-1-700x402.jpg" alt="Boogvormige Onderkant">
+    <div class="overlay"></div>
+    <div class="welcome-box">
+      <h2>Welkom bij Betterreads</h2>
+    </div>
+  </div>
+
+  <p class="intro-text text-center">
+    Dompel jezelf onder in een wereld van boeken en beleef het plezier van lezen. Betterreads maakt het eenvoudig om je favoriete boeken te ontdekken en te beheren.
+  </p>
+
+  <div class="row mt-4 w-50 text-center d-flex mx-auto">
+    <!-- Registreren Card -->
+    <div class="col-12 col-lg-6">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Registreren</h5>
+          <p class="card-text">Word lid van onze leesgemeenschap. Registreer vandaag nog en ontdek een schat aan boeken.</p>
+          <button (click)="navigateToRegister()" class="btn register">Registreer nu</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inloggen Card -->
+    <div class="col-12 col-lg-6">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Inloggen</h5>
+          <p class="card-text">Heb je al een account? Log in en geniet van gepersonaliseerde leeservaringen.</p>
+          <button (click)="navigateToLogin()" class="btn inlog">Inloggen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>

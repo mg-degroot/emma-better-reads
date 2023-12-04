@@ -1,3 +1,19 @@
 .show-password {
     -webkit-text-security: none;
   }
+
+.form-group {
+  margin-top: 3%;
+}
+
+.register{
+  background-color: rgb(222, 217, 217);
+  width: 275px;
+  height: auto;
+  border-radius: 30px;
+  margin-top: 3%;
+}
+
+.register:hover {
+  background-color: rgb(194, 190, 190);   
+}

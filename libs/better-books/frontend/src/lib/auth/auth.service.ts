@@ -81,7 +81,7 @@ export class AuthService {
         console.log('token is valid');
         return response as IUser;
       }),
-      catchError((error: any) => {
+      catchError(() => {
         console.log('Validate token Failed');
         //this.logout();
         this.currentUser$.next(null);
@@ -90,31 +90,31 @@ export class AuthService {
     );
   }
 
-  logout(): void {
-    this.router
-      .navigate(['/'])
-      .then((success) => {
-        // true when canDeactivate allows us to leave the page.
-        if (success) {
-          console.log('logout - removing local user info');
-          localStorage.removeItem(this.CURRENT_USER);
-          this.currentUser$.next(null);
-        } else {
-          console.log('Navigation was prevented. Check for guards or other issues.');
-        }
-      })
-      .catch((error) => console.error('Error during navigation:', error));
-  } 
-
-  getUserFromLocalStorage(): Observable<IUser | null> {
-    const itemFromStorage = localStorage.getItem(this.CURRENT_USER);
-    if (itemFromStorage === null) {
-      return of(null);
-    } else {
-      const localUser = JSON.parse(itemFromStorage);
-      return of(localUser);
+    logout(): void {
+      this.router
+        .navigate(['/'])
+        .then((success) => {
+          // true when canDeactivate allows us to leave the page.
+          if (success) {
+            console.log('logout - removing local user info');
+            localStorage.removeItem(this.CURRENT_USER);
+            this.currentUser$.next(null);
+          } else {
+            console.log('navigate result:', success);
+          }
+        })
+        .catch((error) => console.log('not logged out!'));
     }
-  }
+
+    getUserFromLocalStorage(): Observable<IUser | null> {
+      const itemFromStorage = localStorage.getItem(this.CURRENT_USER);
+      if (itemFromStorage === null) {
+        return of(null);
+      } else {
+        const localUser = JSON.parse(itemFromStorage);
+        return of(localUser);
+      }
+    }
 
   private saveUserToLocalStorage(user: IUser): void {
     localStorage.setItem(this.CURRENT_USER, JSON.stringify(user));

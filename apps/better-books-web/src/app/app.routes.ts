@@ -5,10 +5,25 @@ import { AboutComponent} from '@nx-emma-indiv/better-books/frontend';
 import { UserListComponent, UserDetailComponent, UserEditComponent, UserNewComponent} from '@nx-emma-indiv/better-books/frontend';
 import { BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent} from '@nx-emma-indiv/better-books/frontend';
 import { WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent} from '@nx-emma-indiv/better-books/frontend';
-import { RegisterComponent, LoginComponent } from '@nx-emma-indiv/better-books/frontend';
+import { RegisterComponent, LoginComponent, HomepageComponent } from '@nx-emma-indiv/better-books/frontend';
 
 
 export const appRoutes: Route[] = [
+    {
+        path: '',
+        pathMatch: 'full',
+        component: HomepageComponent
+    },
+    {   
+        path: 'user/login', 
+        pathMatch: 'full', 
+        component: LoginComponent 
+    },
+    { 
+        path: 'register', 
+        pathMatch: 'full', 
+        component: RegisterComponent 
+    },
     {
         path: 'about',
         pathMatch: 'full',
@@ -69,17 +84,9 @@ export const appRoutes: Route[] = [
         path: "books/:_id/editbook", 
         pathMatch: "full", 
         component: BookEditComponent },
+ 
 
-    {   path: 'user/login', 
-        pathMatch: 'full', 
-        component: LoginComponent },
-        
-    { 
-        path: 'register', 
-        pathMatch: 'full', 
-        component: RegisterComponent },
-   
-
+    { path: '**', redirectTo: 'homepage' }
 ];
 
 @NgModule({

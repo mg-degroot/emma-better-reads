@@ -9,8 +9,9 @@ import { UserService } from '../../user/user.service';
 @Component({
   selector: 'nx-emma-indiv',
   templateUrl: './register.component.html',
-  styleUrls: ['../../user/user-list/user-list.component.css'],
+  styleUrls: ['./register.component.css'],
 })
+
 export class RegisterComponent implements OnInit, OnDestroy {
   
   registerForm: FormGroup = new FormGroup({
@@ -23,8 +24,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.validPassword.bind(this),
     ]),
   });
+
   subs: Subscription | null = null;
   hidePassword = true; 
+  loginError = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -60,25 +63,24 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if (this.registerForm?.valid) {
       this.userService.create(this.registerForm.value).subscribe((user) => {
         console.log('Registration succeeded');
-        this.router.navigate(['/users'], { relativeTo: this.route });
+        this.router.navigate(['/user/login'], { relativeTo: this.route });
       });
     } else {
+      this.loginError = true;
       console.error('Registration returned null user');
     }
   }
 
   validEmail(control: FormControl): { [key: string]: boolean } | null {
     const email = control.value;
-    const regexp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-
-    return regexp.test(email) ? null : { email: true };
+    const regexp = /^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+$/;
+    return regexp.test(email) ? null : { invalidEmail: true };
   }
 
   validPassword(control: FormControl): { [key: string]: boolean } | null {
     const password = control.value;
-    const regexp = /^[a-zA-Z]([a-zA-Z0-9]){2,14}$/;
-
-    return regexp.test(password) ? null : { password: true };
+    const regexp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return regexp.test(password) ? null : { invalidPassword: true };
   }
 
   togglePasswordVisibility(): void {

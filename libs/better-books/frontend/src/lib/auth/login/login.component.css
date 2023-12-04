@@ -1,0 +1,11 @@
+.inlog{
+    background-color: rgb(222, 217, 217);
+    width: 275px;
+    height: auto;
+    border-radius: 30px;
+    margin-top: 3%;
+}
+
+.inlog:hover {
+    background-color: rgb(194, 190, 190);   
+}

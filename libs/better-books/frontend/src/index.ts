@@ -19,3 +19,5 @@ export * from './lib/writer/writer-new/writer-new.component';
 export * from './lib/auth/register/register.component';
 export * from './lib/auth/login/login.component';
 export * from './lib/auth/auth.service';
+
+export * from './lib/homepage/homepage.component';

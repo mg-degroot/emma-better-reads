@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   CanActivate,
   CanActivateChild,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
   Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -23,26 +21,23 @@ export class LoggedInAuthGuard implements CanActivate, CanActivateChild {
     private router: Router
   ) {}
 
-  canActivate(): Observable<boolean> {
-    console.log('canActivate LoggedIn');
-    return this.authService.currentUser$.pipe(
-      map((user: IUser | null) => {
-        if (user && user.token) {
-          return true;
-        } else {
-          console.log('not logged in, reroute to /');
-          this.router.navigate(['/']);
-          return false;
-        }
-      })
-    );
-  }
+    canActivate(): Observable<boolean> {
+      console.log('canActivate LoggedIn');
+      return this.authService.currentUser$.pipe(
+        map((user: IUser | null) => {
+          if (user && user.token) {
+            return true;
+          } else {
+            console.log('not logged in, reroute to /');
+            this.router.navigate(['/']);
+            return false;
+          }
+        })
+      );
+    }
 
-  canActivateChild(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    console.log('canActivateChild LoggedIn');
-    return this.canActivate();
+      canActivateChild(): Observable<boolean> | Promise<boolean> | boolean {
+        console.log('canActivateChild LoggedIn');
+        return this.canActivate();
+      }
   }
-}

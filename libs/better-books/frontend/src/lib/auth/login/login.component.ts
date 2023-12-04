@@ -8,7 +8,7 @@ import { IUser } from '@nx-emma-indiv/shared/api';
 @Component({
   selector: 'nx-emma-indiv',
   templateUrl: './login.component.html',
-  styleUrls: ['../../user/user-list/user-list.component.css'],
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   subs: Subscription | null = null;
   
   submitted = false;
+  loginError = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -54,13 +55,23 @@ export class LoginComponent implements OnInit, OnDestroy {
       const password = this.loginForm.value.password;
       this.authService
         .login(email, password)
-        .subscribe((user: IUser | null) => {
-          if (user) {
-            console.log('Logged in');
-            this.router.navigate(['/users']);
+        .subscribe(
+          (user: IUser | null) => {
+            if (user) {
+              console.log('Logged in');
+              this.router.navigate(['/books']);
+            } else {
+              // Inloggen mislukt
+              this.loginError = true;
+            }
+            this.submitted = false;
+          },
+          () => {
+            // Fout bij inloggen
+            this.loginError = true;
+            this.submitted = false;
           }
-          this.submitted = false;
-        });
+        );
     } else {
       this.submitted = false;
       console.error('loginForm invalid');
@@ -69,16 +80,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   validEmail(control: FormControl): { [s: string]: boolean } | null {
     const email = control.value;
-    const regexp = new RegExp(
-      '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'
-    );
-    return regexp.test(email) ? null : { email: false };
+    const regexp = /^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+$/;
+    return regexp.test(email) ? null : { invalidEmail: true };
   }
 
   validPassword(control: FormControl): { [s: string]: boolean } | null {
     const password = control.value;
-    const regexp = new RegExp('^[a-zA-Z]([a-zA-Z0-9]){2,14}');
-    return regexp.test(password) ? null : { password: false };
+    const regexp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return regexp.test(password) ? null : { invalidPassword: true };
   }
 
   togglePasswordVisibility(): void {
