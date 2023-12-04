@@ -15,3 +15,7 @@ export * from './lib/writer/writer-list/writer-list.component';
 export * from './lib/writer/writer-detail/writer-detail.component';
 export * from './lib/writer/writer-edit/writer-edit.component';
 export * from './lib/writer/writer-new/writer-new.component';
+
+export * from './lib/auth/register/register.component';
+export * from './lib/auth/login/login.component';
+export * from './lib/auth/auth.service';

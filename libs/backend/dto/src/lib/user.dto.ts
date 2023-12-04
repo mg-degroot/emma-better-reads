@@ -44,6 +44,9 @@ export class CreateUserDto implements ICreateUser {
     @IsString()
     @IsNotEmpty()
     stad!: string;
+
+    @IsNotEmpty()
+    password!: string;
 }
 
 export class UpsertUserDto implements IUpsertUser {
@@ -73,6 +76,9 @@ export class UpsertUserDto implements IUpsertUser {
     @IsString()
     @IsNotEmpty()
     stad!: string;
+
+    @IsNotEmpty()
+    password!: string;
 }
 
 export class UpdateUserDto implements IUpdateUser {
@@ -100,6 +106,9 @@ export class UpdateUserDto implements IUpdateUser {
     @IsString()
     @IsNotEmpty()
     stad!: string;
+    
+    @IsNotEmpty()
+    password!: string;
 
     @IsBoolean()
     @IsOptional()

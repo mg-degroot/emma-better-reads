@@ -30,13 +30,19 @@ import { WriterDetailComponent } from './writer/writer-detail/writer-detail.comp
 import { WriterEditComponent } from './writer/writer-edit/writer-edit.component';
 import { WriterNewComponent } from './writer/writer-new/writer-new.component';
 
+//login and register
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { AuthService } from './auth/auth.service';
+
 
 @NgModule({
   imports: [RouterModule, CommonModule, HttpClientModule, RouterLink, FormsModule, ReactiveFormsModule, NgSelectModule],
   declarations: [UserListComponent, UserDetailComponent, UserEditComponent, UserNewComponent, AboutComponent, 
                 BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent,
-              WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent],
-  providers: [UserService, BookService, WriterService],
+              WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent,
+              RegisterComponent, LoginComponent],
+  providers: [UserService, BookService, WriterService, AuthService],
   exports: [UserListComponent, UserDetailComponent, UserEditComponent, UserNewComponent, AboutComponent, 
             BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent,
             WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent],

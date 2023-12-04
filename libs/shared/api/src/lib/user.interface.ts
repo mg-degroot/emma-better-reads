@@ -8,10 +8,12 @@ export interface IUser {
     straatnaam: string;
     huisnummer: number;
     stad: string;
+    password: string;
+    token?: string | null;
 }
 
 export type ICreateUser = Pick<IUser,
-    'naam' | 'email' | 'geboortedatum' | 'straatnaam' | 'huisnummer' | 'stad'
+    'naam' | 'email' | 'geboortedatum' | 'straatnaam' | 'huisnummer' | 'stad' | 'password'
 >;
 
 export type IUpdateUser = Partial<Omit<IUser, '_id'>>;

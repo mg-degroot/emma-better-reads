@@ -18,6 +18,7 @@ export class UserNewComponent {
       straatnaam: '',
       huisnummer: 0,
       stad: '',
+      password: ''
     };
 
     constructor( 

@@ -1,0 +1,133 @@
+<div class="flex items-center justify-center v-screen">
+  <div class="max-w-md mt-5">
+    <h2>Register</h2>
+
+    <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="col-5">
+          <label for="inputNaam">Naam</label><br>
+          <input type="text" class="form-control" formControlName="naam" placeholder="Naam"
+            id="inputNaam" [ngClass]="{
+              'is-invalid':
+                registerForm.get('naam')?.invalid &&
+                registerForm.get('naam')?.touched
+            }" />
+          <span *ngIf="
+            !registerForm.get('naam')?.valid &&
+            registerForm.get('naam')?.touched
+          " class="invalid-feedback">
+            <p id="naam-invalid">Name is invalid.</p>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-5">
+          <label for="inputGeboortedatum">Geboortedatum</label><br>
+          <input type="date" class="form-control" formControlName="geboortedatum" placeholder="Geboortedatum"
+            id="inputGeboortedatum" [ngClass]="{
+              'is-invalid':
+                registerForm.get('geboortedatum')?.invalid &&
+                registerForm.get('geboortedatum')?.touched
+            }" />
+          <span *ngIf="
+            !registerForm.get('geboortedatum')?.valid &&
+            registerForm.get('geboortedatum')?.touched
+          " class="invalid-feedback">
+            <p id="geboortedatum-invalid">Geboortedatum is invalid.</p>
+          </span>
+        </div>
+
+        <div class="form-group col-5">
+          <label for="inputStraatnaam">Straatnaam</label><br>
+          <input type="text" class="form-control" formControlName="straatnaam" placeholder="Straatnaam"
+            id="inputStraatnaam" [ngClass]="{
+              'is-invalid':
+                registerForm.get('straatnaam')?.invalid &&
+                registerForm.get('straatnaam')?.touched
+            }" />
+          <span *ngIf="
+            !registerForm.get('straatnaam')?.valid &&
+            registerForm.get('straatnaam')?.touched
+          " class="invalid-feedback">
+            <p id="straatnaam-invalid">Straatnaam is invalid.</p>
+          </span>
+        </div>
+
+        <div class="form-group col-5">
+          <label for="inputStraatnaam">Huisnummer</label><br>
+          <input type="number" class="form-control" formControlName="huisnummer" placeholder="Huisnummer"
+            id="inputHuisnummer" [ngClass]="{
+              'is-invalid':
+                registerForm.get('huisnummer')?.invalid &&
+                registerForm.get('huisnummer')?.touched
+            }" />
+          <span *ngIf="
+            !registerForm.get('huisnummer')?.valid &&
+            registerForm.get('huisnummer')?.touched
+          " class="invalid-feedback">
+            <p id="huisnummer-invalid">Huisnummer is invalid.</p>
+          </span>
+        </div>
+
+        <div class="form-group col-5">
+          <label for="inputStad">Stad</label><br>
+          <input type="text" class="form-control" formControlName="stad" placeholder="Stad"
+            id="inputStad" [ngClass]="{
+              'is-invalid':
+                registerForm.get('stad')?.invalid &&
+                registerForm.get('stad')?.touched
+            }" />
+          <span *ngIf="
+            !registerForm.get('stad')?.valid &&
+            registerForm.get('stad')?.touched
+          " class="invalid-feedback">
+            <p id="stad-invalid">Stad is invalid.</p>
+          </span>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label for="inputEmail">Emailadres</label><br>
+        <input type="email" class="form-control" placeholder="Emailadres" formControlName="email" id="inputEmail"
+          aria-describedby="emailHelp" [ngClass]="{
+            'is-invalid':
+              registerForm.get('email')?.invalid &&
+              registerForm.get('email')?.touched
+          }" />
+        <span *ngIf="registerForm.get('email')?.errors?.['email']" class="invalid-feedback">
+          <p id="email-invalid">Email is invalid.</p>
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="inputPassword">Wachtwoord</label>
+        <div class="input-group">
+          <input type="{{ hidePassword ? 'password' : 'text' }}" class="form-control" placeholder="Password" formControlName="password" id="inputPassword"
+            [ngClass]="{
+              'is-invalid':
+                registerForm.get('password')?.invalid &&
+                registerForm.get('password')?.touched
+            }" />
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+              {{ hidePassword ? 'Show' : 'Hide' }}
+            </button>
+          </div>
+        </div>
+        <span *ngIf="registerForm.get('password')?.errors?.['password']" class="invalid-feedback">
+          <p id="password-invalid">Password is invalid.</p>
+        </span>
+      </div>
+      
+      
+
+      <div class="form-group">
+        <button type="submit">
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

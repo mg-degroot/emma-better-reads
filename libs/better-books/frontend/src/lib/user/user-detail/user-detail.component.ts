@@ -20,6 +20,7 @@ export class UserDetailComponent implements OnInit {
       straatnaam: '',
       huisnummer: 0,
       stad: '',
+      password: ''
     }
     users: IUser[] | null = null;
     userId: string | null = null;

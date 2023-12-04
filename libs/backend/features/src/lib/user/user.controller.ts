@@ -30,9 +30,15 @@ export class UserController {
       return { message: 'User updated successfully', user: updatedUser };
     }
     
-
     @Delete('/:_id')
     async delete(@Param('_id') _id: string): Promise<void> {
         await this.userService.deleteUser(_id);
     }
+    
+    @Post('/login')
+    async login(@Body() user: IUser): Promise<IUser | { error: string }> {
+        const loggedInUser = await this.userService.login(user.email, user.password);
+        return await loggedInUser;
+    }
+    
 }

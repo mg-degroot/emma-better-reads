@@ -40,6 +40,11 @@ export class User implements IUser {
     })
     stad!: string;
 
+    @Prop({
+        required: true
+    })
+    password!: string;
+
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

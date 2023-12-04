@@ -5,6 +5,7 @@ import { User as UserModel, UserDocument } from './user/user.schema';
 import { IUser } from '@nx-emma-indiv/shared/api';
 // import { Meal, MealDocument } from '@avans-nx-workshop/backend/features';
 import { CreateUserDto, UpdateUserDto } from '@nx-emma-indiv/backend/dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -49,10 +50,18 @@ export class UserService {
         
         // Sluit _id expliciet uit
         const { _id, ...userWithoutId } = userDto;
-        
-        const createdItem = await this.userModel.create(userWithoutId);
+      
+        // Hash het wachtwoord voordat het wordt opgeslagen
+        const hashedPassword = await bcrypt.hash(userDto.password, 10);
+      
+        const createdItem = await this.userModel.create({
+          ...userWithoutId,
+          password: hashedPassword, // Voeg het gehashte wachtwoord toe
+        });
+      
         return createdItem;
     }
+      
         
     async update(userId: string, updateUserDto: UpdateUserDto): Promise<IUser> {
         const existingUser = await this.userModel.findById(userId).exec();
@@ -80,5 +89,36 @@ export class UserService {
       }
 
       this.logger.log(`User deleted successfully`);
-  }
+    } 
+
+    async login(email: string, password: string): Promise<IUser> {
+        try {
+            const user = await this.userModel.findOne({ email });
+    
+            if (!user) {
+                throw new Error(`User with email ${email} not found`);
+            }
+    
+            // Log the values for debugging
+            console.log('Password passed:', password);
+            console.log('User object:', user);
+    
+            // Check if the user object has the wachtwoord property set
+            if (!user.password) {
+                throw new Error('User object does not have the wachtwoord property set');
+            }
+    
+            const passwordMatch = await bcrypt.compare(password, user.password);
+    
+            if (!passwordMatch) {
+                throw new Error('Invalid password');
+            }
+    
+            return user;
+        } catch (error) {
+            throw new Error(`Login failed: ${(error as Error).message}`);
+        }
+    }
+    
+
 }

@@ -18,6 +18,7 @@ export class UserEditComponent implements OnInit {
       straatnaam: '',
       huisnummer: 0,
       stad: '',
+      password: ''
     }
     users: IUser[] | null = null;
     userId: string | null = null;
