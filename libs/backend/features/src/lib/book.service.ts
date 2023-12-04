@@ -17,25 +17,32 @@ export class BookService {
     ) {}
 
     async findAll(): Promise<IBook[]> {
-        this.logger.log(`Finding all items`);
-        const items = await this.bookModel.find();
+        this.logger.log(`Finding all items with full writer data`);
+        
+        const items = await this.bookModel.find().populate('schrijver');
+        
         return items;
-    }
+      }
+      
 
-    async findOne(_id: string): Promise<IBook | null> {
+      async findOne(_id: string): Promise<IBook | null> {
         this.logger.log(`finding book with id ${_id}`);
     
         // Check if id is null
         if (_id === null || _id === "null") {
             this.logger.debug('ID is null or "null"');
             return null;
-        }   
-        const item = await this.bookModel.findOne({ _id: _id }).exec(); 
+        }
+        // Use populate to fetch the writer details along with the book
+        const item = await this.bookModel.findOne({ _id: _id }).populate('schrijver').exec();
+    
         if (!item) {
             this.logger.debug('Item not found');
         }
+    
         return item;
     }
+    
 
     async createBook(bookDto: CreateBookDto): Promise<IBook> {
         const { _id, schrijver, ...bookWithoutWriter } = bookDto;

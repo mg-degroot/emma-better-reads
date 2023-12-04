@@ -116,6 +116,9 @@ export class UpdateBookDto implements IUpdateBook {
     @IsNotEmpty()
     publiceerdatum!: Date;
 
+    @IsNotEmpty()
+    schrijver!: IWriter;
+
     @IsNumber()
     @IsNotEmpty()
     paginas!: number;

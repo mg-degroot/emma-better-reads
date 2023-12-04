@@ -26,6 +26,7 @@ export class BookEditComponent implements OnInit {
     books: IBook[] | null = null;
     bookId: string | null = null;
     writers: IWriter[] = [];
+    selectedWriterId: string | null = null;
 
     constructor( 
       private route: ActivatedRoute, 
@@ -34,17 +35,23 @@ export class BookEditComponent implements OnInit {
       private router: Router,
     ) {}
 
-    ngOnInit(): void {
-  
-      this.route.paramMap.subscribe((params) => {
-        this.bookId = params.get('_id');
-          if (this.bookId) {
-            this.bookService.read(this.bookId).subscribe((observable) => {
-              this.book = observable;
+      ngOnInit(): void {
+        this.route.paramMap.subscribe((params) => {
+            this.bookId = params.get('_id');
+    
+            if (this.bookId) {
+                this.bookService.read(this.bookId).subscribe((observable) => {
+                    this.book = observable;
+                });
+            }
+    
+            this.writerService.list().subscribe((writers) => {
+                this.writers = writers?.sort((a, b) => a.schrijvernaam.localeCompare(b.schrijvernaam)) ?? [];
+                console.log('Writers:', this.writers);
             });
-          }
-      });
+        });
     }
+
 
     updateBook() {
       console.log('Updating book:', this.book);
@@ -58,11 +65,15 @@ export class BookEditComponent implements OnInit {
           console.error('Error updating book:', error);
         }
       });
-      
     }
 
     goBack(): void {
       this.router.navigate(['../../books', this.book._id]);
     }
 
+
+    customSearch(term: string, item: any) {
+      term = term.toLowerCase();
+      return item.schrijvernaam.toLowerCase().includes(term);
+    }
 }

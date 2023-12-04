@@ -43,42 +43,27 @@ export class BookNewComponent implements OnInit {
       
 
       createBook(): void {
-        const selectedWriterId = this.selectedWriterId;
-      
-        // Controleer of er een schrijver is geselecteerd
-        if (!selectedWriterId) {
-          console.error('No writer selected.');
-          return;
-        }
-      
-        // Zoek de geselecteerde schrijver in de lijst van schrijvers
-        const selectedWriter = this.writers.find(writer => writer._id === selectedWriterId);
-      
-        // Controleer of de schrijver is gevonden
+        const selectedWriter = this.writers.find(writer => writer._id === this.selectedWriterId);
+    
         if (!selectedWriter) {
-          console.error('Selected writer not found.');
-          return;
+            console.error('Selected writer not found.');
+            return;
         }
-      
-        // Kopieer het boekobject om wijzigingen te voorkomen
+    
         const newBook: IBook = { ...this.book, schrijver: selectedWriter };
-        
-        // Log de waarde van book.cover voordat het wordt doorgegeven
+    
         console.log('Book before creation:', newBook);
-      
-        // Roep de createBook-methode van de BookService aan
+    
         this.bookService.create(newBook).subscribe(
-          (createdBook) => {
-            console.log('Book created successfully:', createdBook);
-            this.router.navigate(['../../books'], { relativeTo: this.route });
-          },
-          (error) => {
-            console.error('Error creating book:', error);
-          }
+            (createdBook) => {
+                console.log('Book created successfully:', createdBook);
+                this.router.navigate(['../../books'], { relativeTo: this.route });
+            },
+            (error) => {
+                console.error('Error creating book:', error);
+            }
         );
-      }
-      
-      
+    }
       
       customSearch(term: string, item: any) {
         term = term.toLowerCase();
