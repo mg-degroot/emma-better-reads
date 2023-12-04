@@ -14,7 +14,7 @@ export class BookDetailComponent implements OnInit {
     showDeleteConfirmation = false;
 
     book: IBook = {
-      id: '',
+      _id: '',
       cover: '',
       titel: '',
       beschrijving: '',
@@ -39,7 +39,7 @@ export class BookDetailComponent implements OnInit {
       // Deze manier maakt gebruik van RxJs Observables.
       // We komen hier bij services en HTTP op terug.
       this.route.paramMap.subscribe((params) => {
-        this.bookId = params.get('id');
+        this.bookId = params.get('_id');
 
         this.bookService.read(this.bookId).subscribe((observable) => 
           this.book = observable);
@@ -64,7 +64,7 @@ export class BookDetailComponent implements OnInit {
           }
         });
       } else {
-        console.error('Book id is missing for deletion.');
+        console.error('Book _id is missing for deletion.');
       }
     }
     

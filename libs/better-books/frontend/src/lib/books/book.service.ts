@@ -1,7 +1,7 @@
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { ApiResponse, IBook } from '@nx-emma-indiv/shared/api';
+import { ApiResponse, IBook, IWriter } from '@nx-emma-indiv/shared/api';
 import { Injectable } from '@angular/core';
 import { environment } from '@nx-emma-indiv/shared/util-env';
 
@@ -48,10 +48,10 @@ export class BookService {
      * Get a single item from the service.
      *
      */
-    public read(id: string | null, options?: any): Observable<IBook> {
-        console.log(`read ${this.endpoint}/${id}`);
+    public read(_id: string | null, options?: any): Observable<IBook> {
+        console.log(`read ${this.endpoint}/${_id}`);
         return this.http
-            .get<ApiResponse<IBook>>(`${this.endpoint}/${id}`, {
+            .get<ApiResponse<IBook>>(`${this.endpoint}/${_id}`, {
                 ...options,
                 ...httpOptions,
             })
@@ -81,18 +81,31 @@ export class BookService {
     }
 
     public update(book: IBook): Observable<IBook> {
-        console.log(`update ${this.endpoint}/${book.id}`);
+        console.log(`update ${this.endpoint}/${book._id}`);
         return this.http
-          .put<ApiResponse<IBook>>(`${this.endpoint}/${book.id}`, book)
+          .put<ApiResponse<IBook>>(`${this.endpoint}/${book._id}`, book)
           .pipe(tap(console.log), catchError(this.handleError)
           );
     }
 
     public delete(book: IBook): Observable<IBook> {
-      console.log(`delete ${this.endpoint}/${book.id}`);
+      console.log(`delete ${this.endpoint}/${book._id}`);
       return this.http
-        .delete<ApiResponse<IBook>>(`${this.endpoint}/${book.id}`)
+        .delete<ApiResponse<IBook>>(`${this.endpoint}/${book._id}`)
         .pipe(tap(console.log), catchError(this.handleError));
+    }
+
+    public getWriter(writerId: string | null): Observable<IWriter> {
+        // Vervang 'writer' door de juiste eindpunt-URL voor je schrijvers
+        const writerEndpoint = `${environment.dataApiUrl}/api/writer/${writerId}`;
+
+        return this.http
+            .get<ApiResponse<IWriter>>(writerEndpoint)
+            .pipe(
+                tap(console.log),
+                map((response: any) => response.results as IWriter),
+                catchError(this.handleError)
+            );
     }
 
         /**

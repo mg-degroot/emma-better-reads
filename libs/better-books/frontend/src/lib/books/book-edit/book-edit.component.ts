@@ -13,7 +13,7 @@ import { WriterService } from '../../writer/writer.service';
 
 export class BookEditComponent implements OnInit {
   book: IBook = {
-    id: '',
+    _id: '',
     cover: '',
     titel: '',
     beschrijving: '',
@@ -37,7 +37,7 @@ export class BookEditComponent implements OnInit {
     ngOnInit(): void {
   
       this.route.paramMap.subscribe((params) => {
-        this.bookId = params.get('id');
+        this.bookId = params.get('_id');
           if (this.bookId) {
             this.bookService.read(this.bookId).subscribe((observable) => {
               this.book = observable;
@@ -47,18 +47,22 @@ export class BookEditComponent implements OnInit {
     }
 
     updateBook() {
-      this.bookService.update(this.book).subscribe(
-        () => {
-          this.router.navigate(['../../books', this.book.id]);
+      console.log('Updating book:', this.book);
+      
+      this.bookService.update(this.book).subscribe({
+        next: (updatedBook) => {
+          console.log('Book updated successfully:', updatedBook);
+          this.router.navigate(['../../books', this.book._id]);
         },
-        (error) => {
+        error: (error) => {
           console.error('Error updating book:', error);
         }
-      );
+      });
+      
     }
 
     goBack(): void {
-      this.router.navigate(['../../books', this.book.id]);
+      this.router.navigate(['../../books', this.book._id]);
     }
 
 }

@@ -12,21 +12,20 @@ import { WriterService } from '../../writer/writer.service';
 
 export class BookNewComponent implements OnInit {
   book: IBook = {
-    id: '',
+    _id: '',
     titel: '',
     cover: '',
     beschrijving: '',
     genre: '',
     origineletaal: '',
     publiceerdatum: new Date(),
-    schrijver: {} as IWriter, 
+    schrijver: {} as IWriter,
     paginas: 0,
   };
-
-    books: IBook[] | null = null;
-    bookId: string | null = null;
-    writers: IWriter[] = [];
-    selectedWriterId: string | null = null;
+  
+  bookId: string | null = null;
+  selectedWriterId: string | null = null;
+  writers: IWriter[] = [];
 
     constructor( 
       private route: ActivatedRoute, 
@@ -36,31 +35,39 @@ export class BookNewComponent implements OnInit {
       ) {}
 
       ngOnInit(): void {
-        this.route.paramMap.subscribe((params) => {
-          this.bookId = params.get('id');
-    
-          // Bestaande book
-          this.bookService.read(this.bookId).subscribe((observable) => (this.book = observable));
-        });
         this.writerService.list().subscribe((writers) => {
           this.writers = writers?.sort((a, b) => a.schrijvernaam.localeCompare(b.schrijvernaam)) ?? [];
+          console.log('Writers:', this.writers);
         });
       }
-    
+      
+
       createBook(): void {
-        const selectedWriterId = this.selectedWriterId; // Use the declared property
-        const selectedWriter = this.writers?.find((writer) => writer._id === selectedWriterId);
-    
-        if (selectedWriter) {
-          this.book.schrijver = selectedWriter;
-        } else {
+        const selectedWriterId = this.selectedWriterId;
+      
+        // Controleer of er een schrijver is geselecteerd
+        if (!selectedWriterId) {
+          console.error('No writer selected.');
+          return;
+        }
+      
+        // Zoek de geselecteerde schrijver in de lijst van schrijvers
+        const selectedWriter = this.writers.find(writer => writer._id === selectedWriterId);
+      
+        // Controleer of de schrijver is gevonden
+        if (!selectedWriter) {
           console.error('Selected writer not found.');
           return;
         }
-    
-        console.log('Book before creation:', this.book);
-    
-        this.bookService.create(this.book).subscribe(
+      
+        // Kopieer het boekobject om wijzigingen te voorkomen
+        const newBook: IBook = { ...this.book, schrijver: selectedWriter };
+        
+        // Log de waarde van book.cover voordat het wordt doorgegeven
+        console.log('Book before creation:', newBook);
+      
+        // Roep de createBook-methode van de BookService aan
+        this.bookService.create(newBook).subscribe(
           (createdBook) => {
             console.log('Book created successfully:', createdBook);
             this.router.navigate(['../../books'], { relativeTo: this.route });
@@ -70,7 +77,9 @@ export class BookNewComponent implements OnInit {
           }
         );
       }
-    
+      
+      
+      
       customSearch(term: string, item: any) {
         term = term.toLowerCase();
         return item.schrijvernaam.toLowerCase().includes(term);

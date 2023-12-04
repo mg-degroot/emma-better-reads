@@ -3,8 +3,8 @@ import {
     IsString,
     IsBoolean,
     IsOptional,
-    IsDate,
-    IsNumber
+    IsNumber,
+    IsMongoId,
 } from 'class-validator';
 import {
     ICreateBook,
@@ -18,6 +18,11 @@ import {
  * new to-do items
  */
 export class CreateBookDto implements ICreateBook {
+
+    @IsOptional()
+    @IsString()
+    _id?: string;
+
     @IsString()
     @IsNotEmpty()
     titel!: string;
@@ -26,11 +31,6 @@ export class CreateBookDto implements ICreateBook {
     @IsNotEmpty()
     cover!: string;
 
-    @IsString()
-    @IsNotEmpty()
-    id!: string;
-
-    @IsDate()
     @IsNotEmpty()
     publiceerdatum!: Date;
 
@@ -42,7 +42,6 @@ export class CreateBookDto implements ICreateBook {
     @IsNotEmpty()
     paginas!: number;
 
-    @IsString()
     @IsNotEmpty()
     schrijver!: IWriter;
 
@@ -56,6 +55,10 @@ export class CreateBookDto implements ICreateBook {
 }
 
 export class UpsertBookDto implements IUpsertBook {
+    @IsMongoId()
+    @IsNotEmpty()
+    _id!: string;
+
     @IsString()
     @IsNotEmpty()
     titel!: string;
@@ -64,11 +67,6 @@ export class UpsertBookDto implements IUpsertBook {
     @IsNotEmpty()
     cover!: string;
 
-    @IsString()
-    @IsNotEmpty()
-    id!: string;
-
-    @IsDate()
     @IsNotEmpty()
     publiceerdatum!: Date;
 
@@ -80,7 +78,6 @@ export class UpsertBookDto implements IUpsertBook {
     @IsNotEmpty()
     paginas!: number;
 
-    @IsString()
     @IsNotEmpty()
     schrijver!: IWriter;
 
@@ -94,13 +91,34 @@ export class UpsertBookDto implements IUpsertBook {
 }
 
 export class UpdateBookDto implements IUpdateBook {
+    _id?: string | undefined;
+
+    @IsString()
+    @IsNotEmpty()
+    cover!: string;
+
     @IsString()
     @IsNotEmpty()
     titel!: string;
 
-    @IsDate()
+    @IsString()
+    @IsNotEmpty()
+    beschrijving!: string;
+    
+    @IsString()
+    @IsNotEmpty()
+    genre!: string;
+
+    @IsString()
+    @IsNotEmpty()
+    origineletaal!: string;
+
     @IsNotEmpty()
     publiceerdatum!: Date;
+
+    @IsNumber()
+    @IsNotEmpty()
+    paginas!: number;
 
     @IsBoolean()
     @IsOptional()

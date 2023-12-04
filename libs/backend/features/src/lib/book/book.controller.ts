@@ -1,34 +1,37 @@
 import { Controller, Get, Param, Post, Delete, Put, Body } from '@nestjs/common';
 import { BookService } from '../book.service';
 import { IBook } from '@nx-emma-indiv/shared/api';
+import { CreateBookDto, UpdateBookDto } from '@nx-emma-indiv/backend/dto';
+
 
 @Controller('book')
 export class BookController {
     constructor(private bookService: BookService) {}
 
     @Get('')
-    getAll(): IBook[] {
-        return this.bookService.getAll();
+    async getAll(): Promise<IBook[]> {
+        return await this.bookService.findAll();
     }
 
-    @Get(':id')
-    getOne(@Param('id') id: string): IBook {
-        return this.bookService.getOne(id);
+    @Get(':_id')
+    async getOne(@Param('_id') _id: string): Promise<IBook | null> {
+        return await this.bookService.findOne(_id);
     }
 
     @Post('')
-    create(@Body() book: IBook): IBook {
-      console.log('Received book:', book);
-      return this.bookService.create(book);
+    async create(@Body() createBookDto: CreateBookDto): Promise<IBook> {
+      const createdBook = await this.bookService.createBook(createBookDto);
+      return createdBook;
     }
-
-    @Put('/:id')
-    edit(@Param('id') id: string, @Body() book: IBook): IBook {
-      return this.bookService.update(book);
+    
+    @Put(':id')
+    async update(@Param('id') bookId: string, @Body() updateBookDto: UpdateBookDto) {
+      const updatedBook = await this.bookService.update(bookId, updateBookDto);
+      return { message: 'book updated successfully', book: updatedBook };
     }
-
-    @Delete('/:id')
-    delete(@Param('id') id: string): void {
-      this.bookService.deleteBook(id);
+    
+    @Delete('/:_id')
+    async delete(@Param('_id') _id: string): Promise<void> {
+        await this.bookService.deleteBook(_id);
     }
 }

@@ -36,10 +36,10 @@ export class WriterService {
     }
     
 
-    async findOneByEmail(email: string): Promise<IWriter | null> {
-        this.logger.log(`Finding writer by email ${email}`);
+    async findOneByName(schrijvernaam: string): Promise<IWriter | null> {
+        this.logger.log(`Finding writer by email ${schrijvernaam}`);
         const item = this.writerModel
-            .findOne({ email: email })
+            .findOne({ schrijvernaam: schrijvernaam })
             .select('-password')
             .exec();
         return item;

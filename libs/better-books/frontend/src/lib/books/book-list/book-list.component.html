@@ -21,7 +21,7 @@
         <img src="{{ book.cover }}" class="card-img-top" alt="Book Image">
   
         <div class="card-body">
-          <h5 class="card-title"><a routerLink ="{{ book.id }}" class="text text-dark">{{ book.titel }}</a></h5>
+          <h5 class="card-title"><a routerLink ="{{ book._id }}" class="text text-dark">{{ book.titel }}</a></h5>
           <p class="card-text"><span>Geschreven bij </span>{{ book.schrijver.schrijvernaam }}</p>
           <p class="card-text"><span>Taal  </span>{{ book.origineletaal }}</p>
           <p class="card-text"><span>Gepubliceerd </span>{{ book.publiceerdatum | date : 'dd-MM-yyyy' }}</p>

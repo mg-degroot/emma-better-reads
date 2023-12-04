@@ -61,11 +61,11 @@ export const appRoutes: Route[] = [
         pathMatch: "full", 
         component: BookNewComponent },
     { 
-        path: "books/:id", 
+        path: "books/:_id", 
         pathMatch: "full", 
         component: BookDetailComponent },
     { 
-        path: "books/:id/editbook", 
+        path: "books/:_id/editbook", 
         pathMatch: "full", 
         component: BookEditComponent },
    
