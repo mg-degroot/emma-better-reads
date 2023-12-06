@@ -93,7 +93,7 @@ export class AuthService {
     );
   }
 
-    logout(): void {
+  logout(): void {
       this.router
         .navigate(['/'])
         .then((success) => {
@@ -107,17 +107,17 @@ export class AuthService {
           }
         })
         .catch((error) => console.log('not logged out!'));
-    }
+  }
 
-    getUserFromLocalStorage(): Observable<IUser | null> {
-      const itemFromStorage = localStorage.getItem(this.CURRENT_USER);
+  getUserFromLocalStorage(): Observable<IUser | null> {
+    const itemFromStorage = localStorage.getItem(this.CURRENT_USER);
       if (itemFromStorage === null) {
         return of(null);
       } else {
         const localUser = JSON.parse(itemFromStorage);
         return of(localUser);
       }
-    }
+  }
 
   private saveUserToLocalStorage(user: IUser): void {
     localStorage.setItem(this.CURRENT_USER, JSON.stringify(user));
