@@ -19,10 +19,7 @@
           "apps/better-books-web/src/favicon.ico",
           "apps/better-books-web/src/assets"
         ],
-        "styles": [
-          "apps/better-books-web/src/styles.css",
-          "../node_modules/bootstrap/dist/css/bootstrap.css"
-        ],
+        "styles": ["apps/better-books-web/src/styles.css"],
         "scripts": [
           "node_modules/bootstrap/dist/js/bootstrap.min.js"
         ]
