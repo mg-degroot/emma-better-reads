@@ -19,7 +19,7 @@ export class UserEditComponent implements OnInit {
       huisnummer: 0,
       stad: '',
       password: '',
-      boekenlijst: [] // Initialiseer de boekenlijst als een lege array
+      boekenlijst: []
     }
     users: IUser[] | null = null;
     userId: string | null = null;
@@ -47,7 +47,7 @@ export class UserEditComponent implements OnInit {
       this.userService.update(this.user).subscribe({
         next: (updatedUser) => {
           console.log('User updated successfully:', updatedUser);
-          this.router.navigate(['../../users', this.user._id]);
+          window.history.back();
         },
         error: (error) => {
           console.error('Error updating user:', error);
@@ -57,6 +57,6 @@ export class UserEditComponent implements OnInit {
     }
     
     goBack(): void {
-      this.router.navigate(['../../users', this.user._id]);
+      window.history.back();
     }
 }

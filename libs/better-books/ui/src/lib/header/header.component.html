@@ -1,17 +1,19 @@
 <nav class="navbar navbar-light bg-dark">
-  <a routerLink="/" class="navbar-brand text-decoration-none text-light ms-5">Betterreads</a>
+
+  <a routerLink="/" *ngIf="!isLoggedIn" class="navbar-brand text-decoration-none text-light ms-5">Betterreads</a>
+  <a routerLink="/dashboard "*ngIf="isLoggedIn" class="navbar-brand text-decoration-none text-light ms-5">Betterreads</a>
 
   <div class="items d-flex flex-column flex-sm-row me-5">
-    <a routerLink="/about" class="nav-link text-decoration-none text-light mt-2">About</a>
+    <a [routerLink]="['/', userId, 'dashboard']" *ngIf="isLoggedIn" class="nav-link text-decoration-none text-light me-1 mt-2">Boekenlijst</a>
     <!-- <a routerLink="/users" *ngIf="isLoggedIn" class="nav-link text-decoration-none text-light me-3 mt-2 ms-3">Gebruikers</a> -->
     <a routerLink="/writers" *ngIf="isLoggedIn" class="nav-link text-decoration-none text-light me-3 mt-2 ms-3">Schrijvers</a>
     <a routerLink="/books" *ngIf="isLoggedIn" class="nav-link text-decoration-none text-light me-3 mt-2">Boeken</a>
     <!-- <a routerLink="/register" *ngIf="!isLoggedIn" class="nav-link text-decoration-none text-light me-3 ms-3 mt-2">Registreren</a>
     <a routerLink="/user/login" *ngIf="!isLoggedIn" class="nav-link text-decoration-none text-light me-3 mt-2">Inloggen</a> -->
         
-    <!-- <a (click)="navigateToEditPage()" *ngIf="isLoggedIn" class="nav-link text-decoration-none text-light me-3 mt-2">Wijzig Accountgegevens</a> -->
-    <button *ngIf="isLoggedIn" (click)="logout()" class="btn text-decoration-none text-light ms-3 me-5">Logout</button>
+    <a routerLink="/about" class="nav-link text-decoration-none text-light me-3 ms-5 mt-2">About</a>
+    <a [routerLink]="['users/', userId]" *ngIf="isLoggedIn" class="nav-link text-decoration-none text-light me-1 mt-2">Account</a>
+    <button *ngIf="isLoggedIn" (click)="logout()" class="btn text-decoration-none text-light me-5">Logout</button>
 
   </div>
 </nav>
-

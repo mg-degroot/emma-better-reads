@@ -11,7 +11,11 @@
       <input type="email" class="form-control" id="InputEmail" [(ngModel)]="user.email" name="email" placeholder="Emailadres" required>
     </div>
 
- 
+    <div class="form-group mb-4"> 
+      <label for="InputDate" class="fw-bold">Geboortedatum</label>
+      <input type="date" class="form-control" id="InputDate" [(ngModel)]="user.geboortedatum"  name="geboortedatum" placeholder="Selecteer geboortedatum" required>
+    </div>
+
     <div class="form-group mb-4">
       <label for="InputStreet" class="fw-bold">Straatnaam</label>
       <input type="text" class="form-control" id="InputStreet" [(ngModel)]="user.straatnaam" name="straatnaam" placeholder="Straatnaam" required>
@@ -27,7 +31,6 @@
       <input type="text" class="form-control" id="InputCity" [(ngModel)]="user.stad" name="stad" placeholder="Stad" required>
     </div>
     
-    <!-- Buttons on a separate row -->
     <div class="form-row">
       <div class="col-12 mt-3">
         <button type="button" class="btn m-3" (click)="updateUser()">

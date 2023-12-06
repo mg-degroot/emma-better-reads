@@ -1,0 +1,56 @@
+.cards{
+    margin-left: 15%;
+    margin-right: 20%;
+}
+@media (max-width: 992px) {
+    .cards {
+        margin: 0;
+    }
+}
+
+.btn{
+    height: auto;
+    margin-right: 3%;
+}
+
+.card-title a {
+    text-decoration: none;
+}
+
+.card-title a:hover {
+    text-decoration: underline;
+}
+
+.card {
+    width: 100%;
+    margin-bottom: 15px;
+    border-left: none;
+    border-right: none;
+}
+
+.display {
+    display: flex;
+}
+
+.card img {
+    width: 100px; 
+    height: 150px; 
+    object-fit: cover;
+}
+
+.card-body {
+    flex: 1;
+}
+
+.status-box {
+    padding: 5px;
+    border-radius: 5px;
+    width: 40%;
+}
+
+.custom-dropdown {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+  }

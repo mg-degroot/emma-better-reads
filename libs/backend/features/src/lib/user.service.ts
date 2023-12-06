@@ -2,8 +2,7 @@ import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { User as UserModel, UserDocument } from './user/user.schema';
-import { IBook, IUser, Leesstatus } from '@nx-emma-indiv/shared/api';
-// import { Meal, MealDocument } from '@avans-nx-workshop/backend/features';
+import { IUser } from '@nx-emma-indiv/shared/api';
 import { CreateUserDto, UpdateUserDto } from '@nx-emma-indiv/backend/dto';
 import * as bcrypt from 'bcrypt';
 
@@ -98,11 +97,7 @@ export class UserService {
             if (!user) {
                 throw new Error(`User with email ${email} not found`);
             }
-    
-            // Log the values for debugging
-            console.log('Password passed:', password);
-            console.log('User object:', user);
-    
+        
             // Check if the user object has the wachtwoord property set
             if (!user.password) {
                 throw new Error('User object does not have the wachtwoord property set');
@@ -120,4 +115,31 @@ export class UserService {
         }
     }
 
+    async findOneWithBooklist(_id: string): Promise<IUser | null> {
+        this.logger.log(`Finding user with id ${_id} and booklist`);
+        
+        // Check if id is null
+        if (_id === null || _id === "null") {
+            this.logger.debug('ID is null or "null"');
+            return null;
+        }   
+    
+        try {
+            const userWithBooklist = await this.userModel
+                .findOne({ _id: _id })
+                .populate({
+                    path: 'boekenlijst.boekId',
+                    model: 'Book',
+                })
+                .exec();
+    
+            if (!userWithBooklist) {
+                this.logger.debug('User not found');
+            }
+    
+            return userWithBooklist;
+        } catch (error) {
+            throw new Error(`Error finding user: ${(error as Error).message}`);
+        }
+    }
 }

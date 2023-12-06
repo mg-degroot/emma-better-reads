@@ -3,7 +3,6 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Writer as WriterModel, WriterDocument } from './writer/writer.schema';
 import { IWriter } from '@nx-emma-indiv/shared/api';
-// import { Meal, MealDocument } from '@avans-nx-workshop/backend/features';
 import { CreateWriterDto, UpdateWriterDto } from '@nx-emma-indiv/backend/dto';
 
 @Injectable()

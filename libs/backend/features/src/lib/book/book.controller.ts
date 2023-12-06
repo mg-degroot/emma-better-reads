@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Delete, Put, Body } from '@nestjs/common';
+import { Controller, Get, Param, Post, Delete, Put, Body, Patch } from '@nestjs/common';
 import { BookService } from '../book.service';
 import { IBook, IUser, Leesstatus } from '@nx-emma-indiv/shared/api';
 import { CreateBookDto, UpdateBookDto } from '@nx-emma-indiv/backend/dto';
@@ -35,18 +35,27 @@ export class BookController {
         await this.bookService.deleteBook(_id);
     }
 
-    @Post('/:_id/status/:userId')
-    async addOrUpdateLeesstatus(@Param('userId') userId: string, @Param('_id') bookId: string, @Body('leesstatus') leesstatus: Leesstatus): Promise<IUser> {
-      return this.bookService.addOrUpdateLeesstatus(userId, bookId, leesstatus);
+    // Add a new book to the boekenlijst
+    @Post('/:boekId/:userId/booklist')
+    async addBookBooklist(@Param('userId') userId: string, @Body() { boekId, leesstatus }: { boekId: IBook; leesstatus: Leesstatus },): Promise<void> {
+        // Assuming boekId is of type IBook, you can directly use it
+        const bookId: IBook = boekId;
+
+        // Add or update the leesstatus in the user's boekenlijst
+        await this.bookService.addBookBooklist(userId, bookId, leesstatus);
+    }
+
+    // Update leesstatus of an existing book in the boekenlijst
+    @Put('/:boekId/:userId/booklist')
+    async updateLeesstatus(@Param('userId') userId: string, @Body() { boekId, leesstatus }: { boekId: string; leesstatus: Leesstatus },): Promise<void> {
+
+        // Call the service method to update the leesstatus of the book in boekenlijst
+        await this.bookService.updateLeesstatus(userId, boekId, leesstatus);
     }
     
-    @Put('/:_id/status/:userId')
-    async updateLeesstatus(@Param('userId') userId: string, @Param('_id') bookId: string, @Body('leesstatus') leesstatus: Leesstatus): Promise<IUser> {
-      return this.bookService.updateLeesstatus(userId, bookId, leesstatus);
-    }
-    
-    @Delete('/:_id/status/:userId')
-    async removeBookFromBookList(@Param('userId') userId: string, @Param('_id') bookId: string): Promise<IUser> {
-      return this.bookService.removeBookFromBookList(userId, bookId);
+    // Remove a book from the boekenlijst
+    @Delete('/:boekId/:userId/booklist')
+    async removeBookBookList(@Param('boekId') boekId: string, @Param('userId') userId: string,): Promise<void> {
+      await this.bookService.removeBookBookList(userId, boekId);
     }
 }

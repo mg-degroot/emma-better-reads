@@ -1,6 +1,8 @@
-<div class="button-container">
-  <button type="button" (click)="addOrUpdateLeesstatus('READ')" class="btn text-center mb-3">Read</button>
-  <button type="button" (click)="addOrUpdateLeesstatus('TO_READ')" class="btn text-center mb-3">To Read</button>
-  <button type="button" (click)="addOrUpdateLeesstatus('DNF')" class="btn text-center mb-3">DNF</button>
-  <button type="button" (click)="deleteBookBooklist()" class="btn text-center mb-3">Verwijder boek uit boeklijst</button>
+<div class="button-container d-flex flex-column align-items-center pt-5">
+
+  <button type="button" class="btn text-center mb-3" (click)="handleStatusChange('READ')">Gelezen</button>
+  <button type="button" class="btn text-center mb-3" (click)="handleStatusChange('TO_READ')">Nog te lezen</button>
+  <button type="button" class="btn text-center mb-3" (click)="handleStatusChange('DNF')">DNF</button>
+  <button type="button" class="btn text-center mb-3" (click)="removeBookFromList()">Verwijder boek uit boeklijst</button>
+  
 </div>

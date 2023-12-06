@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn = false;
+  userId: string | null = null;
 
 
   constructor(
@@ -18,16 +19,30 @@ export class HeaderComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-      this.authService.currentUser$.subscribe((user: IUser | null) => {
-        this.isLoggedIn = !!user;
+      this.authService.currentUser$.subscribe({
+          next: (user: IUser | null) => {
+              this.isLoggedIn = !!user;
+          },
       });
-    }
+
+      this.authService.currentUser$.subscribe({
+        next: (user: IUser | null) => {
+          if (user) {
+            this.isLoggedIn = !!user;
+            this.userId = user._id;
+          }
+        },
+        error: (error) => {
+          console.error('Error getting user information:', error);
+        },
+      });
+  }
 
   logout(): void {
     this.authService.logout();
   }
 
-  // navigateToEditPage(): void {
-  //   this.router.navigate([`/users/${this.userId}/edit`]);
-  // }
+  navigateToEditPage(): void {
+    this.router.navigate([`/users/${this.userId}/edit`]);
+  }
 }

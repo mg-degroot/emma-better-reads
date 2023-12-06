@@ -6,6 +6,7 @@ import { UserListComponent, UserDetailComponent, UserEditComponent, UserNewCompo
 import { BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent} from '@nx-emma-indiv/better-books/frontend';
 import { WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent} from '@nx-emma-indiv/better-books/frontend';
 import { RegisterComponent, LoginComponent, HomepageComponent } from '@nx-emma-indiv/better-books/frontend';
+import { DashboardComponent } from 'libs/better-books/frontend/src/lib/dashboard/dashboard.component';
 
 
 export const appRoutes: Route[] = [
@@ -29,7 +30,6 @@ export const appRoutes: Route[] = [
         pathMatch: 'full',
         component: AboutComponent
     },
-
     //Writer routes
     { 
         path: "writers", 
@@ -50,6 +50,11 @@ export const appRoutes: Route[] = [
 
 
     //User routes
+    {
+        path: ':_id/dashboard',
+        pathMatch: 'full',
+        component: DashboardComponent
+    },
     { 
         path: "users", 
         pathMatch: "full", 
@@ -81,7 +86,7 @@ export const appRoutes: Route[] = [
         pathMatch: "full", 
         component: BookDetailComponent },
     { 
-        path: "books/:_id/status/:userId", 
+        path: "books/:_id/:userId/booklist", 
         pathMatch: "full", 
         component: BookStatusComponent },
     { 

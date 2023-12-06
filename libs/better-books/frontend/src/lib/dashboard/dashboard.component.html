@@ -1,0 +1,49 @@
+<div *ngIf="user" class="mt-5">
+  <h2 class="text-center mb-4">{{ user.naam }}'s Boekenlijst</h2>
+
+  <!-- Display the total count of books -->
+  <p class="text-center mt-4" *ngIf="!selectedLeesstatus || user.boekenlijst.length === 0">
+    Aantal gevonden boeken: {{ user.boekenlijst.length }}
+  </p>
+
+  <div class="text-center mb-5">
+    <label for="leesstatusFilte">Filter bij Leesstatus: </label>
+    <select class="custom-dropdown ms-3" [(ngModel)]="selectedLeesstatus" (change)="applyLeesstatusFilter(selectedLeesstatus)">
+      <option value="ALL">Allemaal</option>
+      <option value="READ">Gelezen</option>
+      <option value="TO_READ">Nog te lezen</option>
+      <option value="DNF">DNF</option>
+    </select>
+  </div>
+
+  <div class="cards">
+    <ng-container *ngFor="let bookListItem of user.boekenlijst">
+      <!-- Check if the book meets the leesstatus filter criteria -->
+      <ng-container *ngIf="selectedLeesstatus === null || selectedLeesstatus === bookListItem.leesstatus">
+        <div class="card">
+          <div class="display">
+            <img src="{{ bookListItem.boekId.cover }}" class="card-img-top" alt="Book Image">
+            <div class="card-body">
+              <h5 class="card-title ps-3"><a [routerLink]="['/books', bookListItem.boekId._id]" class="text text-dark">{{ bookListItem.boekId.titel }}</a></h5>
+
+              <!-- Tijd over, laat schrijvernaam zien niet ID -->
+              <!-- <p class="card-text"><span>Geschreven bij </span>{{ bookListItem.boekId.schrijver }}</p> -->
+              
+              <p [style.backgroundColor]="getStatusBoxColor(bookListItem.leesstatus)" class="card-text status-box ps-3">
+                <span>Boekstatus: </span>{{ getFormattedLeesstatus(bookListItem.leesstatus) }}
+              </p>
+              <p class="card-text ps-3"><span>Boek gepubliceerd op </span>{{ bookListItem.boekId.publiceerdatum | date : 'dd-MM-yyyy' }}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+
+    <!-- Show a default message if no books are found -->
+    <p class="text-center mt-4" *ngIf="!selectedLeesstatus && user.boekenlijst && user.boekenlijst.length === 0">
+      Geen boeken gevonden.
+    </p>
+
+
+</div>

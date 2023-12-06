@@ -21,7 +21,7 @@ export class UserDetailComponent implements OnInit {
       huisnummer: 0,
       stad: '',
       password: '',
-      boekenlijst: [] // Initialiseer de boekenlijst als een lege array
+      boekenlijst: []
     }
     users: IUser[] | null = null;
     userId: string | null = null;
@@ -33,9 +33,7 @@ export class UserDetailComponent implements OnInit {
       ) {}
 
     ngOnInit(): void {
-  
-      // Deze manier maakt gebruik van RxJs Observables.
-      // We komen hier bij services en HTTP op terug.
+
       this.route.paramMap.subscribe((params) => {
         this.userId = params.get('_id');
 
@@ -62,5 +60,9 @@ export class UserDetailComponent implements OnInit {
       } else {
         console.error('User _id is missing for deletion.');
       }
+    }
+
+    goBack(): void {
+      window.history.back();
     }
 }

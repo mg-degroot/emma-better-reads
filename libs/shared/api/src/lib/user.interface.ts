@@ -11,12 +11,9 @@ export interface IUser {
     stad: string;
     password: string;
     token?: string | null;
-
-    //toegevoegd
     boekenlijst: IBookList[];
 }
 
-//boekenlijst toegevoegd
 export type ICreateUser = Pick<IUser,
     'naam' | 'email' | 'geboortedatum' | 'straatnaam' | 'huisnummer' | 'stad' | 'password' | 'boekenlijst'
 >;

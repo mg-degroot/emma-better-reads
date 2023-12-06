@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'nx-emma-indiv-header',
+  selector: 'nx-emma-indiv-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
 })
@@ -18,8 +18,6 @@ export class HomepageComponent  {
     navigateToRegister(): void {
       this.router.navigate([`/register`]);
     }
-
-
-  }
+}
 
 

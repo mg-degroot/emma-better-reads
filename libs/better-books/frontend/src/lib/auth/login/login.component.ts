@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   
   submitted = false;
   loginError = false;
+  userId: string | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -37,9 +38,21 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe((user: IUser | null) => {
         if (user) {
           console.log('User already logged in > to dashboard');
-          this.router.navigate(['/users']);
+          this.router.navigate([`${this.userId}/dashboard`]);
         }
       });
+        // Retrieve user ID from AuthService
+        this.authService.currentUser$.subscribe({
+          next: (user: IUser | null) => {
+            if (user) {
+              this.userId = user._id;
+
+            }
+          },
+          error: (error) => {
+            console.error('Error getting user information:', error);
+          },
+        });
   }
 
   ngOnDestroy(): void {
@@ -59,7 +72,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           (user: IUser | null) => {
             if (user) {
               console.log('Logged in');
-              this.router.navigate(['/books']);
+              this.router.navigate([`${this.userId}/dashboard`]);
             } else {
               // Inloggen mislukt
               this.loginError = true;

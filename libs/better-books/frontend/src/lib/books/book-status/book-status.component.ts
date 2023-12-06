@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
 import { IBook, IWriter, IUser, Leesstatus } from '@nx-emma-indiv/shared/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthService } from '../../auth/auth.service';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'nx-emma-indiv-book-status',
@@ -15,122 +16,106 @@ export class BookStatusComponent implements OnInit {
 
       bookId: string | null = null;
       userId: string | null = null;
+      user: IUser | null = null;
+      book: IBook[] | null = null;
 
     constructor( 
       private route: ActivatedRoute, 
+      private router: Router,
+      private userService: UserService,
       private bookService: BookService,
-      private authService: |AuthService) {}
+      private authService: AuthService,
+      private cdRef: ChangeDetectorRef
+      ) {}
 
       ngOnInit(): void {
         // Retrieve bookId from route parameter
         this.route.paramMap.subscribe((params) => {
-          this.bookId = params.get('_id');
-      
-          // Retrieve user ID from AuthService
-          this.authService.currentUser$.subscribe({
-            next: (user: IUser | null) => {
-              if (user) {
-                this.userId = user._id;
-              }
-            },
-            error: (error) => {
-              console.error('Error getting user information:', error);
-            },
-          });
+          const bookIdParam = params.get('_id');
+          if (bookIdParam) {
+            this.bookId = bookIdParam;
+          }
         });
-      }
-
-
-      addOrUpdateLeesstatus(leesstatus: string) {
-        console.log('Starting addOrUpdateLeesstatus method');
-
+    
+        // Retrieve user ID from AuthService
         this.authService.currentUser$.subscribe({
           next: (user: IUser | null) => {
-            if (!user || !user._id) {
-              console.error('User information or User _id is missing or invalid');
-              return;
+            if (user) {
+              this.userId = user._id;
+              this.user = user;
             }
-      
-            console.log('User ID:', user._id);
-      
-            this.bookService.addOrUpdateLeesstatus(user._id, this.bookId!, leesstatus as Leesstatus).subscribe({
-              next: (updatedUser: IUser) => {
-                console.log(`Leesstatus "${leesstatus}" added or updated:`, updatedUser);
-              },
-              error: (error) => {
-                console.error('Error adding or updating leesstatus:', error);
-              }
-            });
-      
-            console.log('Exiting addOrUpdateLeesstatus method');
           },
           error: (error) => {
             console.error('Error getting user information:', error);
-          }
+          },
         });
       }
       
-      // addOrUpdateLeesstatus(leesstatus: string) {
-      //   console.log('Starting addOrUpdateLeesstatus method');
+
+      handleStatusChange(leesstatus: string): void {
+        // Check if the book exists in the boekenlijst
+        this.userService.findOneWithBooklist(this.userId!).subscribe({
+          next: (userWithBooklist: IUser) => {
+            this.user = userWithBooklist;
       
-      //   this.authService.currentUser$.subscribe({
-      //     next: (user: IUser | null) => {
-      //       if (!user || !user._id) {
-      //         console.error('User information or User _id is missing or invalid');
-      //         return;
-      //       }
+            const bookExists = this.user.boekenlijst.some(book => book.boekId._id === this.bookId);
       
-      //       console.log('User ID:', user._id);
+            console.log('userId:', this.userId);
+            console.log('bookId:', this.bookId);
+            console.log('bookExists:', bookExists);
       
-      //       // Check if the bookId is already in the user's array
-      //       const bookIndex = user.boekenlijst.findIndex((book) => book.boekId === this.bookId);
-      
-      //       if (bookIndex === -1) {
-      //         // If the bookId is not in the array, add it using POST
-      //         this.bookService.addOrUpdateLeesstatus(user._id, this.bookId!, leesstatus as Leesstatus).subscribe({
-      //           next: (updatedUser: IUser) => {
-      //             console.log(`Leesstatus "${leesstatus}" added:`, updatedUser);
-      //           },
-      //           error: (error) => {
-      //             console.error('Error adding leesstatus:', error);
-      //           }
-      //         });
-      //       } else {
-      //         // If the bookId is in the array, update its leesstatus using PUT
-      //         this.bookService.updateLeesstatus(user._id, this.bookId!, leesstatus as Leesstatus).subscribe({
-      //           next: (updatedUser: IUser) => {
-      //             console.log(`Leesstatus "${leesstatus}" updated:`, updatedUser);
-      //           },
-      //           error: (error) => {
-      //             console.error('Error updating leesstatus:', error);
-      //           }
-      //         });
-      //       }
-      
-      //       console.log('Exiting addOrUpdateLeesstatus method');
-      //     },
-      //     error: (error) => {
-      //       console.error('Error getting user information:', error);
-      //     }
-      //   });
-      // }
-      
-    
-    
-    deleteBookBooklist() {
-      this.authService.currentUser$.subscribe((user: IUser | null) => {
-        if (user && this.bookId) {
-          this.bookService
-            .removeBookFromBookList(user._id, this.bookId)
-            .subscribe(
-              (updatedUser: IUser) => {
-                console.log('Book removed from the booklist:', updatedUser);
+            if (!bookExists) {
+              // Book doesn't exist, add it to the boekenlijst
+              this.bookService.addBookBooklist(this.userId!, this.bookId!, leesstatus as Leesstatus).subscribe(
+                (result) => {
+                  // Handle success
+                  console.log(`Book added to boekenlijst with status: ${leesstatus}`);
+                  this.router.navigate([`${this.userId}/dashboard`]);
+                },
+                (error) => {
+                  // Handle error
+                  console.error('Error adding book to boekenlijst', error);
+                }
+              );
+            } else {
+              // Book exists, update its leesstatus
+              this.bookService.updateLeesstatus(this.userId!, this.bookId!, leesstatus as Leesstatus).subscribe(
+                (result) => {
+                  // Handle success
+                  console.log(`Book status updated: ${leesstatus}`);
+                  this.router.navigate([`${this.userId}/dashboard`]);
+                },
+                (error) => {
+                  // Handle error
+                  console.error('Error updating book status', error);
+                }
+              );
+            }
+          },
+          error: (error) => {
+            console.error('Error getting user information with booklist:', error);
+          },
+        });
+      }
+
+        removeBookFromList(): void {
+          this.bookService.removeBookFromBoekenlijst(this.userId!, this.bookId!).subscribe(
+              (result) => {
+                  // Handle success
+                  console.log('Book removed from the list');
+                  this.router.navigate([`${this.userId}/dashboard`]);
               },
               (error) => {
-                console.error('Error removing book from booklist:', error);
+                  // Handle error
+                  console.error('Error removing book from the list', error);
               }
-            );
-        }
-      });
-    }
+          );
+      }
+      
+
+
+     
+      
+      
+      
 }

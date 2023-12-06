@@ -42,6 +42,10 @@ export class AuthService {
       .subscribe(() => console.log('Startup auth done'));
   }
 
+  get currentUser(): Observable<IUser | null> {
+    return this.currentUser$.asObservable();
+  }
+
   login(email: string, password: string): Observable<IUser | null> {
     console.log(`login at ${environment.dataApiUrl}/api/user/login`);
   
@@ -55,6 +59,9 @@ export class AuthService {
         map((response) => {
           // Extract the user information from the API response
           const user = response.results;
+
+          // Update the user ID before updating the BehaviorSubject
+          user && user._id && this.updateUser({ ...user, _id: user._id });
   
           this.saveUserToLocalStorage(user);
           this.currentUser$.next(user);
@@ -127,5 +134,9 @@ export class AuthService {
     return this.currentUser$.pipe(
       map((user: IUser | null) => (user ? user._id === itemUserId : false))
     );
+  }
+
+  updateUser(user: IUser | null): void {
+    this.currentUser$.next(user);
   }
 }

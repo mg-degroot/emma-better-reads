@@ -1,14 +1,3 @@
-<!-- <div class="d-flex">
-  <ul class="list-group list-group-flush mx-auto">
-    <li class="list-group-item"><span>Naam: </span> {{users?.naam}}</li>
-    <li class="list-group-item"><span>Email: </span> {{users?.email}}</li>
-    <li class="list-group-item"><span>Geboortedatum: </span> {{users?.geboortedatum | date: 'dd-MM-yyyy'}}</li>
-    <li class="list-group-item"><span>Straat: </span> {{users?.straatnaam}} {{users?.huisnummer}}</li>
-    <li class="list-group-item"><span>Stad: </span> {{users?.stad}}</li>
-  </ul>
-</div> -->
-
-
 <div class="container-fluid">
   <div class="card m-5 text-center">
     <div class="card-body">
@@ -35,7 +24,7 @@
       </ul>
 
       <div class="button-container text-center">
-        <button type="button" class="btn text-center me-4" routerLink="/users">
+        <button type="button" (click)="goBack()" class="btn text-center me-4">
           <span class="text-dark text-decoration-none">Terug</span>
         </button>
 
@@ -44,23 +33,24 @@
           </button>
       </div>
 
-        <div class="button-container text-center">
+      <!-- Verwijderen even niet nodig, anders verwijdert eigen gebruiker -->
+        <!-- <div class="button-container text-center"> -->
           <!-- Show the "Verwijder Schrijver" button if the confirmation dialog is not shown -->
-          <ng-container *ngIf="!showDeleteConfirmation; else confirmationDialog">
+          <!-- <ng-container *ngIf="!showDeleteConfirmation; else confirmationDialog">
             <button type="button" class="btn text-center" (click)="showDeleteConfirmation = true">
               <a class="text-dark text-decoration-none">Verwijder Gebruiker</a>
             </button>
           </ng-container>
         </div>
-        
+         -->
         <!-- Use ngTemplateOutlet to display the confirmation dialog when needed -->
-        <ng-template #confirmationDialog>
+        <!-- <ng-template #confirmationDialog>
           <div class="confirmation-dialog mt-1">
             <p>Weet u zeker dat u deze geberuiker wilt verwijderen?</p>
             <button type="button" (click)="deleteUser()" class="btn text-center me-3">Ja, verwijder gebruiker</button>
             <button type="button" (click)="showDeleteConfirmation = false" class="btn text-center">Nee, annuleer</button>
           </div>
-        </ng-template>
+        </ng-template> -->
 
 
 

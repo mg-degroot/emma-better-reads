@@ -22,3 +22,4 @@ export * from './lib/auth/login/login.component';
 export * from './lib/auth/auth.service';
 
 export * from './lib/homepage/homepage.component';
+export * from './lib/dashboard/dashboard.component';

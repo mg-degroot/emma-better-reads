@@ -97,7 +97,6 @@ export class BookService {
     }
 
     public getWriter(writerId: string | null): Observable<IWriter> {
-        // Vervang 'writer' door de juiste eindpunt-URL voor je schrijvers
         const writerEndpoint = `${environment.dataApiUrl}/api/writer/${writerId}`;
 
         return this.http
@@ -109,50 +108,52 @@ export class BookService {
             );
     }
 
-
-    public addOrUpdateLeesstatus(userId: string, bookId: string, leesstatus: Leesstatus): Observable<IUser> {
-      const userEndpoint = `${environment.dataApiUrl}/api/book/${bookId}/status/${userId}`;
-    
-      const requestBody = {
-        bookId: bookId,
-        leesstatus: leesstatus,
-      };
-    
-      return this.http
-          .post<ApiResponse<IUser>>(userEndpoint, requestBody).pipe(
-          tap(console.log),
-          map((response: any) => response as IUser),
+    public getBookDetails(bookId: string): Observable<IBook> {
+      return this.http.get<ApiResponse<IBook>>(`${this.endpoint}/books/${bookId}`).pipe(
+          map((response: any) => response.results as IBook),
           catchError(this.handleError)
       );
     }
 
-    public removeBookFromBookList(userId: string, bookId: string): Observable<IUser> {
-      const userEndpoint = `${environment.dataApiUrl}/api/book/${bookId}/status/${userId}`;
-    
+
+    public addBookBooklist(userId: string, boekId: string, leesstatus: Leesstatus): Observable<IUser> {
+      const endpoint = `${environment.dataApiUrl}/api/book/${boekId}/${userId}/booklist`;
+      const requestBody = { boekId: boekId, leesstatus: leesstatus };
+
       return this.http
-        .delete<ApiResponse<IUser>>(userEndpoint).pipe(
-          tap(console.log),
-          map((response: any) => response as IUser),
-          catchError(this.handleError)
-        );
+          .post<ApiResponse<IUser>>(endpoint, requestBody)
+          .pipe(
+              tap(console.log),
+              map((response: any) => response.results as IUser),
+              catchError(this.handleError)
+          );
     }
 
-    public updateLeesstatus(userId: string, bookId: string, leesstatus: Leesstatus): Observable<IUser> {
-      const userEndpoint = `${environment.dataApiUrl}/api/book/${bookId}/status/${userId}`;
+    public updateLeesstatus(userId: string, boekId: string, leesstatus: Leesstatus): Observable<IUser> {
+        const endpoint = `${environment.dataApiUrl}/api/book/${boekId}/${userId}/booklist`;
+        const requestBody = { boekId: boekId, leesstatus: leesstatus };
     
-      const requestBody = {
-        bookId: bookId,
-        leesstatus: leesstatus,
-      };
-    
-      // Use PUT for updating leesstatus
-      return this.http
-        .put<ApiResponse<IUser>>(userEndpoint, requestBody).pipe(
-          tap(console.log),
-          map((response: any) => response as IUser),
-          catchError(this.handleError)
-        );
+        return this.http
+            .put<ApiResponse<IUser>>(endpoint, requestBody)
+            .pipe(
+                tap(console.log),
+                map((response: any) => response.results as IUser),
+                catchError(this.handleError)
+            );
     }
+      public removeBookFromBoekenlijst(userId: string, boekId: string): Observable<IUser> {
+        const endpoint = `${environment.dataApiUrl}/api/book/${boekId}/${userId}/booklist`;
+    
+        return this.http
+            .delete<ApiResponse<IUser>>(endpoint)
+            .pipe(
+                tap(console.log),
+                map((response: any) => response.results as IUser),
+                catchError(this.handleError)
+            );
+    }
+
+  
 
     /**
     * Handle errors.

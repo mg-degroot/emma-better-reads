@@ -31,9 +31,6 @@ export class WriterDetailComponent implements OnInit {
       ) {}
 
     ngOnInit(): void {
-  
-      // Deze manier maakt gebruik van RxJs Observables.
-      // We komen hier bij services en HTTP op terug.
       this.route.paramMap.subscribe((params) => {
         this.writerId = params.get('_id');
 

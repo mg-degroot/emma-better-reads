@@ -7,6 +7,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 //about-page
 import { AboutComponent } from './about/about.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 //import user
 import { UserService } from './user/user.service';
@@ -41,10 +42,10 @@ import { AuthService } from './auth/auth.service';
   declarations: [UserListComponent, UserDetailComponent, UserEditComponent, UserNewComponent, AboutComponent, 
                 BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent, BookStatusComponent,
               WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent,
-              RegisterComponent, LoginComponent],
+              RegisterComponent, LoginComponent, DashboardComponent],
   providers: [UserService, BookService, WriterService, AuthService],
   exports: [UserListComponent, UserDetailComponent, UserEditComponent, UserNewComponent, AboutComponent, 
             BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent, BookStatusComponent,
-            WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent],
+            WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent, DashboardComponent],
 })
 export class FeaturesModule {}

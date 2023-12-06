@@ -19,7 +19,7 @@ export class UserNewComponent {
       huisnummer: 0,
       stad: '',
       password: '',
-      boekenlijst: [] // Initialiseer de boekenlijst als een lege array
+      boekenlijst: []
     };
 
     constructor( 

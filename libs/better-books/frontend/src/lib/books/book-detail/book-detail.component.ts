@@ -69,8 +69,6 @@ export class BookDetailComponent implements OnInit {
         });
       }
 
-
-    
     deleteBook(): void {
       if (this.bookId) {
         this.bookService.delete(this.book).subscribe({

@@ -1,6 +1,6 @@
-import { Controller, Get, Param, Post, Delete, Put, Body } from '@nestjs/common';
+import { Controller, Get, Param, Post, Delete, Put, Body, Patch } from '@nestjs/common';
 import { UserService } from '../user.service';
-import { IUser, Leesstatus } from '@nx-emma-indiv/shared/api';
+import { IBook, IUser, Leesstatus } from '@nx-emma-indiv/shared/api';
 import { CreateUserDto, UpdateUserDto } from '@nx-emma-indiv/backend/dto';
 
 
@@ -41,14 +41,8 @@ export class UserController {
         return await loggedInUser;
     }
 
-    // @Post('books/:_id')
-    // async addOrUpdateLeesstatus(@Param('_id') userId: string, @Body('bookId') bookId: string, @Body('leesstatus') leesstatus: Leesstatus,): Promise<IUser> {
-    //   return this.userService.addOrUpdateLeesstatus(userId, bookId, leesstatus);
-    // }
-    
-    // @Delete('books/:_id')
-    // async removeBookFromBookList(@Param('_id') userId: string, @Body('bookId') bookId: string,): Promise<IUser> {
-    //   return this.userService.removeBookFromBookList(userId, bookId);
-    // }
-
+    @Get(':_id/dashboard')
+    async findOneWithBooklist(@Param('_id') _id: string): Promise<IUser | null> {
+        return await this.userService.findOneWithBooklist(_id);
+    }
 }

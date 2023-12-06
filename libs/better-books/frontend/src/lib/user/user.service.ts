@@ -1,9 +1,10 @@
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { ApiResponse, IUser } from '@nx-emma-indiv/shared/api';
+import { ApiResponse, IBook, IUser } from '@nx-emma-indiv/shared/api';
 import { Injectable } from '@angular/core';
 import { environment } from '@nx-emma-indiv/shared/util-env';
+import { BookService } from '../books/book.service';
 
 /**
  * See https://angular.io/guide/http#requesting-data-from-a-server
@@ -22,7 +23,9 @@ export class UserService {
     //endpoint = environment.dataApiUrl + '/user';
     endpoint = `${environment.dataApiUrl}/api/user`;
 
-    constructor(private readonly http: HttpClient) {}
+
+    constructor(private readonly http: HttpClient,
+      private bookService: BookService) {}
 
     /**
      * Get all items.
@@ -99,6 +102,31 @@ export class UserService {
         .delete<ApiResponse<IUser>>(`${this.endpoint}/${user._id}`)
         .pipe(tap(console.log), catchError(this.handleError));
     }
+
+    public findOneWithBooklist(_id: string | null): Observable<IUser> {
+      console.log(`getUserWithBooklist ${this.endpoint}/${_id}/dashboard`);
+      return this.http
+          .get<ApiResponse<IUser>>(`${this.endpoint}/${_id}/dashboard`)
+          .pipe(
+              tap(console.log),
+              map((response: any) => {
+                  const userWithBooklist: IUser = response.results as IUser;
+
+                  // Map each item in the boekenlijst to fetch the corresponding book details
+                  userWithBooklist.boekenlijst = userWithBooklist.boekenlijst.map(
+                      (bookListItem: any) => {
+                          return {
+                              ...bookListItem,
+                              bookDetails: this.bookService.getBookDetails(bookListItem.boekId),
+                          };
+                      }
+                  );
+
+                  return userWithBooklist;
+              }),
+              catchError(this.handleError)
+          );
+  }
 
     /**
      * Handle errors.
