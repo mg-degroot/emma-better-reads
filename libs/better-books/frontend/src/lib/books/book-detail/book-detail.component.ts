@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
-import { IBook, IWriter } from '@nx-emma-indiv/shared/api';
+import { IBook, IWriter, IUser, Leesstatus } from '@nx-emma-indiv/shared/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { UserService } from '../../user/user.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'nx-emma-indiv-book-detail',
@@ -12,6 +14,7 @@ import { Location } from '@angular/common';
 
 export class BookDetailComponent implements OnInit {
     showDeleteConfirmation = false;
+    showBookStatus = false;
 
     book: IBook = {
       _id: '',
@@ -27,24 +30,44 @@ export class BookDetailComponent implements OnInit {
       books: IBook[] | null = null;
       bookId: string | null = null;
       writers: IWriter[] = [];
+      userId: string | null = null;
+      user: IUser | null = null;
 
     constructor( 
       private route: ActivatedRoute, 
       private bookService: BookService,
+      private authService: |AuthService,
       private router: Router,
       private location: Location ) {}
 
-    ngOnInit(): void {
-  
-      // Deze manier maakt gebruik van RxJs Observables.
-      // We komen hier bij services en HTTP op terug.
-      this.route.paramMap.subscribe((params) => {
-        this.bookId = params.get('_id');
+      ngOnInit(): void {
+        // Retrieve bookId from route parameter
+        this.route.paramMap.subscribe((params) => {
+          this.bookId = params.get('_id'); // Change this line
+      
+          // Retrieve user ID from AuthService
+          this.authService.currentUser$.subscribe({
+            next: (user: IUser | null) => {
+              if (user) {
+                this.userId = user._id;
+                console.log("UserId is ", this.user?._id);
+                console.log("UserId is ", this.userId);
 
-        this.bookService.read(this.bookId).subscribe((observable) => 
-          this.book = observable);
-      });
-    }
+      
+                // Now you have both bookId and userId, you can use them as needed.
+      
+                // Fetch book details using this.bookId
+                this.bookService.read(this.bookId).subscribe((observable) => {
+                  this.book = observable;
+                });
+              }
+            },
+            error: (error) => {
+              console.error('Error getting user information:', error);
+            },
+          });
+        });
+      }
 
 
     
@@ -67,6 +90,5 @@ export class BookDetailComponent implements OnInit {
         console.error('Book _id is missing for deletion.');
       }
     }
-    
 
 }

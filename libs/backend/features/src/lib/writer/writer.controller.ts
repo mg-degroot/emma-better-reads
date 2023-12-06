@@ -30,7 +30,6 @@ export class WriterController {
       return { message: 'writer updated successfully', writer: updatedWriter };
     }
     
-
     @Delete('/:_id')
     async delete(@Param('_id') _id: string): Promise<void> {
         await this.writerService.deleteWriter(_id);

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
-import { AboutComponent} from '@nx-emma-indiv/better-books/frontend';
+import { AboutComponent, BookStatusComponent} from '@nx-emma-indiv/better-books/frontend';
 
 import { UserListComponent, UserDetailComponent, UserEditComponent, UserNewComponent} from '@nx-emma-indiv/better-books/frontend';
 import { BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent} from '@nx-emma-indiv/better-books/frontend';
@@ -80,6 +80,10 @@ export const appRoutes: Route[] = [
         path: "books/:_id", 
         pathMatch: "full", 
         component: BookDetailComponent },
+    { 
+        path: "books/:_id/status/:userId", 
+        pathMatch: "full", 
+        component: BookStatusComponent },
     { 
         path: "books/:_id/editbook", 
         pathMatch: "full", 

@@ -35,7 +35,7 @@ export class AuthService {
             return of(user);
           } else {
             console.log(`No current user found`);
-            return of(null);
+            return of(undefined);
           }
         })
       )
@@ -44,15 +44,18 @@ export class AuthService {
 
   login(email: string, password: string): Observable<IUser | null> {
     console.log(`login at ${environment.dataApiUrl}/api/user/login`);
-
+  
     return this.http
-      .post<IUser>(
+      .post<{ results: IUser }>(
         `${environment.dataApiUrl}/api/user/login`,
         { email: email, password: password },
         { headers: this.headers }
       )
       .pipe(
-        map((user) => {
+        map((response) => {
+          // Extract the user information from the API response
+          const user = response.results;
+  
           this.saveUserToLocalStorage(user);
           this.currentUser$.next(user);
           return user;

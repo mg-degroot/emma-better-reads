@@ -20,7 +20,8 @@ export class UserDetailComponent implements OnInit {
       straatnaam: '',
       huisnummer: 0,
       stad: '',
-      password: ''
+      password: '',
+      boekenlijst: [] // Initialiseer de boekenlijst als een lege array
     }
     users: IUser[] | null = null;
     userId: string | null = null;

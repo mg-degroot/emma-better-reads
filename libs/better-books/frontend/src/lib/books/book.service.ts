@@ -1,7 +1,7 @@
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { ApiResponse, IBook, IWriter } from '@nx-emma-indiv/shared/api';
+import { ApiResponse, IBook, IWriter, IUser, IBookList, Leesstatus } from '@nx-emma-indiv/shared/api';
 import { Injectable } from '@angular/core';
 import { environment } from '@nx-emma-indiv/shared/util-env';
 
@@ -23,6 +23,7 @@ export class BookService {
     endpoint = `${environment.dataApiUrl}/api/book`;
 
     constructor(private readonly http: HttpClient) {}
+    
 
     /**
      * Get all items.
@@ -108,12 +109,57 @@ export class BookService {
             );
     }
 
-        /**
-     * Handle errors.
-     */
-        public handleError(error: HttpErrorResponse): Observable<any> {
-            console.log('handleError in BookService', error);
+
+    public addOrUpdateLeesstatus(userId: string, bookId: string, leesstatus: Leesstatus): Observable<IUser> {
+      const userEndpoint = `${environment.dataApiUrl}/api/book/${bookId}/status/${userId}`;
     
-            return throwError(() => new Error(error.message));
-        }
+      const requestBody = {
+        bookId: bookId,
+        leesstatus: leesstatus,
+      };
+    
+      return this.http
+          .post<ApiResponse<IUser>>(userEndpoint, requestBody).pipe(
+          tap(console.log),
+          map((response: any) => response as IUser),
+          catchError(this.handleError)
+      );
+    }
+
+    public removeBookFromBookList(userId: string, bookId: string): Observable<IUser> {
+      const userEndpoint = `${environment.dataApiUrl}/api/book/${bookId}/status/${userId}`;
+    
+      return this.http
+        .delete<ApiResponse<IUser>>(userEndpoint).pipe(
+          tap(console.log),
+          map((response: any) => response as IUser),
+          catchError(this.handleError)
+        );
+    }
+
+    public updateLeesstatus(userId: string, bookId: string, leesstatus: Leesstatus): Observable<IUser> {
+      const userEndpoint = `${environment.dataApiUrl}/api/book/${bookId}/status/${userId}`;
+    
+      const requestBody = {
+        bookId: bookId,
+        leesstatus: leesstatus,
+      };
+    
+      // Use PUT for updating leesstatus
+      return this.http
+        .put<ApiResponse<IUser>>(userEndpoint, requestBody).pipe(
+          tap(console.log),
+          map((response: any) => response as IUser),
+          catchError(this.handleError)
+        );
+    }
+
+    /**
+    * Handle errors.
+    */
+    public handleError(error: HttpErrorResponse): Observable<any> {
+        console.log('handleError in BookService', error);
+    
+        return throwError(() => new Error(error.message));
+    }
 }

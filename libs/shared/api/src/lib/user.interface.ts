@@ -1,3 +1,4 @@
+import { IBookList } from './booklist.interface';
 import { Id } from './id.type';
 
 export interface IUser {
@@ -10,11 +11,15 @@ export interface IUser {
     stad: string;
     password: string;
     token?: string | null;
+
+    //toegevoegd
+    boekenlijst: IBookList[];
 }
 
+//boekenlijst toegevoegd
 export type ICreateUser = Pick<IUser,
-    'naam' | 'email' | 'geboortedatum' | 'straatnaam' | 'huisnummer' | 'stad' | 'password'
+    'naam' | 'email' | 'geboortedatum' | 'straatnaam' | 'huisnummer' | 'stad' | 'password' | 'boekenlijst'
 >;
 
-export type IUpdateUser = Partial<Omit<IUser, '_id'>>;
-export type IUpsertUser = IUser;
+export type IUpdateUser = Partial<Omit<IUser, '_id'>> & { boekenlijst?: IBookList[] };
+export type IUpsertUser = IUser & { boekenlijst?: IBookList[] };

@@ -1,0 +1,59 @@
+.column-left, .column-right {
+    margin-top: 3%;
+}
+
+.column-right{
+    padding-left: 10%;
+    margin-top: 7%;
+}
+
+.column-left img {
+    width: 225px; 
+    height: auto; 
+    object-fit: cover;
+}
+
+.button-container .btn{
+    background-color: rgb(222, 217, 217);
+    width: 275px;
+    height: auto;
+    border-radius: 30px;
+    margin-top: 3%;
+}
+
+.confirmation-dialog {
+    border: 1px solid #ccc;
+    background-color: #ebebeb;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+.button-container .btn:hover {
+    background-color: rgb(194, 190, 190);   
+}
+
+.confirmation-dialog .btn{
+    background-color: rgb(222, 217, 217);
+    width: 275px;
+    height: auto;
+    border-radius: 30px;
+}
+
+.confirmation-dialog .btn:hover {
+    background-color: rgb(194, 190, 190);   
+}
+
+.title-container h5 {
+    font-size: 2em;
+}
+
+.title-container .writer {
+    margin-top: 3%;
+    font-size: 1.5em;
+}
+
+.title-container .description {
+    margin-top: 3%;
+    font-size: 1em;
+}

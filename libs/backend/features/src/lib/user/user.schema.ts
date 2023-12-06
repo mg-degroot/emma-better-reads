@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 import { IUser } from '@nx-emma-indiv/shared/api';
+import { IBookList, Leesstatus } from 'libs/shared/api/src/lib/booklist.interface';
 
 export type UserDocument = User & Document;
 
@@ -12,7 +13,6 @@ export class User implements IUser {
         required: true
     })
     naam!: string;
-
 
     @Prop({
         required: true,
@@ -45,6 +45,17 @@ export class User implements IUser {
     })
     password!: string;
 
+    //toegevoegd
+    @Prop({
+        type: [{
+          boekId: { type: mongoose.Schema.Types.ObjectId, ref: 'Book', required: true },
+          leesstatus: { type: String, enum: Object.values(Leesstatus), required: true },
+        }],
+        default: []
+      })
+      boekenlijst!: IBookList[];
+    
+    
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

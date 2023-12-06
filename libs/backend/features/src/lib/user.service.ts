@@ -2,7 +2,7 @@ import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { User as UserModel, UserDocument } from './user/user.schema';
-import { IUser } from '@nx-emma-indiv/shared/api';
+import { IBook, IUser, Leesstatus } from '@nx-emma-indiv/shared/api';
 // import { Meal, MealDocument } from '@avans-nx-workshop/backend/features';
 import { CreateUserDto, UpdateUserDto } from '@nx-emma-indiv/backend/dto';
 import * as bcrypt from 'bcrypt';
@@ -119,6 +119,5 @@ export class UserService {
             throw new Error(`Login failed: ${(error as Error).message}`);
         }
     }
-    
 
 }

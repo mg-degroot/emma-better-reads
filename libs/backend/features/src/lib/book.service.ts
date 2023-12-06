@@ -2,7 +2,8 @@ import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Book as BookModel, BookDocument } from './book/book.schema';
-import { IBook } from '@nx-emma-indiv/shared/api';
+import { User as UserModel, UserDocument } from './user/user.schema';
+import { IBook, IUser, Leesstatus } from '@nx-emma-indiv/shared/api';
 // import { Meal, MealDocument } from '@avans-nx-workshop/backend/features';
 import { CreateBookDto, UpdateBookDto } from '@nx-emma-indiv/backend/dto';
 import { WriterService } from './writer.service';
@@ -13,6 +14,7 @@ export class BookService {
 
     constructor(
         @InjectModel(BookModel.name) private bookModel: Model<BookDocument>,
+        @InjectModel(UserModel.name) private userModel: Model<UserDocument>,
         private readonly writerService: WriterService
     ) {}
 
@@ -86,4 +88,70 @@ export class BookService {
 
       this.logger.log(`Book deleted successfully`);
   }
+
+    // Toegevoegd voor boekenlijst
+    //   async addOrUpdateLeesstatus(userId: string, bookId: string, leesstatus: Leesstatus): Promise<IUser> {
+    //     const user = await this.userModel.findById(userId).exec();
+      
+    //     if (!user) {
+    //       throw new NotFoundException(`User with id ${userId} not found`);
+    //     }
+      
+    //     const bookIndex = user.boekenlijst.findIndex((book) => book.boekId === bookId);
+      
+    //     // If the book is not in the array, add it
+    //     if (bookIndex === -1) {
+    //       const newBook = { boekId: bookId, leesstatus: leesstatus };
+    //       user.boekenlijst.push(newBook);
+    //     } else {
+    //       // If the book is already in the array, update its leesstatus
+    //       user.boekenlijst[bookIndex].leesstatus = leesstatus;
+    //     }
+      
+    //     const updatedUser = await user.save();
+      
+    //     return updatedUser;
+    // }
+
+    // Toegevoegd voor boekenlijst
+    async addOrUpdateLeesstatus(userId: string, bookId: string, leesstatus: Leesstatus): Promise<IUser> {
+      const user = await this.userModel.findById(userId).exec();
+      if (!user) {
+        throw new NotFoundException(`User with id ${userId} not found`);
+      }
+    
+      const newBook = { boekId: bookId, leesstatus: leesstatus };
+      user.boekenlijst.push(newBook);
+      const updatedUser = await user.save();
+    
+      return updatedUser;
+    }
+    
+    async updateLeesstatus(userId: string, bookId: string, leesstatus: Leesstatus): Promise<IUser> {
+      const user = await this.userModel.findById(userId).exec();
+      if (!user) {
+        throw new NotFoundException(`User with id ${userId} not found`);
+      }
+    
+      const bookIndex = user.boekenlijst.findIndex((book) => book.boekId === bookId);
+       
+      // If the book is already in the array, update its leesstatus
+      user.boekenlijst[bookIndex].leesstatus = leesstatus;
+    
+      const updatedUser = await user.save();
+      return updatedUser;
+    }
+
+    //Verwijderen uit boekenlijst
+    async removeBookFromBookList(userId: string, bookId: string): Promise<IUser> {
+      const user = await this.userModel.findById(userId).exec();
+      
+        if (!user) {
+          throw new NotFoundException(`User with id ${userId} not found`);
+        }
+    
+      user.boekenlijst = user.boekenlijst.filter((book) => book.boekId !== bookId);
+      const updatedUser = await user.save();
+      return updatedUser;
+    }
 }

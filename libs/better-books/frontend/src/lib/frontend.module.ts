@@ -21,6 +21,7 @@ import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { BookNewComponent } from './books/book-new/book-new.component';
 import { BookListComponent } from './books/book-list/book-list.component';
+import { BookStatusComponent } from './books/book-status/book-status.component';
 
 //import writer
 import { WriterService } from './writer/writer.service';
@@ -38,12 +39,12 @@ import { AuthService } from './auth/auth.service';
 @NgModule({
   imports: [RouterModule, CommonModule, HttpClientModule, RouterLink, FormsModule, ReactiveFormsModule, NgSelectModule],
   declarations: [UserListComponent, UserDetailComponent, UserEditComponent, UserNewComponent, AboutComponent, 
-                BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent,
+                BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent, BookStatusComponent,
               WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent,
               RegisterComponent, LoginComponent],
   providers: [UserService, BookService, WriterService, AuthService],
   exports: [UserListComponent, UserDetailComponent, UserEditComponent, UserNewComponent, AboutComponent, 
-            BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent,
+            BookListComponent, BookDetailComponent, BookEditComponent, BookNewComponent, BookStatusComponent,
             WriterListComponent, WriterDetailComponent, WriterEditComponent, WriterNewComponent],
 })
 export class FeaturesModule {}

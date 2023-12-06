@@ -7,12 +7,32 @@
         <img src="{{ book.cover }}" class="img-fluid" alt="Book Image">
       </div>
 
+      <!-- <div class="button-container text-center mt-3"> -->
+        <!-- Show the "Boekstatus" button if the confirmation dialog is not shown -->
+        <!-- <ng-container *ngIf="!showBookStatus; else confirmationDialog">
+          <button type="button" class="btn text-center" (click)="showBookStatus = true">
+            <a class="text-dark text-decoration-none">Boekenstatus</a>
+          </button>
+        </ng-container>
+      </div> -->
+      
+      <!-- Use ngTemplateOutlet to display the confirmation dialog when needed -->
+      <!-- <ng-template #confirmationDialog>
+        <div class="confirmation-dialog text-center mt-3">
+          <p>Weet u zeker dat u dit boek wilt verwijderen?</p>
+          <button type="button" (click)="addOrUpdateLeesstatus('READ')" class="btn text-center mb-3">Read</button>
+          <button type="button" (click)="addOrUpdateLeesstatus('TO_READ')" class="btn text-center mb-3">To Read</button>
+          <button type="button" (click)="addOrUpdateLeesstatus('DNF')" class="btn text-center mb-3">DNF</button>
+          <button type="button" (click)="deleteBookBooklist()" class="btn text-center mb-3">Verwijder boek uit boeklijst</button>
+          <button type="button" (click)="showBookStatus = false" class="btn text-center mb-3">Sluiten</button>
+        </div>
+      </ng-template> -->
+
       <div class="button-container text-center mt-3">
-        <button type="button" class="btn text-center"> 
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-          <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-        </svg><span class="ms-2">Read</span></button>
-      </div>
+        <button type="button" class="btn text-center">
+          <a [routerLink]="['/books', bookId, 'status', userId]" class="text-dark text-decoration-none">Boekstatus</a>
+        </button>
+        </div>
 
       <div class="button-container text-center mt-3">
       <button type="button" class="btn text-center">
@@ -20,7 +40,6 @@
       </button>
       </div>
 
-      
       <div class="button-container text-center mt-3">
         <!-- Show the "Verwijder Boek" button if the confirmation dialog is not shown -->
         <ng-container *ngIf="!showDeleteConfirmation; else confirmationDialog">

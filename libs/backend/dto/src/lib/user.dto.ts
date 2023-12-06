@@ -4,12 +4,14 @@ import {
     IsBoolean,
     IsOptional,
     IsMongoId,
-    IsNumber
+    IsNumber,
+    IsArray
 } from 'class-validator';
 import {
     ICreateUser,
     IUpdateUser,
-    IUpsertUser
+    IUpsertUser,
+    IBookList
 } from '@nx-emma-indiv/shared/api';
 
 /**
@@ -47,6 +49,11 @@ export class CreateUserDto implements ICreateUser {
 
     @IsNotEmpty()
     password!: string;
+
+    //toegevoegd
+    @IsArray()
+    @IsNotEmpty()
+    boekenlijst: IBookList[] = [];
 }
 
 export class UpsertUserDto implements IUpsertUser {
@@ -79,6 +86,11 @@ export class UpsertUserDto implements IUpsertUser {
 
     @IsNotEmpty()
     password!: string;
+
+    //toegevoegd
+    @IsArray()
+    @IsNotEmpty()
+    boekenlijst: IBookList[] = [];
 }
 
 export class UpdateUserDto implements IUpdateUser {
@@ -113,4 +125,9 @@ export class UpdateUserDto implements IUpdateUser {
     @IsBoolean()
     @IsOptional()
     completed!: boolean;
+
+    //toegevoegd
+    @IsArray()
+    @IsNotEmpty()
+    boekenlijst: IBookList[] = [];
 }
