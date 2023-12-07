@@ -1,6 +1,6 @@
-import { Controller, Get, Param, Post, Delete, Put, Body, Patch } from '@nestjs/common';
+import { Controller, Get, Param, Post, Delete, Put, Body } from '@nestjs/common';
 import { UserService } from '../user.service';
-import { IBook, IUser, Leesstatus } from '@nx-emma-indiv/shared/api';
+import { IUser } from '@nx-emma-indiv/shared/api';
 import { CreateUserDto, UpdateUserDto } from '@nx-emma-indiv/backend/dto';
 
 
