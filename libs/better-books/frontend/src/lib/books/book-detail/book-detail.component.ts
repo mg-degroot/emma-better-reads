@@ -49,11 +49,7 @@ export class BookDetailComponent implements OnInit {
           this.authService.currentUser$.subscribe({
             next: (user: IUser | null) => {
               if (user) {
-                this.userId = user._id;
-                console.log("UserId is ", this.user?._id);
-                console.log("UserId is ", this.userId);
-
-      
+                this.userId = user._id;      
                 // Now you have both bookId and userId, you can use them as needed.
       
                 // Fetch book details using this.bookId

@@ -5,7 +5,7 @@
       <label for="InputCover" class="fw-bold">Boek cover</label>
       <input type="text" class="form-control" id="InputCover" [(ngModel)]="book.cover" name="cover" placeholder="FotoURL" required minlength="5" maxlength="255">
       <div *ngIf="bookNewForm.controls['cover'].touched && bookNewForm.controls['cover'].hasError('required')" class="text-danger">
-        Boek cover is required.
+        Boek cover is verplicht.
       </div>
       <div *ngIf="bookNewForm.controls['cover'].touched && bookNewForm.controls['cover'].hasError('minlength')" class="text-danger">
         Boek cover must be at least 5 characters long.
@@ -19,7 +19,7 @@
       <label for="InputTitel" class="fw-bold">Titel</label>
       <input type="text" class="form-control" id="InputTitel" [(ngModel)]="book.titel"  name="titel" placeholder="Titel" required minlength="3" maxlength="50">
       <div *ngIf="bookNewForm.controls['titel'].touched && bookNewForm.controls['titel'].hasError('required')" class="text-danger">
-        Titel moet ingevuld worden.
+        Titel is verplicht.
       </div>
       <div *ngIf="bookNewForm.controls['titel'].touched && bookNewForm.controls['titel'].hasError('minlength')" class="text-danger">
         Titel moet minimaal 3 characters lang zijn.

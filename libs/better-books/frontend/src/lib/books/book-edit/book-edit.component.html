@@ -5,7 +5,7 @@
       <label for="InputCover" class="fw-bold">Boek cover</label>
       <input type="text" class="form-control" id="InputCover" [(ngModel)]="book.cover" name="cover" placeholder="FotoURL" required minlength="5" maxlength="255">
       <div *ngIf="bookEditForm.controls['cover'].touched && bookEditForm.controls['cover'].hasError('required')" class="text-danger">
-        Boek cover is required.
+        Boek cover is verplicht.
       </div>
       <div *ngIf="bookEditForm.controls['cover'].touched && bookEditForm.controls['cover'].hasError('minlength')" class="text-danger">
         Boek cover must be at least 5 characters long.
