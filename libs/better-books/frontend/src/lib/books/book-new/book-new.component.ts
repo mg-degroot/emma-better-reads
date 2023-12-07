@@ -3,6 +3,7 @@ import { BookService } from '../book.service';
 import { IBook, IWriter } from '@nx-emma-indiv/shared/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WriterService } from '../../writer/writer.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'nx-emma-indiv-book-edit',
@@ -20,7 +21,7 @@ export class BookNewComponent implements OnInit {
     origineletaal: '',
     publiceerdatum: new Date(),
     schrijver: {} as IWriter,
-    paginas: 0,
+    paginas: 1,
   };
   
   bookId: string | null = null;
@@ -40,8 +41,7 @@ export class BookNewComponent implements OnInit {
           console.log('Writers:', this.writers);
         });
       }
-      
-
+  
       createBook(): void {
         const selectedWriter = this.writers.find(writer => writer._id === this.selectedWriterId);
     
@@ -63,7 +63,7 @@ export class BookNewComponent implements OnInit {
                 console.error('Error creating book:', error);
             }
         );
-    }
+      }
       
       customSearch(term: string, item: any) {
         term = term.toLowerCase();
@@ -73,4 +73,17 @@ export class BookNewComponent implements OnInit {
       goBack(): void {
         this.router.navigate(['../../books']);
       }
+
+      checkFuturePublicationDate(): boolean {
+        const currentDate = new Date();
+        const inputDate = new Date(this.book.publiceerdatum);
+      
+        return inputDate > currentDate;
+      }
+
+      checkValidPageNumber(): boolean {
+        return this.book.paginas > 0;
+      }
+
+
 }

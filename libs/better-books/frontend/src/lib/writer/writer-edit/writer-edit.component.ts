@@ -57,4 +57,11 @@ export class WriterEditComponent implements OnInit {
     goBack(): void {
       this.router.navigate(['../../writers', this.writer._id]);
     }
+
+    checkFutureWriterDate(): boolean {
+      const currentDate = new Date();
+      const inputDate = new Date(this.writer.geboortedatum);
+    
+      return inputDate > currentDate;
+    }
 }

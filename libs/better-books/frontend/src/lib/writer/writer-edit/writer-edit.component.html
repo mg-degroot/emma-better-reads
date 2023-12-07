@@ -1,30 +1,49 @@
 <div class="container-fluid">
-  <form class="m-5" #userEditForm="ngForm" (ngSubmit)="updateWriter()">
+  <form class="m-5" #WriterEditForm="ngForm" (ngSubmit)="updateWriter()">
 
     <div class="form-group mb-4">
       <label for="InputName" class="fw-bold">Naam</label>
-      <input type="text" class="form-control" id="InpuName" [(ngModel)]="writer.schrijvernaam"  name="schrijvernaam" placeholder="Naam" required>
+      <input type="text" class="form-control" id="InputName" [(ngModel)]="writer.schrijvernaam"  name="schrijvernaam" placeholder="Naam" required>
+      <div *ngIf="WriterEditForm.controls['schrijvernaam'].touched && WriterEditForm.controls['schrijvernaam'].hasError('required')" class="text-danger">
+        Naam is verplicht.
+      </div>
     </div>
-
+    
     <div class="form-group mb-4">
       <label for="InputEmail" class="fw-bold">Geboorteplaats</label>
-      <input type="email" class="form-control" id="InputEmail" [(ngModel)]="writer.geboorteplaats"  name="geboorteplaats" placeholder="Geboorteplaats" required>
+      <input type="text" class="form-control" id="InputGeboorteplaats" [(ngModel)]="writer.geboorteplaats"  name="geboorteplaats" placeholder="Geboorteplaats" required>
+      <div *ngIf="WriterEditForm.controls['geboorteplaats'].touched && WriterEditForm.controls['geboorteplaats'].hasError('required')" class="text-danger">
+        Geboorteplaats is verplicht.
+      </div>
     </div>
-
+    
     <div class="form-group mb-4"> 
       <label for="InputDate" class="fw-bold">Geboortedatum</label>
       <input type="date" class="form-control" id="InputDate" [(ngModel)]="writer.geboortedatum"  name="geboortedatum" placeholder="Selecteer geboortedatum" required>
+      <div *ngIf="WriterEditForm.controls['geboortedatum'].touched && WriterEditForm.controls['geboortedatum'].hasError('required')" class="text-danger">
+        Geboortedatum is verplicht.
+      </div>
+      <div *ngIf="checkFutureWriterDate()" class="text-danger">
+        Geboortedatum mag niet in de toekomst liggen.
+      </div>
     </div>
-
+    
     <div class="form-group mb-4">
       <label for="InputBiografie" class="fw-bold">Biografie</label>
       <textarea class="form-control" id="InputBiografie" [(ngModel)]="writer.bio" name="bio" placeholder="Biografie" rows="8" required></textarea>
+      <div *ngIf="WriterEditForm.controls['bio'].touched && WriterEditForm.controls['bio'].hasError('required')" class="text-danger">
+        Biografie is verplicht.
+      </div>
     </div>
     
     <div class="form-group mb-4">
       <label for="InputStreet" class="fw-bold">Moedertaal</label>
-      <input type="text" class="form-control" id="InputCity" [(ngModel)]="writer.moedertaal"  name="moedertaal" placeholder="Moedertaal" required>
+      <input type="text" class="form-control" id="InputMoedertaal" [(ngModel)]="writer.moedertaal"  name="moedertaal" placeholder="Moedertaal" required>
+      <div *ngIf="WriterEditForm.controls['moedertaal'].touched && WriterEditForm.controls['moedertaal'].hasError('required')" class="text-danger">
+        Moedertaal is verplicht.
+      </div>
     </div>
+    
     
     <div class="form-row">
       <div class="col-12 mt-3">

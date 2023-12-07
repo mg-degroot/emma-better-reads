@@ -59,4 +59,20 @@ export class UserEditComponent implements OnInit {
     goBack(): void {
       window.history.back();
     }
+
+
+    checkFutureUserDate(): boolean {
+      const currentDate = new Date();
+      const inputDate = new Date(this.user.geboortedatum);
+      return inputDate > currentDate;
+    }
+    
+    checkValidHuisnummer(): boolean {
+      return this.user.huisnummer > 0;
+    }
+
+    isValidEmail(email: string): boolean {
+      const regexp = /^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+$/;
+      return regexp.test(email);
+    }
 }

@@ -1,34 +1,70 @@
 <div class="container-fluid">
-  <form class="m-5" #userEditForm="ngForm" (ngSubmit)="updateBook()">
+  <form class="m-5" #bookEditForm="ngForm" (ngSubmit)="updateBook()">
 
     <div class="form-group mb-4">
       <label for="InputCover" class="fw-bold">Boek cover</label>
-      <input type="text" class="form-control" id="InputCover" placeholder="Wijzig foto" [(ngModel)]="book.cover" name="cover">
+      <input type="text" class="form-control" id="InputCover" [(ngModel)]="book.cover" name="cover" placeholder="FotoURL" required minlength="5" maxlength="255">
+      <div *ngIf="bookEditForm.controls['cover'].touched && bookEditForm.controls['cover'].hasError('required')" class="text-danger">
+        Boek cover is required.
+      </div>
+      <div *ngIf="bookEditForm.controls['cover'].touched && bookEditForm.controls['cover'].hasError('minlength')" class="text-danger">
+        Boek cover must be at least 5 characters long.
+      </div>
+      <div *ngIf="bookEditForm.controls['cover'].touched && bookEditForm.controls['cover'].hasError('maxlength')" class="text-danger">
+        Boek cover cannot be more than 255 characters long.
+      </div>
     </div>
 
     <div class="form-group mb-4">
       <label for="InputTitel" class="fw-bold">Titel</label>
-      <input type="text" class="form-control" id="InputTitel" placeholder="Wijzig titel" [(ngModel)]="book.titel" name="titel">
+      <input type="text" class="form-control" id="InputTitel" [(ngModel)]="book.titel"  name="titel" placeholder="Titel" required minlength="3" maxlength="50">
+      <div *ngIf="bookEditForm.controls['titel'].touched && bookEditForm.controls['titel'].hasError('required')" class="text-danger">
+        Titel moet ingevuld worden.
+      </div>
+      <div *ngIf="bookEditForm.controls['titel'].touched && bookEditForm.controls['titel'].hasError('minlength')" class="text-danger">
+        Titel moet minimaal 3 characters lang zijn.
+      </div>
+      <div *ngIf="bookEditForm.controls['titel'].touched && bookEditForm.controls['titel'].hasError('maxlength')" class="text-danger">
+        Titel mag niet meer dan 50 characters lang zijn.
+      </div>
     </div>
 
     <div class="form-group mb-4">
       <label for="InputBeschrijving" class="fw-bold">Beschrijving</label>
-      <textarea type="text" class="form-control auto-height" id="InputBeschrijving" placeholder="Wijzig beschrijving" [(ngModel)]="book.beschrijving" name="beschrijving" rows="10"></textarea>
+      <textarea class="form-control" id="InputBeschrijving" [(ngModel)]="book.beschrijving" name="beschrijving" placeholder="Beschrijving" rows="8" required></textarea>
+      <div *ngIf="bookEditForm.controls['beschrijving'].touched && bookEditForm.controls['beschrijving'].hasError('required')" class="text-danger">
+        Beschrijving is verplicht.
+      </div>
     </div>
 
     <div class="form-group mb-4">
       <label for="InputPages" class="fw-bold">Pagina's</label>
-      <input type="number" class="form-control" id="InputPages" placeholder="Wijzig pagina's" [(ngModel)]="book.paginas" name="paginas">
+      <input type="number" class="form-control" id="InputPages" [(ngModel)]="book.paginas" name="paginas" placeholder="Aantal pagina's" required>
+      <div *ngIf="bookEditForm.controls['paginas'].touched && bookEditForm.controls['paginas'].hasError('required')" class="text-danger">
+        Aantal pagina's is verplicht.
+      </div>
+      <div *ngIf="!checkValidPageNumber()" class="text-danger">
+        Ongeldig aantal pagina's.
+      </div>
     </div>
 
     <div class="form-group mb-4">
-      <label for="InputTaal" class="fw-bold">Taal</label>
-      <input type="text" class="form-control" id="InputTaal" placeholder="Wijzig taal" [(ngModel)]="book.origineletaal" name="origineletaal">
+      <label for="InputGenre" class="fw-bold">Genre</label>
+      <input type="text" class="form-control" id="InputGenre" [(ngModel)]="book.genre" name="genre" placeholder="Genre" required>
+      <div *ngIf="bookEditForm.controls['genre'].touched && bookEditForm.controls['genre'].hasError('required')" class="text-danger">
+        Genre is verplicht.
+      </div>
     </div>
 
-    <div class="form-group mb-4"> 
+    <div class="form-group mb-4">
       <label for="InputDate" class="fw-bold">Publiceerdatum</label>
-      <input type="date" class="form-control" id="InputDate" placeholder="Wijzig publiceerdatum" [(ngModel)]="book.publiceerdatum" name="publiceerdatum">
+      <input type="date" class="form-control" id="InputDate" [(ngModel)]="book.publiceerdatum" name="publiceerdatum" placeholder="Publiceerdatum" required>
+      <div *ngIf="bookEditForm.controls['publiceerdatum'].touched && bookEditForm.controls['publiceerdatum'].hasError('required')" class="text-danger">
+        Publiceerdatum is verplicht.
+      </div>
+      <div *ngIf="checkFuturePublicationDate()" class="text-danger">
+        Publiceerdatum mag niet in de toekomst liggen.
+      </div>
     </div>
 
     <div class="form-row">

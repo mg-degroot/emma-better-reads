@@ -1,34 +1,62 @@
 <div class="container-fluid">
-  <form class="m-5">
+  <form class="m-5"  #writerForm="ngForm" (submit)="createWriter()">
 
     <div class="form-group mb-4">
-      <label for="InputNFoto" class="fw-bold">Profielfoto</label>
-      <input type="text" class="form-control" id="InputFoto" [(ngModel)]="writer.profielFoto"  name="profielFoto" placeholder="profielFoto" required>
+      <label for="InputFoto" class="fw-bold">Profielfoto</label>
+      <input type="text" class="form-control" id="InputFoto" [(ngModel)]="writer.profielFoto"  name="profielFoto" placeholder="Profielfoto URL" required minlength="5" maxlength="255">
+      <div *ngIf="writerForm.controls['profielFoto'].touched && writerForm.controls['profielFoto'].hasError('required')" class="text-danger">
+        Profielfoto is verplicht.
+      </div>
+      <div *ngIf="writerForm.controls['profielFoto'].touched && writerForm.controls['profielFoto'].hasError('minlength')" class="text-danger">
+        Profielfoto moet minimaal 5 tekens lang zijn.
+      </div>
+      <div *ngIf="writerForm.controls['profielFoto'].touched && writerForm.controls['profielFoto'].hasError('maxlength')" class="text-danger">
+        Profielfoto kan niet langer zijn dan 255 tekens.
+      </div>
     </div>
+    
 
     <div class="form-group mb-4">
       <label for="InputName" class="fw-bold">Naam</label>
       <input type="text" class="form-control" id="InputName" [(ngModel)]="writer.schrijvernaam"  name="schrijvernaam" placeholder="Naam" required>
+      <div *ngIf="writerForm.controls['schrijvernaam'].touched && writerForm.controls['schrijvernaam'].hasError('required')" class="text-danger">
+        Naam is verplicht.
+      </div>
     </div>
 
     <div class="form-group mb-4">
       <label for="InputEmail" class="fw-bold">Geboorteplaats</label>
-      <input type="email" class="form-control" id="InputEmail" [(ngModel)]="writer.geboorteplaats"  name="geboorteplaats" placeholder="Geboorteplaats" required>
+      <input type="text" class="form-control" id="InputEmail" [(ngModel)]="writer.geboorteplaats"  name="geboorteplaats" placeholder="Geboorteplaats" required>
+      <div *ngIf="writerForm.controls['geboorteplaats'].touched && writerForm.controls['geboorteplaats'].hasError('required')" class="text-danger">
+        Geboorteplaats is verplicht.
+      </div>
     </div>
 
     <div class="form-group mb-4"> 
       <label for="InputDate" class="fw-bold">Geboortedatum</label>
       <input type="date" class="form-control" id="InputDate" [(ngModel)]="writer.geboortedatum"  name="geboortedatum" placeholder="Selecteer geboortedatum" required>
+      <div *ngIf="writerForm.controls['geboortedatum'].touched && writerForm.controls['geboortedatum'].hasError('required')" class="text-danger">
+        Geboortedatum is verplicht.
+      </div>
+      <div *ngIf="checkFutureWriterDate()" class="text-danger">
+        Geboortedatum mag niet in de toekomst liggen.
+      </div>
     </div>
 
     <div class="form-group mb-4">
       <label for="InputBiografie" class="fw-bold">Biografie</label>
       <textarea class="form-control" id="InputBiografie" [(ngModel)]="writer.bio" name="bio" placeholder="Biografie" rows="8" required></textarea>
+      <div *ngIf="writerForm.controls['bio'].touched && writerForm.controls['bio'].hasError('required')" class="text-danger">
+        Biografie is verplicht.
+      </div>
     </div>
     
     <div class="form-group mb-4">
       <label for="InputStreet" class="fw-bold">Moedertaal</label>
       <input type="text" class="form-control" id="InputCity" [(ngModel)]="writer.moedertaal"  name="moedertaal" placeholder="Moedertaal" required>
+      <div *ngIf="writerForm.controls['moedertaal'].touched && writerForm.controls['moedertaal'].hasError('required')" class="text-danger">
+        Moedertaal is verplicht.
+      </div>
     </div>
     
     <div class="form-row">

@@ -1,35 +1,67 @@
 <div class="container-fluid">
-  <form class="m-5">
+  <form class="m-5" #userEditForm="ngForm" (submit)="updateUser()">
 
     <div class="form-group mb-4">
       <label for="InputName" class="fw-bold">Naam</label>
       <input type="text" class="form-control" id="InputName" [(ngModel)]="user.naam" name="naam" placeholder="Naam" required>
+      <div *ngIf="userEditForm.controls['naam'].touched && userEditForm.controls['naam'].hasError('required')" class="text-danger">
+        Naam is verplicht.
+      </div>
     </div>
-
+    
     <div class="form-group mb-4">
       <label for="InputEmail" class="fw-bold">Emailadres</label>
       <input type="email" class="form-control" id="InputEmail" [(ngModel)]="user.email" name="email" placeholder="Emailadres" required>
+      <div *ngIf="userEditForm.controls['email'].touched && userEditForm.controls['email'].hasError('required')" class="text-danger">
+        Emailadres is verplicht.
+      </div>
+      <div *ngIf="userEditForm.controls['email'].touched && userEditForm.controls['email'].hasError('email')" class="text-danger">
+        Ongeldig emailadres.
+      </div>
+      <div *ngIf="!isValidEmail(user.email)" class="text-danger">
+        Ongeldig emailadres.
+      </div>
     </div>
-
-    <div class="form-group mb-4"> 
+    
+    
+    <div class="form-group mb-4">
       <label for="InputDate" class="fw-bold">Geboortedatum</label>
-      <input type="date" class="form-control" id="InputDate" [(ngModel)]="user.geboortedatum"  name="geboortedatum" placeholder="Selecteer geboortedatum" required>
+      <input type="date" class="form-control" id="InputDate" [(ngModel)]="user.geboortedatum" name="geboortedatum" placeholder="Selecteer geboortedatum" required>
+      <div *ngIf="userEditForm.controls['geboortedatum'].touched && userEditForm.controls['geboortedatum'].hasError('required')" class="text-danger">
+        Geboortedatum is verplicht.
+      </div>
+      <div *ngIf="checkFutureUserDate()" class="text-danger">
+        Geboortedatum mag niet in de toekomst liggen.
+      </div>
     </div>
-
+    
     <div class="form-group mb-4">
       <label for="InputStreet" class="fw-bold">Straatnaam</label>
       <input type="text" class="form-control" id="InputStreet" [(ngModel)]="user.straatnaam" name="straatnaam" placeholder="Straatnaam" required>
+      <div *ngIf="userEditForm.controls['straatnaam'].touched && userEditForm.controls['straatnaam'].hasError('required')" class="text-danger">
+        Straatnaam is verplicht.
+      </div>
     </div>
-
+    
     <div class="form-group mb-4">
-      <label for="InputEmail" class="fw-bold">Huisnummer</label>
+      <label for="InputHousenumber" class="fw-bold">Huisnummer</label>
       <input type="number" class="form-control" id="InputHousenumber" [(ngModel)]="user.huisnummer" name="huisnummer" placeholder="Huisnummer" required>
+      <div *ngIf="userEditForm.controls['huisnummer'].touched && userEditForm.controls['huisnummer'].hasError('required')" class="text-danger">
+        Huisnummer is verplicht.
+      </div>
+      <div *ngIf="!checkValidHuisnummer()" class="text-danger">
+        Ongeldig huisnummer.
+      </div>
     </div>
-
+    
     <div class="form-group mb-4">
-      <label for="InputStreet" class="fw-bold">Stad</label>
+      <label for="InputCity" class="fw-bold">Stad</label>
       <input type="text" class="form-control" id="InputCity" [(ngModel)]="user.stad" name="stad" placeholder="Stad" required>
+      <div *ngIf="userEditForm.controls['stad'].touched && userEditForm.controls['stad'].hasError('required')" class="text-danger">
+        Stad is verplicht.
+      </div>
     </div>
+    
     
     <div class="form-row">
       <div class="col-12 mt-3">

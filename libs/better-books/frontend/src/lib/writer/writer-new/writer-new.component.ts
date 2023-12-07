@@ -43,4 +43,11 @@ export class WriterNewComponent {
     goBack(): void {
       this.router.navigate(['../../writers']);
     }
+
+    checkFutureWriterDate(): boolean {
+      const currentDate = new Date();
+      const inputDate = new Date(this.writer.geboortedatum);
+    
+      return inputDate > currentDate;
+    }
 }

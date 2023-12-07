@@ -76,4 +76,15 @@ export class BookEditComponent implements OnInit {
       term = term.toLowerCase();
       return item.schrijvernaam.toLowerCase().includes(term);
     }
+
+    checkFuturePublicationDate(): boolean {
+      const currentDate = new Date();
+      const inputDate = new Date(this.book.publiceerdatum);
+    
+      return inputDate > currentDate;
+    }
+
+    checkValidPageNumber(): boolean {
+      return this.book.paginas > 0;
+    }
 }
