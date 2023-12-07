@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { IUser } from '@nx-emma-indiv/shared/api';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'nx-emma-indiv-user-detail',
@@ -30,6 +31,7 @@ export class UserDetailComponent implements OnInit {
       private route: ActivatedRoute, 
       private userService: UserService,
       private router: Router, 
+      private authService: AuthService,
       ) {}
 
     ngOnInit(): void {
@@ -50,8 +52,11 @@ export class UserDetailComponent implements OnInit {
 
             // Close the confirmation dialog
             this.showDeleteConfirmation = false;
-            // Navigate back to the user list
-            this.router.navigate(['../../users'], { relativeTo: this.route });
+            
+            this.authService.logout();
+            // Navigate back to the dashboard
+            this.router.navigate(['/'])
+            
           },
           error: (error) => {
             console.error('Error deleting user:', error);
